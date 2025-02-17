@@ -12,17 +12,17 @@ namespace Model
         /// <summary>
         /// Name of person.
         /// </summary>
-        private string _name;
+        private string _name_;
 
         /// <summary>
         /// Surname of person.
         /// </summary>
-        private string _surname;
+        private string _surname_;
 
         /// <summary>
         /// Age of person.
         /// </summary>
-        private int _age;
+        private int _age_;
 
         /// <summary>
         /// Minimum age value.
@@ -37,7 +37,7 @@ namespace Model
         /// <summary>
         /// Gender of person.
         /// </summary>
-        private Gender _gender;
+        private Gender _gender_;
 
         /// <summary>
         /// Enter the name of person.
@@ -46,15 +46,15 @@ namespace Model
         {
             get
             {
-                return _name;
+                return _name_;
             }
 
             set
             {
                 _ = CheckStringLanguage(value);
-                _name = EditRegister(value);
+                _name_ = EditRegister(value);
 
-                if (_surname != null)
+                if (_surname_ != null)
                 {
                     CheckNameSurname();
                 }
@@ -68,15 +68,15 @@ namespace Model
         {
             get
             {
-                return _surname;
+                return _surname_;
             }
 
             set
             {
                 _ = CheckStringLanguage(value);
-                _surname = EditRegister(value);
+                _surname_ = EditRegister(value);
 
-                if (_name != null)
+                if (_name_ != null)
                 {
                     CheckNameSurname();
                 }
@@ -90,14 +90,14 @@ namespace Model
         {
             get
             {
-                return _age;
+                return _age_;
             }
 
             set
             {
                 if (value > MinAge && value < MaxAge)
                 {
-                    _age = value;
+                    _age_ = value;
                 }
                 else
                 {
@@ -110,18 +110,7 @@ namespace Model
         /// <summary>
         /// Enter the gender of person.
         /// </summary>
-        public Gender Gender
-        {
-            get
-            {
-                return _gender;
-            }
-
-            set
-            {
-                _gender = value;
-            }
-        }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Person's constructor.
@@ -144,7 +133,12 @@ namespace Model
         /// Initializes a new instance of the <see cref="Person"/> class.
         /// </summary>
         public Person()
-        { }
+        {
+            Name = "";
+            Surname = "";
+            Age = Convert.ToInt32("18");
+            Gender = (Gender)Convert.ToInt32("1");
+        }
 
         /// <summary>
         /// Converts class field value to string format.

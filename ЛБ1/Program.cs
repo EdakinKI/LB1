@@ -41,6 +41,7 @@ namespace Lab1
             youth.AddPerson(celestina);
 
             // Print the lists
+            Console.WriteLine("To continue, press ENTER");
             _ = Console.ReadKey();
             Console.WriteLine("List of olds:");
             PrintList(olds);
@@ -134,7 +135,7 @@ namespace Lab1
         }
 
         /// <summary>
-        /// Method which allows to enter information by console.
+        /// Method which allows to enter information by console..
         /// </summary>
         /// <returns>An instance of class Person.</returns>
         /// <exception cref="ArgumentException">Only numbers.</exception>
@@ -149,12 +150,20 @@ namespace Lab1
                 {
                     Console.Write($"Enter student {property}: ");
                     person.Name = Console.ReadLine();
+                    if (person.Name=="")
+                    {
+                        throw new IndexOutOfRangeException("");
+                    }
                 }), "name"),
 
                 (new Action<string>((string property) =>
                 {
                     Console.Write($"Enter student {property}: ");
                     person.Surname = Console.ReadLine();
+                    if (person.Surname=="")
+                    {
+                        throw new IndexOutOfRangeException("");
+                    }
                 }), "surname"),
 
                 (new Action<string>((string property) =>
