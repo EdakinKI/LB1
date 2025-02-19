@@ -119,25 +119,12 @@ namespace Model
         /// <param name="surname">Surname of person.</param>
         /// <param name="age">Age of person.</param>
         /// <param name="gender">Gender of person.</param>
-        public Person
-            (string name, string surname, int age, Gender gender)
+        public Person(string name = "", string surname = "", int age = 18, Gender gender = Gender.Male)
         {
             Name = name;
             Surname = surname;
             Age = age;
             Gender = gender;
-
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Person"/> class.
-        /// </summary>
-        public Person()
-        {
-            Name = "";
-            Surname = "";
-            Age = Convert.ToInt32("18");
-            Gender = (Gender)Convert.ToInt32("1");
         }
 
         /// <summary>
