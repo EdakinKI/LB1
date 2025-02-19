@@ -12,17 +12,17 @@ namespace Model
         /// <summary>
         /// Name of person.
         /// </summary>
-        private string _name_;
+        private string _name;
 
         /// <summary>
         /// Surname of person.
         /// </summary>
-        private string _surname_;
+        private string _surname;
 
         /// <summary>
         /// Age of person.
         /// </summary>
-        private int _age_;
+        private int _age;
 
         /// <summary>
         /// Minimum age value.
@@ -37,7 +37,7 @@ namespace Model
         /// <summary>
         /// Gender of person.
         /// </summary>
-        private Gender _gender_;
+        private Gender _gender;
 
         /// <summary>
         /// Enter the name of person.
@@ -46,15 +46,15 @@ namespace Model
         {
             get
             {
-                return _name_;
+                return _name;
             }
 
             set
             {
                 _ = CheckStringLanguage(value);
-                _name_ = EditRegister(value);
+                _name = EditRegister(value);
 
-                if (_surname_ != null)
+                if (_surname != null)
                 {
                     CheckNameSurname();
                 }
@@ -68,15 +68,15 @@ namespace Model
         {
             get
             {
-                return _surname_;
+                return _surname;
             }
 
             set
             {
                 _ = CheckStringLanguage(value);
-                _surname_ = EditRegister(value);
+                _surname = EditRegister(value);
 
-                if (_name_ != null)
+                if (_name != null)
                 {
                     CheckNameSurname();
                 }
@@ -90,14 +90,14 @@ namespace Model
         {
             get
             {
-                return _age_;
+                return _age;
             }
 
             set
             {
                 if (value > MinAge && value < MaxAge)
                 {
-                    _age_ = value;
+                    _age = value;
                 }
                 else
                 {
