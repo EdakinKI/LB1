@@ -2,6 +2,8 @@ using Model;
 
 namespace Lab1
 {
+    //TODO: rename solution
+    //TODO: separate model and console
     /// <summary>
     /// Class Program.
     /// </summary>
@@ -18,7 +20,7 @@ namespace Lab1
 
             // Create 6 people to fill the lists
             var emperror = new Person
-                ("God", "Emperror",122, Gender.Male);
+                ("God", "Emperror", 122, Gender.Male);
             var chorus = new Person
                 ("Chorus", "Traitor", 70, Gender.Male);
             var sanguinius = new Person

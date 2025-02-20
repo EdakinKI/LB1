@@ -34,6 +34,7 @@ namespace Model
         /// </summary>
         private const int MaxAge = 123;
 
+        //TODO: remove
         /// <summary>
         /// Gender of person.
         /// </summary>
@@ -230,6 +231,7 @@ namespace Model
             }
         }
 
+        //TODO: rename
         /// <summary>
         /// Case conversion: first letter capital, other capitals.
         /// </summary>
