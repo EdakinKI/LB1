@@ -119,7 +119,8 @@ namespace Model
         /// <param name="surname">Surname of person.</param>
         /// <param name="age">Age of person.</param>
         /// <param name="gender">Gender of person.</param>
-        public Person(string name = "", string surname = "", int age = 18, Gender gender = Gender.Male)
+        public Person(string name = "", string surname = "", int age = 18,
+            Gender gender = Gender.Male)
         {
             Name = name;
             Surname = surname;
