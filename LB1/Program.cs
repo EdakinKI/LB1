@@ -171,9 +171,14 @@ namespace Lab1
 
                 (new Action<string>((string property) =>
                 {
-                    //BUG:
+                    //BUG:+
                     Console.Write($"Enter student {property}: ");
-                    _ = int.TryParse(Console.ReadLine(), out int tmpAge);
+                    if (!int.TryParse(Console.ReadLine(), out int tmpAge))
+                    {
+                        throw new FormatException
+                           ($"Age value must " +
+                           $"be in range [{Person.MinAge}:{Person.MaxAge}].");
+                    }
                     person.Age = tmpAge;
                 }), "age"),
 
