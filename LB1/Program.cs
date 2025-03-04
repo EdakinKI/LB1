@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 namespace Lab1
 {
-    //TODO: rename solution+
-    //TODO: separate model and console+
     /// <summary>
     /// Class Program.
     /// </summary>
@@ -109,6 +107,7 @@ namespace Lab1
             _ = Console.ReadKey();
 
             Console.Write("Random person is: ");
+            
             var randomPerson = Person.GetRandomPerson();
             Console.WriteLine(randomPerson.ToString());
         }
@@ -172,6 +171,7 @@ namespace Lab1
 
                 (new Action<string>((string property) =>
                 {
+                    //BUG:
                     Console.Write($"Enter student {property}: ");
                     _ = int.TryParse(Console.ReadLine(), out int tmpAge);
                     person.Age = tmpAge;
