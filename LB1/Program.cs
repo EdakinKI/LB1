@@ -174,9 +174,7 @@ namespace Lab1
                     Console.Write($"Enter student {property}: ");
                     if (!int.TryParse(Console.ReadLine(), out int tmpAge))
                     {
-                        //TODO: remake+
-                        throw new FormatException
-                           ("Use only numbers. ");
+                        throw new FormatException("Use only numbers. ");
                     }
                     person.Age = tmpAge;
                 }), "age"),
