@@ -153,7 +153,7 @@ namespace Lab1
                 {
                     Console.Write($"Enter student {property}: ");
                     person.Name = Console.ReadLine();
-                    if (person.Name=="")
+                    if (person.Name == "")
                     {
                         throw new IndexOutOfRangeException("");
                     }
@@ -163,7 +163,7 @@ namespace Lab1
                 {
                     Console.Write($"Enter student {property}: ");
                     person.Surname = Console.ReadLine();
-                    if (person.Surname=="")
+                    if (person.Surname == "")
                     {
                         throw new IndexOutOfRangeException("");
                     }
@@ -171,10 +171,10 @@ namespace Lab1
 
                 (new Action<string>((string property) =>
                 {
-                    //BUG:+
                     Console.Write($"Enter student {property}: ");
                     if (!int.TryParse(Console.ReadLine(), out int tmpAge))
                     {
+                        //TODO: remake
                         throw new FormatException
                            ($"Age value must " +
                            $"be in range [{Person.MinAge}:{Person.MaxAge}].");

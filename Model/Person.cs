@@ -25,13 +25,11 @@ namespace Model
         /// </summary>
         private int _age;
 
-        //TODO: remake+
         /// <summary>
         /// Minimum age value.
         /// </summary>
         public const int MinAge = 0;
 
-        //TODO: remake+
         /// <summary>
         /// Maximum age value.
         /// </summary>
@@ -94,14 +92,12 @@ namespace Model
 
             set
             {
-                //TODO: remake+
                 if (value >= MinAge && value <= MaxAge)
                 {
                     _age = value;
                 }
                 else
                 {
-                    //TODO: maxage?+
                     throw new IndexOutOfRangeException("Age value must" +
                           $" be in range [{MinAge}:{MaxAge}].");
                 }
@@ -174,7 +170,6 @@ namespace Model
                 : femaleNames[random.Next(femaleNames.Length)];
 
             var tmpSurname = surnames[random.Next(surnames.Length)];
-            //BUG:+
             var tmpAge = random.Next(MinAge, MaxAge);
 
             return new Person(tmpName, tmpSurname, tmpAge, tmpGender);
