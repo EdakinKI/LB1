@@ -174,10 +174,9 @@ namespace Lab1
                     Console.Write($"Enter student {property}: ");
                     if (!int.TryParse(Console.ReadLine(), out int tmpAge))
                     {
-                        //TODO: remake
+                        //TODO: remake+
                         throw new FormatException
-                           ($"Age value must " +
-                           $"be in range [{Person.MinAge}:{Person.MaxAge}].");
+                           ("Use only numbers. ");
                     }
                     person.Age = tmpAge;
                 }), "age"),
