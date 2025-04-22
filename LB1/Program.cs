@@ -20,7 +20,7 @@ namespace Lab1
 
             // Create 6 people to fill the lists
             var emperror = new Person
-                ("God", "Emperror", 122, Gender.Male);
+                ("God", "Emor", 122, Gender.Male);
             var chorus = new Person
                 ("Chorus", "Traitor", 70, Gender.Male);
             var sanguinius = new Person
