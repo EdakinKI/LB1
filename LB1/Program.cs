@@ -2,114 +2,57 @@ using Model;
 using System;
 using System.Collections.Generic;
 
-namespace Lab1
+namespace ConsoleApp_LAB1
 {
     /// <summary>
     /// Class Program.
     /// </summary>
     internal class Program
     {
+        //TODO: RSDN
         /// <summary>
         /// Class Main.
         /// </summary>
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
-            // Create two lists
-            var olds = new PersonList();
-            var youth = new PersonList();
-
-            // Create 6 people to fill the lists
-            var emperror = new PersonBase
-                ("God", "Emor", 122, Gender.Male);
-            var chorus = new PersonBase
-                ("Chorus", "Traitor", 70, Gender.Male);
-            var sanguinius = new PersonBase
-                ("Sangiunius", "Primarch", 66, Gender.Male);
-
-            var roboute = new PersonBase
-                ("Roboute", "Crybaby", 19, Gender.Male);
-            var abaddon = new PersonBase
-                ("Abaddon", "Vredina", 14, Gender.Male);
-            var celestina = new PersonBase
-                ("Celestina", "Holy", 7, Gender.Female);
-
-            // Add people to the lists
-            olds.AddPerson(emperror);
-            olds.AddPerson(chorus);
-            olds.AddPerson(sanguinius);
-
-            youth.AddPerson(roboute);
-            youth.AddPerson(abaddon);
-            youth.AddPerson(celestina);
-
-            // Print the lists
-            Console.WriteLine("To continue, press ENTER");
-            _ = Console.ReadKey();
-            Console.WriteLine("List of olds:");
-            PrintList(olds);
-
-            Console.WriteLine("List of youth:");
-            PrintList(youth);
-
-            // Add a new person to the 1st list
-            _ = Console.ReadKey();
-            var magnus = new PersonBase
-                ("Magnus", "Nottraitor", 48, Gender.Male);
-            olds.AddPerson(magnus);
-            Console.WriteLine("New person has been added to the 1st list");
-
-            // Copy the second person from the 1st list to the end of
-            // the 2nd list
-            _ = Console.ReadKey();
-            youth.AddPerson(olds.SearchPerson(1));
-            Console.WriteLine("Second person from the 1st list has been" +
-                " added to the 2nd list");
-
-            // Print edited lists
-            _ = Console.ReadKey();
-            Console.WriteLine("List of olds:");
-            PrintList(olds);
-
-            Console.WriteLine("List of youth:");
-            PrintList(youth);
-
-            // Delete the second person from the 1st list
-            _ = Console.ReadKey();
-            olds.DeletePersonByIndex(1);
-            Console.WriteLine("Second person from the 1st list has been" +
-                " removed");
-
-            // Print edited lists
-            _ = Console.ReadKey();
-            Console.WriteLine("List of olds:");
-            PrintList(olds);
-
-            Console.WriteLine("List of youth:");
-            PrintList(youth);
-
-            // Clear the second list
-            _ = Console.ReadKey();
-            youth.ClearList();
-            Console.WriteLine("2nd list (youth) has been cleared");
-
-            // Print the list
-            Console.WriteLine("List of youth:");
-            PrintList(youth);
+            //TODO: to const
+            Console.WriteLine("Let's create a list and add 7 people.");
             Console.WriteLine();
+            var listOfPeople = new PersonList();
+            var rnd = new Random();
 
-            // Check input person
+            for (int i = 0; i < 8; i++)
+            {
+                PersonBase rndPerson = rnd.Next(2) == 0
+                    ? (PersonBase)Adult.GetRandomPerson()
+                    : (PersonBase)Child.GetRandomPerson();
+                listOfPeople.AddPerson(rndPerson);
+            }
+
+
             _ = Console.ReadKey();
 
-            var inputPerson = InputPersonByConsole();
-            Console.WriteLine(inputPerson.ToString());
+            Console.WriteLine("Let's print all people from the list.");
+            Console.WriteLine();
+            PrintList(listOfPeople);
 
-            // Check random person
             _ = Console.ReadKey();
 
-            Console.Write("Random person is: ");
-            
-            var randomPerson = PersonBase.GetRandomPerson();
-            Console.WriteLine(randomPerson.ToString());
+            Console.WriteLine
+                ("Let's find out type of the forth person from the list.");
+            Console.WriteLine();
+            var person = listOfPeople.SearchPerson(3);
+
+            switch (person)
+            {
+                case Adult personAdult:
+                    Console.WriteLine(personAdult.GetCountry());
+                    break;
+                default:
+                    break;
+            }
+
+            _ = Console.ReadKey();
         }
 
         /// <summary>
@@ -123,121 +66,17 @@ namespace Lab1
                 throw new NullReferenceException("Null reference list.");
             }
 
-            if (personList.NumberOfPersons() != 0)
+            if (personList.NumberOfPersons != 0)
             {
-                for (int i = 0; i < personList.NumberOfPersons(); i++)
+                for (int i = 0; i < personList.NumberOfPersons; i++)
                 {
                     var tmpPerson = personList.SearchPerson(i);
-                    Console.WriteLine(tmpPerson.ToString());
+                    Console.WriteLine(tmpPerson.GetInfo());
                 }
             }
             else
             {
                 Console.WriteLine("List is empty.");
-            }
-        }
-
-        /// <summary>
-        /// Method which allows to enter information by console..
-        /// </summary>
-        /// <returns>An instance of class Person.</returns>
-        /// <exception cref="ArgumentException">Only numbers.</exception>
-        public static PersonBase InputPersonByConsole()
-        {
-            var person = new PersonBase();
-
-            var actionList = new List<(Action<string>, string)>
-            {
-                (
-                new Action<string>((string property) =>
-                {
-                    Console.Write($"Enter student {property}: ");
-                    person.Name = Console.ReadLine();
-                    if (person.Name == "")
-                    {
-                        throw new IndexOutOfRangeException("");
-                    }
-                }), "name"),
-
-                (new Action<string>((string property) =>
-                {
-                    Console.Write($"Enter student {property}: ");
-                    person.Surname = Console.ReadLine();
-                    if (person.Surname == "")
-                    {
-                        throw new IndexOutOfRangeException("");
-                    }
-                }), "surname"),
-
-                (new Action<string>((string property) =>
-                {
-                    Console.Write($"Enter student {property}: ");
-                    if (!int.TryParse(Console.ReadLine(), out int tmpAge))
-                    {
-                        //TODO: remake+
-                        throw new FormatException
-                           ("Use only numbers. ");
-                    }
-                    person.Age = tmpAge;
-                }), "age"),
-
-                (new Action<string>((string property) =>
-                {
-                    Console.Write
-                        ($"Enter student {property} (1 - Male or 2 - Female): ");
-                    _ = int.TryParse(Console.ReadLine(), out int tmpGender);
-                    if (tmpGender < 1 || tmpGender > 2)
-                    {
-                        throw new IndexOutOfRangeException
-                            ("Number must be in range [1; 2].");
-                    }
-
-                    var realGender = tmpGender == 1
-                        ? Gender.Male
-                        : Gender.Female;
-                    person.Gender = realGender;
-                }), "gender")
-            };
-
-            foreach (var action in actionList)
-            {
-                ActionHandler(action.Item1, action.Item2);
-            }
-
-            return person;
-        }
-
-        /// <summary>
-        /// Method which is used for doing actions from the list.
-        /// </summary>
-        /// <param name="action">A certain action.</param>
-        /// <param name="propertyName">Additional parameter
-        /// for exception.</param>
-        private static void ActionHandler(Action<string> action, string propertyName)
-        {
-            while (true)
-            {
-                try
-                {
-                    action.Invoke(propertyName);
-                    break;
-                }
-                catch (Exception exception)
-                {
-                    if (exception.GetType()
-                        == typeof(IndexOutOfRangeException)
-                        || exception.GetType() == typeof(FormatException)
-                        || exception.GetType() == typeof(ArgumentException))
-                    {
-                        Console.WriteLine($"Incorrect {propertyName}." +
-                        $" Error: {exception.Message}" +
-                        $"Please, enter the {propertyName} again.");
-                    }
-                    else
-                    {
-                        throw exception;
-                    }
-                }
             }
         }
     }

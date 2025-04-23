@@ -13,6 +13,11 @@ namespace Model
         /// <summary>
         /// Female gender.
         /// </summary>
-        Female
+        Female,
+
+        /// <summary>
+        /// Unknown gender.
+        /// </summary>
+        Unknown
     }
 }
