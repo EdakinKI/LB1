@@ -1,14 +1,14 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 
 namespace Model
 {
     /// <summary>
     /// Class which describe persons.
     /// </summary>
-    public class PersonBase
+    public abstract class PersonBase
     {
         /// <summary>
         /// Name of person.
@@ -26,35 +26,15 @@ namespace Model
         private int _age;
 
         /// <summary>
-        /// Minimum age value.
-        /// </summary>
-        public const int MinAge = 0;
-
-        /// <summary>
-        /// Maximum age value.
-        /// </summary>
-        public const int MaxAge = 122;
-
-
-        /// <summary>
         /// Enter the name of person.
         /// </summary>
         public string Name
         {
-            get
-            {
-                return _name;
-            }
+            get => _name;
 
             set
             {
-                _ = CheckStringLanguage(value);
-                _name = Capitalization(value);
-
-                if (_surname != null)
-                {
-                    CheckNameSurname();
-                }
+                _name = CheckNameSurname(value, _surname);
             }
         }
 
@@ -63,20 +43,11 @@ namespace Model
         /// </summary>
         public string Surname
         {
-            get
-            {
-                return _surname;
-            }
+            get => _surname;
 
             set
             {
-                _ = CheckStringLanguage(value);
-                _surname = Capitalization(value);
-
-                if (_name != null)
-                {
-                    CheckNameSurname();
-                }
+                _surname = CheckNameSurname(value, _name);
             }
         }
 
@@ -85,94 +56,62 @@ namespace Model
         /// </summary>
         public int Age
         {
-            get
-            {
-                return _age;
-            }
+            get => _age;
 
             set
             {
-                if (value >= MinAge && value <= MaxAge)
-                {
-                    _age = value;
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException("Age value must" +
-                          $" be in range [{MinAge}:{MaxAge}].");
-                }
+                CheckAge(value);
+                _age = value;
             }
         }
 
         /// <summary>
         /// Enter the gender of person.
         /// </summary>
-        public Gender Gender { get; set; }
+        public Gender Gender
+        {
+            get; set;
+        }
 
         /// <summary>
-        /// Person's constructor.
+        /// PersonBase's constructor.
         /// </summary>
         /// <param name="name">Name of person.</param>
         /// <param name="surname">Surname of person.</param>
         /// <param name="age">Age of person.</param>
         /// <param name="gender">Gender of person.</param>
-        public PersonBase(string name = "", string surname = "", int age = 18,
-            Gender gender = Gender.Male)
+        protected PersonBase
+            (string name, string surname, int age, Gender gender)
         {
             Name = name;
             Surname = surname;
             Age = age;
             Gender = gender;
+
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonBase"/> class.
+        /// </summary>
+        protected PersonBase()
+        { }
 
         /// <summary>
         /// Converts class field value to string format.
         /// </summary>
         /// <returns>Information about person.</returns>
-        public override string ToString()
+        public string GetPersonInfo()
         {
             return $"{Name} {Surname}; Age - {Age}; Gender - {Gender}";
         }
 
         /// <summary>
-        /// Method which allows to enter a random person.
+        /// Converts certain class field values to string format.
         /// </summary>
-        /// <returns>Random person.</returns>
-        public static PersonBase GetRandomPerson()
+        /// <returns>Person's name or surname.</returns>
+        public string GetPersonNameSurname()
         {
-            string[] maleNames =
-            {
-                "Argel", "Kayvaan", "John", "Vlad", "Salam",
-                "Viktor", "Grimaldus", "Merek", "Archon"
-            };
-
-            string[] femaleNames =
-            {
-                "Katarina", "Efrael", "Luce", "Mirael", "Cyrene",
-                "Elena", "Katerine", "Amberley", "Severina"
-            };
-
-            string[] surnames =
-            {
-                "Loyalist", "Fortheemperror", "Waaaaaagh",
-                "Chaos", "Traitor", "Heresy" 
-            };
-
-            var random = new Random();
-            var tmpNumber = random.Next(1, 3);
-
-            Gender tmpGender = tmpNumber == 1
-                ? Gender.Male
-                : Gender.Female;
-
-            string tmpName = tmpGender == Gender.Male
-                ? maleNames[random.Next(maleNames.Length)]
-                : femaleNames[random.Next(femaleNames.Length)];
-
-            var tmpSurname = surnames[random.Next(surnames.Length)];
-            var tmpAge = random.Next(MinAge, MaxAge);
-
-            return new PersonBase(tmpName, tmpSurname, tmpAge, tmpGender);
+            return $"{Name} {Surname}";
         }
 
         /// <summary>
@@ -207,22 +146,38 @@ namespace Model
         }
 
         /// <summary>
-        /// Compare languages of the person's surname and name.
+        /// Method which check string language.
         /// </summary>
+        /// <param name="tmpStr">Input string.</param>
+        /// <exception cref="ArgumentException">Exception.</exception>
+        private void CheckUnknownLanguage(string tmpStr)
+        {
+            if (CheckStringLanguage(tmpStr) == Language.Unknown)
+            {
+                throw new ArgumentException("Incorrect input." +
+                    " Please use only characters of the same language");
+            }
+        }
+
+        /// <summary>
+        /// Compare languages of the person's name and surname.
+        /// </summary>
+        /// <param name="Name">Name of Person.</param>
+        /// <param name="Surname">Surname of Person.</param>
         /// <exception cref="FormatException">Only one
         /// language.</exception>
-        private void CheckNameSurname()
+        private void CheckSameLanguage(string Name, string Surname)
         {
             if ((string.IsNullOrEmpty(Name) == false)
                 && (string.IsNullOrEmpty(Surname) == false))
             {
-                var nameLanguage = CheckStringLanguage(Name);
-                var surnameLanguage = CheckStringLanguage(Surname);
+                var word1Language = CheckStringLanguage(Name);
+                var word2Language = CheckStringLanguage(Surname);
 
-                if (nameLanguage != surnameLanguage)
+                if (word1Language != word2Language)
                 {
-                    throw new FormatException("Name and Surname must" +
-                            " be only in one language.");
+                    throw new FormatException("Use only one language" +
+                            " in Name and Surname .");
                 }
             }
         }
@@ -231,11 +186,38 @@ namespace Model
         /// Case conversion: first letter capital, other capitals.
         /// </summary>
         /// <param name="word">Name or surname of the person.</param>
-        /// <returns>Edited name or surname of the person.</returns>
+        /// <returns>Edited Name or surname of the person.</returns>
         private static string Capitalization(string word)
         {
             return CultureInfo.CurrentCulture.TextInfo.
                 ToTitleCase(word.ToLower());
         }
+
+        /// <summary>
+        /// Method for complex check names and surnames.
+        /// </summary>
+        /// <param name="Name">Name or surname of the person.</param>
+        /// <param name="Surname">Name or surname of the person.</param>
+        /// <returns>Edited and checked name or surname
+        /// of the person.</returns>
+        private string CheckNameSurname(string Name, string Surname)
+        {
+            CheckUnknownLanguage(Name);
+            var tmpString = Capitalization(Name);
+            CheckSameLanguage(Name, Surname);
+            return tmpString;
+        }
+
+        /// <summary>
+        /// Get the information about a person.
+        /// </summary>
+        /// <returns>Info about person.</returns>
+        public abstract string GetInfo();
+
+        /// <summary>
+        /// Check person's age.
+        /// </summary>
+        /// <param name="age">Person's age.</param>
+        protected abstract void CheckAge(int age);
     }
 }
