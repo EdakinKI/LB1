@@ -45,7 +45,7 @@
     <Compile Include="Child.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="Language.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="PersonBase.cs" />
     <Compile Include="PersonList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

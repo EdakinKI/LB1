@@ -8,7 +8,7 @@ namespace Model
     /// <summary>
     /// Class which describe persons.
     /// </summary>
-    public class Person
+    public class PersonBase
     {
         /// <summary>
         /// Name of person.
@@ -116,7 +116,7 @@ namespace Model
         /// <param name="surname">Surname of person.</param>
         /// <param name="age">Age of person.</param>
         /// <param name="gender">Gender of person.</param>
-        public Person(string name = "", string surname = "", int age = 18,
+        public PersonBase(string name = "", string surname = "", int age = 18,
             Gender gender = Gender.Male)
         {
             Name = name;
@@ -138,7 +138,7 @@ namespace Model
         /// Method which allows to enter a random person.
         /// </summary>
         /// <returns>Random person.</returns>
-        public static Person GetRandomPerson()
+        public static PersonBase GetRandomPerson()
         {
             string[] maleNames =
             {
@@ -172,7 +172,7 @@ namespace Model
             var tmpSurname = surnames[random.Next(surnames.Length)];
             var tmpAge = random.Next(MinAge, MaxAge);
 
-            return new Person(tmpName, tmpSurname, tmpAge, tmpGender);
+            return new PersonBase(tmpName, tmpSurname, tmpAge, tmpGender);
         }
 
         /// <summary>

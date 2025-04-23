@@ -19,18 +19,18 @@ namespace Lab1
             var youth = new PersonList();
 
             // Create 6 people to fill the lists
-            var emperror = new Person
+            var emperror = new PersonBase
                 ("God", "Emor", 122, Gender.Male);
-            var chorus = new Person
+            var chorus = new PersonBase
                 ("Chorus", "Traitor", 70, Gender.Male);
-            var sanguinius = new Person
+            var sanguinius = new PersonBase
                 ("Sangiunius", "Primarch", 66, Gender.Male);
 
-            var roboute = new Person
+            var roboute = new PersonBase
                 ("Roboute", "Crybaby", 19, Gender.Male);
-            var abaddon = new Person
+            var abaddon = new PersonBase
                 ("Abaddon", "Vredina", 14, Gender.Male);
-            var celestina = new Person
+            var celestina = new PersonBase
                 ("Celestina", "Holy", 7, Gender.Female);
 
             // Add people to the lists
@@ -53,7 +53,7 @@ namespace Lab1
 
             // Add a new person to the 1st list
             _ = Console.ReadKey();
-            var magnus = new Person
+            var magnus = new PersonBase
                 ("Magnus", "Nottraitor", 48, Gender.Male);
             olds.AddPerson(magnus);
             Console.WriteLine("New person has been added to the 1st list");
@@ -108,7 +108,7 @@ namespace Lab1
 
             Console.Write("Random person is: ");
             
-            var randomPerson = Person.GetRandomPerson();
+            var randomPerson = PersonBase.GetRandomPerson();
             Console.WriteLine(randomPerson.ToString());
         }
 
@@ -142,9 +142,9 @@ namespace Lab1
         /// </summary>
         /// <returns>An instance of class Person.</returns>
         /// <exception cref="ArgumentException">Only numbers.</exception>
-        public static Person InputPersonByConsole()
+        public static PersonBase InputPersonByConsole()
         {
-            var person = new Person();
+            var person = new PersonBase();
 
             var actionList = new List<(Action<string>, string)>
             {
