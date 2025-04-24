@@ -2,26 +2,27 @@ using Model;
 using System;
 using System.Collections.Generic;
 
-namespace ConsoleApp_LAB1
+namespace ConsoleApp_LAB2
 {
     /// <summary>
     /// Class Program.
     /// </summary>
     internal class Program
     {
-        //TODO: RSDN
         /// <summary>
         /// Class Main.
         /// </summary>
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            //TODO: to const
-            Console.WriteLine("Let's create a list and add 7 people.");
+            const int peopleCount = 7;
+            Console.WriteLine($"Create a list and add {peopleCount} people.");
             Console.WriteLine();
+            Console.WriteLine("Please click any button");
             var listOfPeople = new PersonList();
             var rnd = new Random();
 
-            for (int i = 0; i < 8; i++)
+
+            for (int i = 0; i < peopleCount; i++)
             {
                 PersonBase rndPerson = rnd.Next(2) == 0
                     ? (PersonBase)Adult.GetRandomPerson()
@@ -32,21 +33,24 @@ namespace ConsoleApp_LAB1
 
             _ = Console.ReadKey();
 
-            Console.WriteLine("Let's print all people from the list.");
+            Console.WriteLine("Print all people from the list.");
             Console.WriteLine();
             PrintList(listOfPeople);
 
             _ = Console.ReadKey();
 
             Console.WriteLine
-                ("Let's find out type of the forth person from the list.");
+                ("Find out type of the forth person from the list.");
             Console.WriteLine();
             var person = listOfPeople.SearchPerson(3);
 
             switch (person)
             {
                 case Adult personAdult:
-                    Console.WriteLine(personAdult.GetCountry());
+                    Console.WriteLine(personAdult.GetFilm());
+                    break;
+                case Child personChild:
+                    Console.WriteLine(personChild.GetGame());
                     break;
                 default:
                     break;

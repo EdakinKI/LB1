@@ -125,7 +125,7 @@ namespace Model
             var cyrillicSymbols = new Regex
                 (@"^[А-я]+(-[А-я])?[А-я]*$");
 
-            if (string.IsNullOrEmpty(name) == false)
+            if (!string.IsNullOrEmpty(name))
             {
                 if (latinSymbols.IsMatch(name))
                 {
@@ -162,22 +162,22 @@ namespace Model
         /// <summary>
         /// Compare languages of the person's name and surname.
         /// </summary>
-        /// <param name="Name">Name of Person.</param>
-        /// <param name="Surname">Surname of Person.</param>
+        /// <param name="word1">Name of Person.</param>
+        /// <param name="word2">Surname of Person.</param>
         /// <exception cref="FormatException">Only one
         /// language.</exception>
-        private void CheckSameLanguage(string Name, string Surname)
+        private void CheckSameLanguage(string word1, string word2)
         {
-            if ((string.IsNullOrEmpty(Name) == false)
-                && (string.IsNullOrEmpty(Surname) == false))
+            if ((!string.IsNullOrEmpty(word1))
+                && (!string.IsNullOrEmpty(word2)))
             {
-                var word1Language = CheckStringLanguage(Name);
-                var word2Language = CheckStringLanguage(Surname);
+                var word1Language = CheckStringLanguage(word1);
+                var word2Language = CheckStringLanguage(word2);
 
                 if (word1Language != word2Language)
                 {
-                    throw new FormatException("Use only one language" +
-                            " in Name and Surname .");
+                    throw new ArgumentException("Incorrect input." +
+                    " Please use only characters of the same language");
                 }
             }
         }
@@ -187,7 +187,7 @@ namespace Model
         /// </summary>
         /// <param name="word">Name or surname of the person.</param>
         /// <returns>Edited Name or surname of the person.</returns>
-        private static string Capitalization(string word)
+        private static string Capitalazation(string word)
         {
             return CultureInfo.CurrentCulture.TextInfo.
                 ToTitleCase(word.ToLower());
@@ -196,15 +196,15 @@ namespace Model
         /// <summary>
         /// Method for complex check names and surnames.
         /// </summary>
-        /// <param name="Name">Name or surname of the person.</param>
-        /// <param name="Surname">Name or surname of the person.</param>
+        /// <param name="word1">Name or surname of the person.</param>
+        /// <param name="word2">Name or surname of the person.</param>
         /// <returns>Edited and checked name or surname
         /// of the person.</returns>
-        private string CheckNameSurname(string Name, string Surname)
+        private string CheckNameSurname(string word1, string word2)
         {
-            CheckUnknownLanguage(Name);
-            var tmpString = Capitalization(Name);
-            CheckSameLanguage(Name, Surname);
+            CheckUnknownLanguage(word1);
+            var tmpString = Capitalazation(word1);
+            CheckSameLanguage(word1, word2);
             return tmpString;
         }
 

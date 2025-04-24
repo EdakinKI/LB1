@@ -68,7 +68,7 @@ namespace Model
         /// Method that finds person in array by index.
         /// </summary>
         /// <param name="index">Index of the person in array.</param>
-        /// <returns>Person from the array.</returns>
+        /// <returns>PersonBase from the array.</returns>
         public PersonBase SearchPerson(int index)
         {
             IsIndexInArray(index);
@@ -78,7 +78,7 @@ namespace Model
         /// <summary>
         /// Method that finds index of person in array.
         /// </summary>
-        /// <param name="person">Person in array.</param>
+        /// <param name="person">PersonBase in array.</param>
         /// <returns>Index of person in array.
         /// If it returns -1 person doesn't exist.</returns>
         public int SearchIndexOfPerson(PersonBase person)
@@ -107,6 +107,6 @@ namespace Model
         /// Method that shows the number of persons.
         /// </summary>
         /// <returns>Number of persons in list.</returns>
-        public int NumberOfPersons() => _arrayOfPersons.Length;
+        public int NumberOfPersons => _arrayOfPersons.Length;
     }
 }

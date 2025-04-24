@@ -29,12 +29,12 @@ namespace Model
         /// <summary>
         /// Minimum age value.
         /// </summary>
-        private const int MinAge = 0;
+        private const int MinAge = 6;
 
         /// <summary>
         /// Maximum age of a child.
         /// </summary>
-        private const int MaxAge = 18;
+        private const int MaxAge = 19;
 
         /// <summary>
         /// Enter the information about child's father.
@@ -96,8 +96,8 @@ namespace Model
         /// <summary>
         /// Create an instance of class Child without parameters.
         /// </summary>
-        public Child() : this("Unknown", "Unknown", 8,
-            Gender.Male, null, null, null)
+        public Child() : this("Unknown", "Unknown", 12,
+            Gender.Female, null, null, null)
         { }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Model
         /// certain range.</exception>
         protected override void CheckAge(int age)
         {
-            if (age <= MinAge || age >= MaxAge)
+            if (age < MinAge || age > MaxAge)
             {
                 throw new IndexOutOfRangeException($"Child's age must be" +
                     $" in range [{MinAge};{MaxAge}].");
@@ -169,8 +169,8 @@ namespace Model
         /// <exception cref="ArgumentException">Only input 1 or 2.</exception>
         public static Adult GetRandomParent(Gender gender)
         {
-            var random = new Random();
-            var parentStatus = random.Next(1, 3);
+
+            var parentStatus = random.Next(1, 5);
             if (parentStatus == 1)
             {
                 return null;
@@ -181,6 +181,10 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Copy of the random number generator
+        /// </summary>
+        private static Random random = new Random();
         /// <summary>
         /// Method which allows to enter a random child.
         /// </summary>
@@ -195,7 +199,7 @@ namespace Model
 
             string[] femaleNames =
             {
-                "Tosaka", "Sailor", "Padme", "", "Tracey",
+                "Tosaka", "Sailor", "Padme", "Chloe", "Tracey",
                 "Charlotte", "Katie", "Mia", "Sophia", "Alicia"
             };
 
@@ -214,7 +218,7 @@ namespace Model
                 "Homurahara High School"
             };
 
-            var random = new Random();
+
             var tmpNumber = random.Next(1, 3);
 
             Gender tmpGender = tmpNumber == 1
@@ -227,7 +231,7 @@ namespace Model
 
             var tmpSurname = surnames[random.Next(surnames.Length)];
 
-            var tmpAge = random.Next(MinAge, MaxAge);
+            var tmpAge = random.Next(MinAge + 1, MaxAge);
 
             Adult tmpFather = GetRandomParent(Gender.Male);
 
@@ -240,6 +244,25 @@ namespace Model
 
             return new Child(tmpName, tmpSurname, tmpAge, tmpGender,
                 tmpFather, tmpMother, tmpSchool);
+        }
+
+        /// <summary>
+        /// Method which shows the preferred for game.
+        /// </summary>
+        /// <returns>The chosen game.</returns>
+        public string GetGame()
+        {
+            var rnd = new Random();
+
+            string[] games =
+            {
+                "Cyberpunk 2077", "Persona 5", "Portal 2", "Doom"
+            };
+
+            var preferredGame = games[rnd.Next(games.Length)];
+
+            return $"The preferred game for this kid" +
+                $" is {preferredGame}";
         }
     }
 }
