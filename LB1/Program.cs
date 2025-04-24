@@ -47,7 +47,7 @@ namespace ConsoleApp_LAB2
             switch (person)
             {
                 case Adult personAdult:
-                    Console.WriteLine(personAdult.GetFilm());
+                    Console.WriteLine(personAdult.GetAdultGame());
                     break;
                 case Child personChild:
                     Console.WriteLine(personChild.GetGame());

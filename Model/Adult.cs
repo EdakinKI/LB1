@@ -255,18 +255,18 @@ namespace Model
         /// Method which shows the countries for recreation.
         /// </summary>
         /// <returns>The country.</returns>
-        public string GetFilm()
+        public string GetAdultGame()
         {
             var rnd = new Random();
 
-            string[] films =
+            string[] adult =
             {
-                "It", "Forrest Gamp", "Big mom"
+                "69", "BDSM", "The code doesn't work again"
             };
 
-            var chosenCountry = films[rnd.Next(films.Length)];
+            var chosenCountry = adult[rnd.Next(adult.Length)];
 
-            return $"This man prefer to recreate in {chosenCountry}";
+            return $"This person prefer to play in: {chosenCountry}";
         }
     }
 }
