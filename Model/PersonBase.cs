@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Model
 {
@@ -10,6 +11,16 @@ namespace Model
     /// </summary>
     public abstract class PersonBase
     {
+        /// <summary>
+        /// Minimum age value.
+        /// </summary>
+        private const int MinAge = 0;
+
+        /// <summary>
+        /// Maximum age value.
+        /// </summary>
+        private const int MaxAge = 122;
+
         /// <summary>
         /// Name of person.
         /// </summary>
@@ -218,6 +229,14 @@ namespace Model
         /// Check person's age.
         /// </summary>
         /// <param name="age">Person's age.</param>
-        protected abstract void CheckAge(int age);
+        private void CheckAge(int age)
+        {
+            if (age < MinAge || age > MaxAge)
+            {
+                throw new IndexOutOfRangeException($"Person's age must be" +
+                    $" in range.");
+            }
+        }
+
     }
 }

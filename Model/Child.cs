@@ -129,21 +129,22 @@ namespace Model
                 $" {schoolStatus}\n";
         }
 
-        //TODO: redo
+        //TODO: redo+
         /// <summary>
         /// Check child's age.
         /// </summary>
         /// <param name="age">Child's age.</param>
         /// <exception cref="IndexOutOfRangeException">Age must be in a
         /// certain range.</exception>
-        protected override void CheckAge(int age)
+        protected void CheckAge(int age)
         {
             if (age < MinAge || age > MaxAge)
             {
-                throw new IndexOutOfRangeException($"Child's age must be" +
-                    $" in range [{MinAge};{MaxAge}].");
+                throw new IndexOutOfRangeException($"Person's age must be" +
+                    $" in range.");
             }
         }
+
 
         /// <summary>
         /// Check parent's gender's.

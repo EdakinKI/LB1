@@ -133,14 +133,14 @@ namespace Model
                 $" {marrigaeStatus}; {employerStatus}\n ";
         }
 
-        //TODO: redo
+        //TODO: redo+
         /// <summary>
         /// Check adult's age.
         /// </summary>
         /// <param name="age">Adult's age.</param>
         /// <exception cref="IndexOutOfRangeException">Age must be in a
         /// certain range.</exception>
-        protected override void CheckAge(int age)
+        protected void CheckAge(int age)
         {
             if (age < MinAge || age > MaxAge)
             {
@@ -165,11 +165,11 @@ namespace Model
             }
         }
 
-        //TODO: RSDN
+        //TODO: RSDN+
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
-        private static Random random = new Random();
+        private static Random _random = new Random();
 
         /// <summary>
         /// Method which allows to enter a random adult.
@@ -208,25 +208,25 @@ namespace Model
 
             if (gender == Gender.Unknown)
             {
-                var tmpNumber = random.Next(1, 3);
+                var tmpNumber = _random.Next(1, 3);
                 gender = tmpNumber == 1
                     ? Gender.Male
                     : Gender.Female;
             }
 
             string tmpName = gender == Gender.Male
-                ? maleNames[random.Next(maleNames.Length)]
-                : femaleNames[random.Next(femaleNames.Length)];
+                ? maleNames[_random.Next(maleNames.Length)]
+                : femaleNames[_random.Next(femaleNames.Length)];
 
-            var tmpSurname = surnames[random.Next(surnames.Length)];
+            var tmpSurname = surnames[_random.Next(surnames.Length)];
 
-            var tmpAge = random.Next(MinAge, MaxAge);
+            var tmpAge = _random.Next(MinAge, MaxAge);
 
-            var tmpPassportNumber = random.Next
+            var tmpPassportNumber = _random.Next
                 (PassportLowBound, PassportHighBound);
 
             Adult tmpSpouse = null;
-            var spouseStatus = random.Next(1, 3);
+            var spouseStatus = _random.Next(1, 3);
             if (spouseStatus == 1)
             {
                 tmpSpouse = new Adult();
@@ -236,15 +236,15 @@ namespace Model
                     : Gender.Male;
 
                 tmpSpouse.Name = gender == Gender.Female
-                    ? maleNames[random.Next(maleNames.Length)]
-                    : femaleNames[random.Next(femaleNames.Length)];
+                    ? maleNames[_random.Next(maleNames.Length)]
+                    : femaleNames[_random.Next(femaleNames.Length)];
 
-                tmpSpouse.Surname = surnames[random.Next(surnames.Length)];
+                tmpSpouse.Surname = surnames[_random.Next(surnames.Length)];
             }
 
-            var employerStatus = random.Next(1, 3);
+            var employerStatus = _random.Next(1, 3);
             string tmpEmployer = employerStatus == 1
-                ? employers[random.Next(employers.Length)]
+                ? employers[_random.Next(employers.Length)]
                 : null;
 
             return new Adult(tmpName, tmpSurname, tmpAge, gender,
