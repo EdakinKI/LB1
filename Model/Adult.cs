@@ -133,6 +133,7 @@ namespace Model
                 $" {marrigaeStatus}; {employerStatus}\n ";
         }
 
+        //TODO: redo
         /// <summary>
         /// Check adult's age.
         /// </summary>
@@ -164,17 +165,18 @@ namespace Model
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
         private static Random random = new Random();
+
         /// <summary>
         /// Method which allows to enter a random adult.
         /// </summary>
         /// <returns>Information about an adult.</returns>
         /// <param name="gender">Start gender.</param>
-        public static Adult GetRandomPerson
-            (Gender gender = Gender.Unknown)
+        public static Adult GetRandomPerson(Gender gender = Gender.Unknown)
         {
             string[] maleNames =
             {
@@ -203,8 +205,6 @@ namespace Model
                 "Team of TANOS",
                 "Wall Strit", "I don't know"
             };
-
-
 
             if (gender == Gender.Unknown)
             {

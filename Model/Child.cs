@@ -129,6 +129,7 @@ namespace Model
                 $" {schoolStatus}\n";
         }
 
+        //TODO: redo
         /// <summary>
         /// Check child's age.
         /// </summary>
@@ -151,8 +152,7 @@ namespace Model
         /// <param name="gender">Gender of the parent.</param>
         /// <exception cref="ArgumentException">Parent's gender's must
         /// differ from each other.</exception>
-        private static void CheckParentGender
-            (Adult parent, Gender gender)
+        private static void CheckParentGender(Adult parent, Gender gender)
         {
             if (parent != null && parent.Gender == gender)
             {
