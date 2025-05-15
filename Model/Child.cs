@@ -62,6 +62,8 @@ namespace Model
             }
         }
 
+        //TODO: validation
+        //TODO: to autoproperty
         /// <summary>
         /// Enter the information about child's school.
         /// </summary>
@@ -129,7 +131,7 @@ namespace Model
                 $" {schoolStatus}\n";
         }
 
-        //TODO: redo+
+        //TODO: rewrite
         /// <summary>
         /// Check child's age.
         /// </summary>
@@ -140,6 +142,7 @@ namespace Model
         {
             if (age < MinAge || age > MaxAge)
             {
+                //TODO: rewrite
                 throw new IndexOutOfRangeException($"Person's age must be" +
                     $" in range.");
             }
@@ -182,10 +185,12 @@ namespace Model
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
         private static Random random = new Random();
+
         /// <summary>
         /// Method which allows to enter a random child.
         /// </summary>

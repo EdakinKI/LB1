@@ -233,6 +233,7 @@ namespace Model
         {
             if (age < MinAge || age > MaxAge)
             {
+                //TODO: rewrite
                 throw new IndexOutOfRangeException($"Person's age must be" +
                     $" in range.");
             }

@@ -59,6 +59,8 @@ namespace Model
             }
         }
 
+        //TODO: to autoproperty
+        //TODO: validation
         /// <summary>
         /// Enter the adult's employer.
         /// </summary>
@@ -71,6 +73,8 @@ namespace Model
             }
         }
 
+        //TODO: to autoproperty
+        //TODO: validation
         /// <summary>
         /// Enter the adult's spouse.
         /// </summary>
@@ -132,8 +136,8 @@ namespace Model
                 $"Passport number: {PassportNumber};" +
                 $" {marrigaeStatus}; {employerStatus}\n ";
         }
-
-        //TODO: redo+
+        
+        //TODO: rewrite
         /// <summary>
         /// Check adult's age.
         /// </summary>
@@ -165,7 +169,6 @@ namespace Model
             }
         }
 
-        //TODO: RSDN+
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
