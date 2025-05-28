@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -29,12 +25,12 @@ namespace Model
         /// <summary>
         /// Minimum age of an adult.
         /// </summary>
-        private const int MinAge = 17;
+        private const int _minAge = 17;
 
         /// <summary>
         /// Maximum age value.
         /// </summary>
-        protected const int MaxAge = 122;
+        protected const int _maxAge = 122;
 
         /// <summary>
         /// Low bound of passport number range.
@@ -59,33 +55,19 @@ namespace Model
             }
         }
 
-        //TODO: to autoproperty
+        //TODO: to autoproperty +
         //TODO: validation
         /// <summary>
         /// Enter the adult's employer.
         /// </summary>
-        public string Employer
-        {
-            get => _employer;
-            set
-            {
-                _employer = value;
-            }
-        }
+        public string Employer { get; set; }
 
-        //TODO: to autoproperty
+        //TODO: to autoproperty +
         //TODO: validation
         /// <summary>
         /// Enter the adult's spouse.
         /// </summary>
-        public Adult Spouse
-        {
-            get => _spouse;
-            set
-            {
-                _spouse = value;
-            }
-        }
+        public Adult Spouse { get; set; }
 
         /// <summary>
         /// Create an instance of class Adult.
@@ -136,23 +118,7 @@ namespace Model
                 $"Passport number: {PassportNumber};" +
                 $" {marrigaeStatus}; {employerStatus}\n ";
         }
-        
-        //TODO: rewrite
-        /// <summary>
-        /// Check adult's age.
-        /// </summary>
-        /// <param name="age">Adult's age.</param>
-        /// <exception cref="IndexOutOfRangeException">Age must be in a
-        /// certain range.</exception>
-        protected void CheckAge(int age)
-        {
-            if (age < MinAge || age > MaxAge)
-            {
-                throw new IndexOutOfRangeException($"Adult age value must" +
-                    $" be in range [{MinAge};{MaxAge}].");
-            }
-        }
-
+                
         /// <summary>
         /// Check adult's passport number.
         /// </summary>
@@ -223,7 +189,7 @@ namespace Model
 
             var tmpSurname = surnames[_random.Next(surnames.Length)];
 
-            var tmpAge = _random.Next(MinAge, MaxAge);
+            var tmpAge = _random.Next(_minAge, _maxAge);
 
             var tmpPassportNumber = _random.Next
                 (PassportLowBound, PassportHighBound);
@@ -264,12 +230,12 @@ namespace Model
 
             string[] adult =
             {
-                "69", "BDSM", "The code doesn't work again"
+                "Pose 69", "BDSM", "The code doesn't work again"
             };
 
             var chosenCountry = adult[rnd.Next(adult.Length)];
 
-            return $"This person prefer to play in: {chosenCountry}";
+            return $"{Name} prefer to play in: {chosenCountry}";
         }
     }
 }

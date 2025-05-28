@@ -1,8 +1,6 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Model
 {
@@ -14,12 +12,12 @@ namespace Model
         /// <summary>
         /// Minimum age value.
         /// </summary>
-        private const int MinAge = 0;
+        private const int _minAge = 0;
 
         /// <summary>
         /// Maximum age value.
         /// </summary>
-        private const int MaxAge = 122;
+        private const int _maxAge = 122;
 
         /// <summary>
         /// Name of person.
@@ -231,11 +229,11 @@ namespace Model
         /// <param name="age">Person's age.</param>
         private void CheckAge(int age)
         {
-            if (age < MinAge || age > MaxAge)
+            if (age < _minAge || age > _maxAge)
             {
-                //TODO: rewrite
+                //TODO: rewrite +
                 throw new IndexOutOfRangeException($"Person's age must be" +
-                    $" in range.");
+                    $" in range from {_minAge} to {_maxAge}.");
             }
         }
 

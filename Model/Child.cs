@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -29,12 +25,18 @@ namespace Model
         /// <summary>
         /// Minimum age value.
         /// </summary>
-        private const int MinAge = 6;
+        private const int _minAge = 6;
 
         /// <summary>
         /// Maximum age of a child.
         /// </summary>
-        private const int MaxAge = 19;
+        private const int _maxAge = 19;
+
+        //TODO: RSDN +
+        /// <summary>
+        /// Copy of the random number generator
+        /// </summary>
+        private static Random random = new Random();
 
         /// <summary>
         /// Enter the information about child's father.
@@ -63,18 +65,11 @@ namespace Model
         }
 
         //TODO: validation
-        //TODO: to autoproperty
+        //TODO: to autoproperty +
         /// <summary>
         /// Enter the information about child's school.
         /// </summary>
-        public string School
-        {
-            get => _school;
-            set
-            {
-                _school = value;
-            }
-        }
+        public string School { get; set; }
 
         /// <summary>
         /// Create an instance of class Child.
@@ -131,24 +126,6 @@ namespace Model
                 $" {schoolStatus}\n";
         }
 
-        //TODO: rewrite
-        /// <summary>
-        /// Check child's age.
-        /// </summary>
-        /// <param name="age">Child's age.</param>
-        /// <exception cref="IndexOutOfRangeException">Age must be in a
-        /// certain range.</exception>
-        protected void CheckAge(int age)
-        {
-            if (age < MinAge || age > MaxAge)
-            {
-                //TODO: rewrite
-                throw new IndexOutOfRangeException($"Person's age must be" +
-                    $" in range.");
-            }
-        }
-
-
         /// <summary>
         /// Check parent's gender's.
         /// </summary>
@@ -184,13 +161,7 @@ namespace Model
                 return Adult.GetRandomPerson(gender);
             }
         }
-
-        //TODO: RSDN
-        /// <summary>
-        /// Copy of the random number generator
-        /// </summary>
-        private static Random random = new Random();
-
+                
         /// <summary>
         /// Method which allows to enter a random child.
         /// </summary>
@@ -237,7 +208,7 @@ namespace Model
 
             var tmpSurname = surnames[random.Next(surnames.Length)];
 
-            var tmpAge = random.Next(MinAge + 1, MaxAge);
+            var tmpAge = random.Next(_minAge + 1, _maxAge);
 
             Adult tmpFather = GetRandomParent(Gender.Male);
 
@@ -267,7 +238,7 @@ namespace Model
 
             var preferredGame = games[rnd.Next(games.Length)];
 
-            return $"The preferred game for this kid" +
+            return $"The preferred game for {Name}" +
                 $" is {preferredGame}";
         }
     }
