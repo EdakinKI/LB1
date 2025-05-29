@@ -55,14 +55,12 @@ namespace Model
             }
         }
 
-        //TODO: to autoproperty +
         //TODO: validation
         /// <summary>
         /// Enter the adult's employer.
         /// </summary>
         public string Employer { get; set; }
 
-        //TODO: to autoproperty +
         //TODO: validation
         /// <summary>
         /// Enter the adult's spouse.
