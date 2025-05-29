@@ -218,6 +218,25 @@ namespace Model
         }
 
         /// <summary>
+        /// Check null or empty.
+        /// <summary>
+        /// <param name="gender">Gender of the parent.</param>
+        /// <exception cref="ArgumentException">Parent's gender's must
+        /// differ from each other.</exception>
+        protected static string CheckEmptyNull(string Value)
+        {
+            if (String.IsNullOrEmpty(Value))
+            {
+                throw new ArgumentNullException
+                    ("Value must be not null");
+            }
+            else
+            {
+                return Value;
+            }
+        }
+
+        /// <summary>
         /// Get the information about a person.
         /// </summary>
         /// <returns>Info about person.</returns>

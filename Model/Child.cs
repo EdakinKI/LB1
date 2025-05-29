@@ -20,7 +20,7 @@ namespace Model
         /// <summary>
         /// A child's place pf study.
         /// </summary>
-        private string _school;
+        private string _school ;
 
         /// <summary>
         /// Minimum age value.
@@ -30,13 +30,13 @@ namespace Model
         /// <summary>
         /// Maximum age of a child.
         /// </summary>
-        private const int _maxAge = 19;
+        private const int _maxAge = 18;
 
-        //TODO: RSDN
+        //TODO: RSDN+
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
-        private static Random random = new Random();
+        private static Random _random = new Random();
 
         /// <summary>
         /// Enter the information about child's father.
@@ -68,7 +68,21 @@ namespace Model
         /// <summary>
         /// Enter the information about child's school.
         /// </summary>
-        public string School { get; set; }
+        public string School
+        {
+            get => _school;
+            set
+            {
+                try
+                {
+                    _school = CheckEmptyNull(value);
+                }
+                catch (ArgumentNullException ex)
+                {
+                    Console.WriteLine($"Значение не должно быть пустым: {ex.Message}");
+                }
+            }
+        }
 
         /// <summary>
         /// Create an instance of class Child.
@@ -93,7 +107,7 @@ namespace Model
         /// Create an instance of class Child without parameters.
         /// </summary>
         public Child() : this("Unknown", "Unknown", 12,
-            Gender.Female, null, null, null)
+            Gender.Female, null, null, "none")
         { }
 
         /// <summary>
@@ -116,6 +130,7 @@ namespace Model
             }
 
             var schoolStatus = "Not studying";
+
             if (!string.IsNullOrEmpty(School))
             {
                 schoolStatus = $"Studying at: {School}";
@@ -140,7 +155,7 @@ namespace Model
                     ("Parent gender must be another");
             }
         }
-
+                
         /// <summary>
         /// Get random parent for child.
         /// </summary>
@@ -150,7 +165,7 @@ namespace Model
         public static Adult GetRandomParent(Gender gender)
         {
 
-            var parentStatus = random.Next(1, 5);
+            var parentStatus = _random.Next(1, 5);
             if (parentStatus == 1)
             {
                 return null;
@@ -195,37 +210,37 @@ namespace Model
             };
 
 
-            var tmpNumber = random.Next(1, 3);
+            var tmpNumber = _random.Next(1, 3);
 
             Gender tmpGender = tmpNumber == 1
                 ? Gender.Male
                 : Gender.Female;
 
             string tmpName = tmpGender == Gender.Male
-                ? maleNames[random.Next(maleNames.Length)]
-                : femaleNames[random.Next(femaleNames.Length)];
+                ? maleNames[_random.Next(maleNames.Length)]
+                : femaleNames[_random.Next(femaleNames.Length)];
 
-            var tmpSurname = surnames[random.Next(surnames.Length)];
+            var tmpSurname = surnames[_random.Next(surnames.Length)];
 
-            var tmpAge = random.Next(_minAge + 1, _maxAge);
+            var tmpAge = _random.Next(_minAge, _maxAge);
 
             Adult tmpFather = GetRandomParent(Gender.Male);
 
             Adult tmpMother = GetRandomParent(Gender.Female);
 
-            var schoolStatus = random.Next(1, 3);
+            var schoolStatus = _random.Next(1, 3);
             string tmpSchool = schoolStatus == 1
-                ? schools[random.Next(schools.Length)]
-                : null;
+                ? schools[_random.Next(schools.Length)]
+                : "none";
 
             return new Child(tmpName, tmpSurname, tmpAge, tmpGender,
                 tmpFather, tmpMother, tmpSchool);
         }
 
         /// <summary>
-        /// Method which shows the preferred for game.
+        /// Method which shows the child's preferred for game.
         /// </summary>
-        /// <returns>The chosen game.</returns>
+        /// <returns>The child's game.</returns>
         public string GetGame()
         {
             var rnd = new Random();

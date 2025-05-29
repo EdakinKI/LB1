@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace Model
 {
@@ -25,7 +26,7 @@ namespace Model
         /// <summary>
         /// Minimum age of an adult.
         /// </summary>
-        private const int _minAge = 17;
+        private const int _minAge = 19;
 
         /// <summary>
         /// Maximum age value.
@@ -41,6 +42,17 @@ namespace Model
         /// High bound of passport number range.
         /// </summary>
         private const int PassportHighBound = 999999;
+
+        /// <summary>
+        /// Ленивое создание объекта Dummy.
+        /// </summary>
+        private static readonly Lazy<Adult> _lazyDummy =
+            new Lazy<Adult>(CreateDummy);
+
+        /// <summary>
+        /// Объект Dummy.
+        /// </summary>
+        public static Adult Dummy => _lazyDummy.Value;
 
         /// <summary>
         /// Enter the adult's passport number.
@@ -59,13 +71,34 @@ namespace Model
         /// <summary>
         /// Enter the adult's employer.
         /// </summary>
-        public string Employer { get; set; }
+        public string Employer
+        {
+            get => _employer;
+            set
+            {
+                try
+                {
+                    _employer = CheckEmptyNull(value);
+                }
+                catch (ArgumentNullException ex)
+                {
+                    Console.WriteLine($"Значение не должно быть пустым: {ex.Message}");
+                }
+            }
+        }
 
         //TODO: validation
         /// <summary>
         /// Enter the adult's spouse.
         /// </summary>
-        public Adult Spouse { get; set; }
+        public Adult Spouse
+        {
+            get => _spouse;
+            set => _spouse = value
+                ?? throw new ArgumentNullException(
+                    nameof(Spouse), "Супруг/супруга не может быть null");
+        }
+
 
         /// <summary>
         /// Create an instance of class Adult.
@@ -87,11 +120,40 @@ namespace Model
         }
 
         /// <summary>
+        /// Приватный конструктор без spouse — используется для создания Dummy.
+        /// </summary>
+        private Adult(string name, string surname, int age,
+            Gender gender, int passportNumber,
+        string employer)
+            : base(name, surname, age, gender)
+        {
+            PassportNumber = passportNumber;
+            Employer = employer;
+            _spouse = this;
+        }
+
+        /// <summary>
         /// Create an instance of class Adult without parameters.
         /// </summary>
         public Adult() : this("Unknown", "Unknown", 19,
-            Gender.Male, 100000, null, null)
+            Gender.Male, 100000, Dummy, "None")
         { }
+
+        /// <summary>
+        /// Создаёт и возвращает dummy-объект Adult.
+        /// </summary>
+        private static Adult CreateDummy()
+        {
+            var dummy = new Adult(
+                name: "Имя",
+                surname: "Фамилия",
+                age: 22,
+                gender: Gender.Male,
+                passportNumber: 100003,
+                employer: "Не работает"
+            );
+            return dummy;
+        }
 
         /// <summary>
         /// Converts class field values to string format.
@@ -192,7 +254,7 @@ namespace Model
             var tmpPassportNumber = _random.Next
                 (PassportLowBound, PassportHighBound);
 
-            Adult tmpSpouse = null;
+            Adult tmpSpouse = Dummy;
             var spouseStatus = _random.Next(1, 3);
             if (spouseStatus == 1)
             {
@@ -212,16 +274,35 @@ namespace Model
             var employerStatus = _random.Next(1, 3);
             string tmpEmployer = employerStatus == 1
                 ? employers[_random.Next(employers.Length)]
-                : null;
+                : "None";
 
             return new Adult(tmpName, tmpSurname, tmpAge, gender,
                 tmpPassportNumber, tmpSpouse, tmpEmployer);
         }
 
         /// <summary>
-        /// Method which shows the countries for recreation.
+        /// Check null or empty.
+        /// <summary>
+        /// <param name="gender">Gender of the parent.</param>
+        /// <exception cref="ArgumentException">Parent's gender's must
+        /// differ from each other.</exception>
+        protected static Adult CheckAdult(Adult Value)
+        {
+            if (Value == null)
+            {
+                throw new ArgumentNullException
+                    ("Value must be not null");
+            }
+            else
+            {
+                return Value;
+            }
+        }
+
+        /// <summary>
+        /// Method which shows the adult's game for recreation.
         /// </summary>
-        /// <returns>The country.</returns>
+        /// <returns>The adult's game.</returns>
         public string GetAdultGame()
         {
             var rnd = new Random();
