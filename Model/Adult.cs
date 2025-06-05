@@ -44,13 +44,13 @@ namespace Model
         private const int PassportHighBound = 999999;
 
         /// <summary>
-        /// Ленивое создание объекта Dummy.
+        /// Lazy object creation Dummy.
         /// </summary>
         private static readonly Lazy<Adult> _lazyDummy =
             new Lazy<Adult>(CreateDummy);
 
         /// <summary>
-        /// Объект Dummy.
+        /// Object Dummy.
         /// </summary>
         public static Adult Dummy => _lazyDummy.Value;
 
@@ -67,7 +67,7 @@ namespace Model
             }
         }
 
-        //TODO: validation
+        //TODO: validation+
         /// <summary>
         /// Enter the adult's employer.
         /// </summary>
@@ -87,7 +87,7 @@ namespace Model
             }
         }
 
-        //TODO: validation
+        //TODO: validation+
         /// <summary>
         /// Enter the adult's spouse.
         /// </summary>
@@ -120,7 +120,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Приватный конструктор без spouse — используется для создания Dummy.
+        /// Private constructor without Spouse — used to create Dummy.
         /// </summary>
         private Adult(string name, string surname, int age,
             Gender gender, int passportNumber,
@@ -140,17 +140,17 @@ namespace Model
         { }
 
         /// <summary>
-        /// Создаёт и возвращает dummy-объект Adult.
+        /// Creates and returns dummy-object Adult.
         /// </summary>
         private static Adult CreateDummy()
         {
             var dummy = new Adult(
-                name: "Имя",
-                surname: "Фамилия",
+                name: "Name",
+                surname: "Surname",
                 age: 22,
                 gender: Gender.Male,
                 passportNumber: 100003,
-                employer: "Не работает"
+                employer: "Don't work"
             );
             return dummy;
         }

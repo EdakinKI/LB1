@@ -64,7 +64,7 @@ namespace Model
             }
         }
 
-        //TODO: validation
+        //TODO: validation+
         /// <summary>
         /// Enter the information about child's school.
         /// </summary>
