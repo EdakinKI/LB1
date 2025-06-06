@@ -50,7 +50,7 @@ namespace Model
             new Lazy<Adult>(CreateDummy);
 
         /// <summary>
-        /// Object Dummy.
+        /// Object Dummy.fjkl
         /// </summary>
         public static Adult Dummy => _lazyDummy.Value;
 

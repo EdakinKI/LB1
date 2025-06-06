@@ -32,7 +32,6 @@ namespace Model
         /// </summary>
         private const int _maxAge = 18;
 
-        //TODO: RSDN+
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
@@ -64,7 +63,6 @@ namespace Model
             }
         }
 
-        //TODO: validation+
         /// <summary>
         /// Enter the information about child's school.
         /// </summary>
