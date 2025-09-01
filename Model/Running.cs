@@ -1,0 +1,63 @@
+﻿
+
+namespace Model
+{
+    /// <summary>
+    /// Класс бег 
+    /// </summary>
+    public class Running : ExerciseBase
+    {
+        /// <summary>
+        /// Пройденное расстояние
+        /// </summary>
+        private double _distance;
+
+        /// <summary>
+        /// Интенсивность бега
+        /// </summary>
+        private double _intensity;
+
+        /// <summary>
+        /// Пройденное расстояние
+        /// </summary>
+        public double Distance
+        {
+            get => _distance;
+            set
+            {
+                ValidatePositiveValue(value, nameof(Distance));
+                _distance = value;
+            }
+        }
+
+        /// <summary>
+        /// Интенсивность бега
+        /// </summary>
+        public double Intensity
+        {
+            get => _intensity;
+            set
+            {
+                ValidateRange(value, 1, 30, nameof(Intensity));
+                _intensity = value;
+            }
+        }
+
+        public Running(string name, double intensity, double distance) : base(name)
+        {
+            Intensity = intensity;
+            Distance = distance;
+        }
+
+        public override double CalculateCalories()
+        {
+            // Формула: калории = расстояние * интенсивность * коэффициент 60
+            return Distance * Intensity * 60;
+        }
+
+        public override string GetExerciseInfo()
+        {
+            return $"Бег: {Name}, Интенсивность: {Intensity} км/ч, Дистанция: {Distance} км";
+        }
+    }
+}

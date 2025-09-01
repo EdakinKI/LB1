@@ -1,0 +1,86 @@
+
+
+namespace Model
+{
+    /// <summary>
+    /// Класс плавание 
+    /// </summary>
+    public class Swimming : ExerciseBase
+    {
+        /// <summary>
+        /// Стиль плавания
+        /// </summary>
+        private SwimmingStyle _style;
+
+        /// <summary>
+        /// Стиль плавания
+        /// </summary>
+        private double _distance;
+
+        /// <summary>
+        /// Стиль плавания
+        /// </summary>
+        public SwimmingStyle Style
+        {
+            get => _style;
+            set => _style = value;
+        }
+
+        /// <summary>
+        /// Пройденное расстояние (метры)
+        /// </summary>
+        public double Distance
+        {
+            get => _distance;
+            set
+            {
+                ValidatePositiveValue(value, nameof(Distance));
+                _distance = value;
+            }
+        }
+
+        /// <summary>
+        /// Вычисление затраты калорий
+        /// </summary>
+        /// <retutns>Площадь круга</retutns>
+        public Swimming(string name, SwimmingStyle style, double distance) : base(name)
+        {
+            Style = style;
+            Distance = distance;
+        }
+
+        /// <summary>
+        /// Коэффициенты калорий для разных стилей плавания
+        /// </summary>
+        /// <returns></returns>
+        public override double CalculateCalories()
+        {
+            double styleCoefficient;
+
+            switch (Style)
+            {
+                case SwimmingStyle.Freestyle:
+                    styleCoefficient = 8.0;
+                    break;
+                case SwimmingStyle.Breaststroke:
+                    styleCoefficient = 10.0;
+                    break;
+                case SwimmingStyle.Backstroke:
+                    styleCoefficient = 7.0;
+                    break;
+                case SwimmingStyle.Butterfly:
+                    styleCoefficient = 12.0;
+                    break;
+                default:
+                    styleCoefficient = 8.0;
+                    break;
+            }
+            return Distance * styleCoefficient;
+        }
+
+        public override string GetExerciseInfo()
+        {
+            return $"Плавание: {Name}, Стиль: {Style}, Дистанция: {Distance} м";
+        }
+    }
+}
