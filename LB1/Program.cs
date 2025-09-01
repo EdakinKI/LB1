@@ -53,6 +53,7 @@ namespace ConsoleLoader
             if (exercises.Count > 0)
             {
                 ShowResults(exercises);
+                ShowCaloriesVisualization(exercises);
             }
             else
             {
@@ -84,6 +85,121 @@ namespace ConsoleLoader
             Console.WriteLine($"Количество упражнений: {exercises.Count}");
         }
 
+        private static void ShowCaloriesVisualization(List<IExercise> exercises)
+        {
+            double totalCalories = 0;
+            foreach (var exercise in exercises)
+            {
+                totalCalories += exercise.CalculateCalories();
+            }
+
+            Console.WriteLine("\n\n╔══════════════════════════════════════════╗");
+            Console.WriteLine("║          ВИЗУАЛИЗАЦИЯ КАЛОРИЙ          ║");
+            Console.WriteLine("╚══════════════════════════════════════════╝");
+
+            // Прогресс-бар калорий
+            int maxBarWidth = 50;
+            double maxCaloriesForVisualization = 1000; // Максимум для шкалы
+            int barLength = (int)(totalCalories / maxCaloriesForVisualization * maxBarWidth);
+            barLength = Math.Min(barLength, maxBarWidth);
+
+            Console.Write("\nПрогресс: [");
+            Console.ForegroundColor = GetCaloriesColor(totalCalories);
+            for (int i = 0; i < barLength; i++)
+            {
+                Console.Write("█");
+            }
+            for (int i = barLength; i < maxBarWidth; i++)
+            {
+                Console.Write(" ");
+            }
+            Console.ResetColor();
+            Console.WriteLine($"] {totalCalories:F0} / {maxCaloriesForVisualization} ккал");
+
+            // Текстовое описание достижения
+            Console.WriteLine("\n" + GetAchievementMessage(totalCalories));
+
+            // Детализация по упражнениям
+            Console.WriteLine("\nДетализация по упражнениям:");
+            Console.WriteLine("───────────────────────────");
+
+            foreach (var exercise in exercises)
+            {
+                double calories = exercise.CalculateCalories();
+                double percentage = (calories / totalCalories) * 100;
+
+                Console.Write($"{exercise.Name,-20} ");
+                Console.ForegroundColor = GetCaloriesColor(calories);
+                Console.Write($"{calories,6:F0} ккал");
+                Console.ResetColor();
+                Console.WriteLine($" ({percentage,5:F1}%)");
+            }
+
+            // Сравнение с обычными activities
+            Console.WriteLine("\nСравнение с другими активностями:");
+            Console.WriteLine("─────────────────────────────────");
+            CompareWithActivities(totalCalories);
+        }
+
+        private static ConsoleColor GetCaloriesColor(double calories)
+        {
+            if (calories < 100) return ConsoleColor.Green;
+            if (calories < 300) return ConsoleColor.Yellow;
+            if (calories < 500) return ConsoleColor.DarkYellow;
+            return ConsoleColor.Red;
+        }
+
+        private static string GetAchievementMessage(double totalCalories)
+        {
+            if (totalCalories < 100)
+                return "🎯 Неплохо для начала! Можно еще немного позаниматься.";
+            else if (totalCalories < 300)
+                return "🔥 Хорошая тренировка! Вы сожгли калории от полноценного приема пищи.";
+            else if (totalCalories < 500)
+                return "💪 Отличная работа! Это как пробежать 5 км!";
+            else if (totalCalories < 800)
+                return "🚀 Впечатляюще! Вы сожгли целую пиццу!";
+            else
+                return "🏆 Феноменально! Это уровень профессионального спортсмена!";
+        }
+
+        private static void CompareWithActivities(double totalCalories)
+        {
+            var activities = new Dictionary<string, double>
+            {
+                { "🍔 Чизбургер", 300 },
+                { "🍕 Слайс пиццы", 250 },
+                { "🍎 Яблоко", 50 },
+                { "🥗 Салат Цезарь", 400 },
+                { "🍫 Шоколадка", 200 },
+                { "☕ Латте", 150 }
+            };
+
+            foreach (var activity in activities)
+            {
+                double equivalent = totalCalories / activity.Value;
+                if (equivalent >= 0.3) // Показываем только значимые сравнения
+                {
+                    Console.WriteLine($"▪ Это как {equivalent:F1} {activity.Key}");
+                }
+            }
+
+            // Сравнение с бегом
+            double runningKm = totalCalories / 60; // Примерно 60 ккал на км бега
+            if (runningKm >= 1)
+            {
+                Console.WriteLine($"▪ Или как пробежать {runningKm:F1} км");
+            }
+
+            // Сравнение с плаванием
+            double swimmingMinutes = totalCalories / 8; // Примерно 8 ккал в минуту плавания
+            if (swimmingMinutes >= 10)
+            {
+                Console.WriteLine($"▪ Или как плавать {swimmingMinutes:F0} минут");
+            }
+        }
+
+        // Остальные методы остаются без изменений
         private static Running CreateRunningExercise()
         {
             Console.WriteLine("\n=== Создание упражнения 'Бег' ===");
@@ -93,7 +209,11 @@ namespace ConsoleLoader
             double distance = GetValidDoubleInput("Дистанция (км): ", 0.1, 100);
 
             var running = new Running(name, intensity, distance);
-            Console.WriteLine("Упражнение 'Бег' успешно создано!");
+            double calories = running.CalculateCalories();
+
+            Console.WriteLine($"✓ Упражнение 'Бег' успешно создано!");
+            Console.WriteLine($"🔄 Затрачено калорий: {calories:F2}");
+
             return running;
         }
 
@@ -106,7 +226,11 @@ namespace ConsoleLoader
             double distance = GetValidDoubleInput("Дистанция (м): ", 1, 10000);
 
             var swimming = new Swimming(name, style, distance);
-            Console.WriteLine("Упражнение 'Плавание' успешно создано!");
+            double calories = swimming.CalculateCalories();
+
+            Console.WriteLine($"✓ Упражнение 'Плавание' успешно создано!");
+            Console.WriteLine($"🔄 Затрачено калорий: {calories:F2}");
+
             return swimming;
         }
 
@@ -119,7 +243,11 @@ namespace ConsoleLoader
             int repetitions = GetValidIntInput("Повторения: ", 1, 100);
 
             var benchPress = new BenchPress(name, weight, repetitions);
-            Console.WriteLine("Упражнение 'Жим штанги' успешно создано!");
+            double calories = benchPress.CalculateCalories();
+
+            Console.WriteLine($"✓ Упражнение 'Жим штанги' успешно создано!");
+            Console.WriteLine($"🔄 Затрачено калорий: {calories:F2}");
+
             return benchPress;
         }
 
