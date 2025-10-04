@@ -43,7 +43,8 @@ namespace Model
         /// Вычисление затраты калорий
         /// </summary>
         /// <retutns>Площадь круга</retutns>
-        public Swimming(string name, SwimmingStyle style, double distance) : base(name)
+        public Swimming(string name, SwimmingStyle style, double distance):
+                        base(name)
         {
             Style = style;
             Distance = distance;

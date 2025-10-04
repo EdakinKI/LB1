@@ -53,10 +53,12 @@ namespace Model
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Название упражнения не может быть пустым", nameof(Name));
+                    throw new ArgumentException("Название упражнения не может" +
+                                                " быть пустым", nameof(Name));
 
                 if (value.Length > 50)
-                    throw new ArgumentException("Название упражнения слишком длинное", nameof(Name));
+                    throw new ArgumentException("Название упражнения слишком" +
+                                                " длинное", nameof(Name));
 
                 _name = value;
             }
@@ -73,13 +75,15 @@ namespace Model
         protected void ValidatePositiveValue(double value, string parameterName)
         {
             if (value <= 0)
-                throw new ArgumentOutOfRangeException(parameterName, "Значение должно быть положительным");
+                throw new ArgumentOutOfRangeException(parameterName,
+                               "Значение должно быть положительным");
         }
 
         /// <summary>
         /// Проверяет, что значение в допустимом диапазоне
         /// </summary>
-        protected void ValidateRange(double value, double min, double max, string parameterName)
+        protected void ValidateRange(double value, double min, double max,
+                                     string parameterName)
         {
             if (value < min || value > max)
                 throw new ArgumentOutOfRangeException(parameterName,

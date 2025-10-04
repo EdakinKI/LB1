@@ -43,7 +43,8 @@ namespace Model
             }
         }
 
-        public BenchPress(string name, double weight, int repetitions) : base(name)
+        public BenchPress(string name, double weight, int repetitions):
+                          base(name)
         {
             Weight = weight;
             Repetitions = repetitions;
@@ -57,7 +58,8 @@ namespace Model
 
         public override string GetExerciseInfo()
         {
-            return $"Жим штанги: {Name}, Вес: {Weight} кг, Повторения: {Repetitions}";
+            return $"Жим штанги: {Name}, Вес: {Weight} кг, Повторения:" +
+                   $" {Repetitions}";
         }
     }
 }

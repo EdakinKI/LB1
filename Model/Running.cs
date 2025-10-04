@@ -43,7 +43,8 @@ namespace Model
             }
         }
 
-        public Running(string name, double intensity, double distance) : base(name)
+        public Running(string name, double intensity, double distance):
+                       base(name)
         {
             Intensity = intensity;
             Distance = distance;
@@ -57,7 +58,8 @@ namespace Model
 
         public override string GetExerciseInfo()
         {
-            return $"Бег: {Name}, Интенсивность: {Intensity} км/ч, Дистанция: {Distance} км";
+            return $"Бег: {Name}, Интенсивность: {Intensity} км/ч, Дистанция:" +
+                   $" {Distance} км";
         }
     }
 }

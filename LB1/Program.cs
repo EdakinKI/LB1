@@ -23,10 +23,12 @@ namespace ConsoleLoader
                 Console.WriteLine("1. Добавить упражнение 'Бег'");
                 Console.WriteLine("2. Добавить упражнение 'Плавание'");
                 Console.WriteLine("3. Добавить упражнение 'Жим штанги'");
-                Console.WriteLine("4. Завершить ввод и показать результаты");
+                Console.WriteLine("4. Завершить ввод и показать " +
+                                  "результаты");
                 Console.WriteLine("==================================");
 
-                int choice = GetValidIntInput("Выберите действие (1-4): ", 1, 4);
+                int choice = GetValidIntInput("Выберите действие (1-4): "
+                                              , 1, 4);
 
                 switch (choice)
                 {
@@ -46,7 +48,8 @@ namespace ConsoleLoader
 
                 if (continueAdding)
                 {
-                    Console.WriteLine($"\nУпражнений добавлено: {exercises.Count}");
+                    Console.WriteLine($"\nУпражнений добавлено: " +
+                                      $"{exercises.Count}");
                 }
             }
 
@@ -81,7 +84,8 @@ namespace ConsoleLoader
                 Console.WriteLine($"Затрачено калорий: {calories:F2}");
             }
 
-            Console.WriteLine($"\nОбщее количество затраченных калорий: {totalCalories:F2}");
+            Console.WriteLine($"\nОбщее количество затраченных калорий: " +
+                              $"{totalCalories:F2}");
             Console.WriteLine($"Количество упражнений: {exercises.Count}");
         }
 
@@ -100,7 +104,8 @@ namespace ConsoleLoader
             // Прогресс-бар калорий
             int maxBarWidth = 50;
             double maxCaloriesForVisualization = 1000; // Максимум для шкалы
-            int barLength = (int)(totalCalories / maxCaloriesForVisualization * maxBarWidth);
+            int barLength = (int)(totalCalories / maxCaloriesForVisualization * 
+                                  maxBarWidth);
             barLength = Math.Min(barLength, maxBarWidth);
 
             Console.Write("\nПрогресс: [");
@@ -114,7 +119,8 @@ namespace ConsoleLoader
                 Console.Write(" ");
             }
             Console.ResetColor();
-            Console.WriteLine($"] {totalCalories:F0} / {maxCaloriesForVisualization} ккал");
+            Console.WriteLine($"] {totalCalories:F0} / " +
+                              $"{maxCaloriesForVisualization} ккал");
 
             // Текстовое описание достижения
             Console.WriteLine("\n" + GetAchievementMessage(totalCalories));
@@ -134,11 +140,6 @@ namespace ConsoleLoader
                 Console.ResetColor();
                 Console.WriteLine($" ({percentage,5:F1}%)");
             }
-
-            // Сравнение с обычными activities
-            Console.WriteLine("\nСравнение с другими активностями:");
-            Console.WriteLine("─────────────────────────────────");
-            CompareWithActivities(totalCalories);
         }
 
         private static ConsoleColor GetCaloriesColor(double calories)
@@ -152,51 +153,16 @@ namespace ConsoleLoader
         private static string GetAchievementMessage(double totalCalories)
         {
             if (totalCalories < 100)
-                return "🎯 Неплохо для начала! Можно еще немного позаниматься.";
+                return "Неплохо для начала! Можно еще немного позаниматься.";
             else if (totalCalories < 300)
-                return "🔥 Хорошая тренировка! Вы сожгли калории от полноценного приема пищи.";
+                return "Хорошая тренировка! Вы сожгли калории от полноценного" +
+                       " приема пищи.";
             else if (totalCalories < 500)
-                return "💪 Отличная работа! Это как пробежать 5 км!";
+                return "Отличная работа! Это как пробежать 5 км!";
             else if (totalCalories < 800)
-                return "🚀 Впечатляюще! Вы сожгли целую пиццу!";
+                return "Впечатляюще! Вы сожгли целую пиццу!";
             else
-                return "🏆 Феноменально! Это уровень профессионального спортсмена!";
-        }
-
-        private static void CompareWithActivities(double totalCalories)
-        {
-            var activities = new Dictionary<string, double>
-            {
-                { "🍔 Чизбургер", 300 },
-                { "🍕 Слайс пиццы", 250 },
-                { "🍎 Яблоко", 50 },
-                { "🥗 Салат Цезарь", 400 },
-                { "🍫 Шоколадка", 200 },
-                { "☕ Латте", 150 }
-            };
-
-            foreach (var activity in activities)
-            {
-                double equivalent = totalCalories / activity.Value;
-                if (equivalent >= 0.3) // Показываем только значимые сравнения
-                {
-                    Console.WriteLine($"▪ Это как {equivalent:F1} {activity.Key}");
-                }
-            }
-
-            // Сравнение с бегом
-            double runningKm = totalCalories / 60; // Примерно 60 ккал на км бега
-            if (runningKm >= 1)
-            {
-                Console.WriteLine($"▪ Или как пробежать {runningKm:F1} км");
-            }
-
-            // Сравнение с плаванием
-            double swimmingMinutes = totalCalories / 8; // Примерно 8 ккал в минуту плавания
-            if (swimmingMinutes >= 10)
-            {
-                Console.WriteLine($"▪ Или как плавать {swimmingMinutes:F0} минут");
-            }
+                return "Феноменально! Это уровень профессионального спортсмена!";
         }
 
         // Остальные методы остаются без изменений
@@ -204,15 +170,16 @@ namespace ConsoleLoader
         {
             Console.WriteLine("\n=== Создание упражнения 'Бег' ===");
 
-            string name = GetValidStringInput("Название: ", "Название не может быть пустым");
+            string name = GetValidStringInput("Название: ", "Название не может" +
+                                              " быть пустым");
             double intensity = GetValidDoubleInput("Интенсивность (км/ч): ", 1, 30);
             double distance = GetValidDoubleInput("Дистанция (км): ", 0.1, 100);
 
             var running = new Running(name, intensity, distance);
             double calories = running.CalculateCalories();
 
-            Console.WriteLine($"✓ Упражнение 'Бег' успешно создано!");
-            Console.WriteLine($"🔄 Затрачено калорий: {calories:F2}");
+            Console.WriteLine($"Упражнение 'Бег' успешно создано!");
+            Console.WriteLine($"Затрачено калорий: {calories:F2}");
 
             return running;
         }
@@ -221,15 +188,16 @@ namespace ConsoleLoader
         {
             Console.WriteLine("\n=== Создание упражнения 'Плавание' ===");
 
-            string name = GetValidStringInput("Название: ", "Название не может быть пустым");
+            string name = GetValidStringInput("Название: ", "Название не может" +
+                                              " быть пустым");
             SwimmingStyle style = GetValidSwimmingStyleInput();
             double distance = GetValidDoubleInput("Дистанция (м): ", 1, 10000);
 
             var swimming = new Swimming(name, style, distance);
             double calories = swimming.CalculateCalories();
 
-            Console.WriteLine($"✓ Упражнение 'Плавание' успешно создано!");
-            Console.WriteLine($"🔄 Затрачено калорий: {calories:F2}");
+            Console.WriteLine($"Упражнение 'Плавание' успешно создано!");
+            Console.WriteLine($"Затрачено калорий: {calories:F2}");
 
             return swimming;
         }
@@ -238,20 +206,22 @@ namespace ConsoleLoader
         {
             Console.WriteLine("\n=== Создание упражнения 'Жим штанги' ===");
 
-            string name = GetValidStringInput("Название: ", "Название не может быть пустым");
+            string name = GetValidStringInput("Название: ", "Название не может" +
+                                              " быть пустым");
             double weight = GetValidDoubleInput("Вес (кг): ", 1, 300);
             int repetitions = GetValidIntInput("Повторения: ", 1, 100);
 
             var benchPress = new BenchPress(name, weight, repetitions);
             double calories = benchPress.CalculateCalories();
 
-            Console.WriteLine($"✓ Упражнение 'Жим штанги' успешно создано!");
-            Console.WriteLine($"🔄 Затрачено калорий: {calories:F2}");
+            Console.WriteLine($"Упражнение 'Жим штанги' успешно создано!");
+            Console.WriteLine($"Затрачено калорий: {calories:F2}");
 
             return benchPress;
         }
 
-        private static string GetValidStringInput(string prompt, string errorMessage)
+        private static string GetValidStringInput(string prompt,
+                                                  string errorMessage)
         {
             while (true)
             {
@@ -267,7 +237,8 @@ namespace ConsoleLoader
 
                     if (input.Length > 50)
                     {
-                        throw new ArgumentException("Название слишком длинное (макс. 50 символов)");
+                        throw new ArgumentException("Название слишком длинное" +
+                                                    " (макс. 50 символов)");
                     }
 
                     return input;
@@ -280,7 +251,8 @@ namespace ConsoleLoader
             }
         }
 
-        private static double GetValidDoubleInput(string prompt, double min, double max)
+        private static double GetValidDoubleInput(string prompt, double min,
+                                                  double max)
         {
             while (true)
             {
@@ -296,7 +268,8 @@ namespace ConsoleLoader
 
                     if (value < min || value > max)
                     {
-                        throw new ArgumentOutOfRangeException($"Значение должно быть от {min} до {max}");
+                        throw new ArgumentOutOfRangeException($"Значение" +
+                                        $" должно быть от {min} до {max}");
                     }
 
                     return value;
@@ -329,7 +302,8 @@ namespace ConsoleLoader
 
                     if (value < min || value > max)
                     {
-                        throw new ArgumentOutOfRangeException($"Значение должно быть от {min} до {max}");
+                        throw new ArgumentOutOfRangeException($"Значение" +
+                                         $" должно быть от {min} до {max}");
                     }
 
                     return value;
@@ -368,7 +342,8 @@ namespace ConsoleLoader
 
                     if (!Enum.IsDefined(typeof(SwimmingStyle), styleValue))
                     {
-                        throw new ArgumentOutOfRangeException("Неверное значение стиля. Введите число от 0 до 3.");
+                        throw new ArgumentOutOfRangeException("Неверное значение" +
+                                                " стиля. Введите число от 0 до 3.");
                     }
 
                     return (SwimmingStyle)styleValue;
