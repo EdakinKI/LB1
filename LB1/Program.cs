@@ -5,12 +5,12 @@ using Model;
 namespace ConsoleLoader
 {
     /// <summary>
-    /// Класс для тестирования библиотеки классов Model.
+    /// Класс Program
     /// </summary>
     public class Program
     {
         /// <summary>
-        /// Точка входа в приложение.
+        /// Класс Main
         /// </summary>
         /// <param name="args">Аргументы командной строки.</param>
         public static void Main(string[] args)
@@ -68,6 +68,10 @@ namespace ConsoleLoader
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Вывод данных каждого упражнения
+        /// </summary>
+        /// <param name="exercises"></param>
         private static void ShowResults(List<IExercise> exercises)
         {
             Console.WriteLine("\n\nРезультаты расчета калорий:");
@@ -90,6 +94,10 @@ namespace ConsoleLoader
             Console.WriteLine($"Количество упражнений: {exercises.Count}");
         }
 
+        /// <summary>
+        /// Визуализация затраты калорий всех упражнений
+        /// </summary>
+        /// <param name="exercises"></param>
         private static void ShowCaloriesVisualization(List<IExercise> exercises)
         {
             double totalCalories = 0;
@@ -102,12 +110,10 @@ namespace ConsoleLoader
             Console.WriteLine("║          ВИЗУАЛИЗАЦИЯ КАЛОРИЙ           ║");
             Console.WriteLine("╚═════════════════════════════════════════╝");
 
-            // Запрос максимального значения для шкалы у пользователя
             double maxCaloriesForVisualization = GetValidDoubleInput
-            ("Введите максимальное значение калорий для шкалы (от 1 до 10000)" +
+            ("Введите максимальное значение затраты калорий в день (от 1 до 10000)" +
             ": ", 1, 10000);
 
-            // Прогресс-бар калорий
             int maxBarWidth = 50;
             int barLength = (int)(totalCalories / maxCaloriesForVisualization * 
                                   maxBarWidth);
@@ -127,10 +133,6 @@ namespace ConsoleLoader
             Console.WriteLine($"] {totalCalories:F0} / " +
                               $"{maxCaloriesForVisualization} ккал");
 
-            // Текстовое описание достижения
-            Console.WriteLine("\n" + GetAchievementMessage(totalCalories));
-
-            // Детализация по упражнениям
             Console.WriteLine("\nДетализация по упражнениям:");
             Console.WriteLine("───────────────────────────");
 
@@ -147,6 +149,11 @@ namespace ConsoleLoader
             }
         }
 
+        /// <summary>
+        /// Задание цветовой гаммы
+        /// </summary>
+        /// <param name="calories"></param>
+        /// <returns></returns>
         private static ConsoleColor GetCaloriesColor(double calories)
         {
             if (calories < 100) return ConsoleColor.Green;
@@ -155,21 +162,13 @@ namespace ConsoleLoader
             return ConsoleColor.Red;
         }
 
-        private static string GetAchievementMessage(double totalCalories)
-        {
-            if (totalCalories < 100)
-                return "Неплохо для начала! Можно еще немного позаниматься.";
-            else if (totalCalories < 300)
-                return "Хорошая тренировка! Вы сожгли калории от полноценного" +
-                       " приема пищи.";
-            else if (totalCalories < 500)
-                return "Отличная работа! Это как пробежать 5 км!";
-            else if (totalCalories < 800)
-                return "Впечатляюще! Вы сожгли целую пиццу!";
-            else
-                return "Феноменально! Это уровень профессионального спортсмена!";
-        }
-
+        /// <summary>
+        /// Проверка задания пользователем затраты калорий в день
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         private static double GetValidDoubleInput(string prompt, double min,
                                                   double max)
         {
@@ -205,6 +204,13 @@ namespace ConsoleLoader
             }
         }
 
+        /// <summary>
+        /// Проверка выбора упражнения
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         private static int GetValidIntInput(string prompt, int min, int max)
         {
             while (true)

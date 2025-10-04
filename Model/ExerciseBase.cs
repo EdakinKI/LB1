@@ -29,7 +29,7 @@ namespace Model
     }
 
     /// <summary>
-    /// Расчет калорий при физических упражнениях
+    /// Интерфейс расчета калорий
     /// </summary>
     public interface IExercise
     {
@@ -81,7 +81,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="ExerciseBase"/>
+        /// Инициализация нового экземпляра класса <see cref="ExerciseBase"/>
         /// </summary>
         /// <param name="name">Название упражнения.</param>
         protected ExerciseBase(string name)
@@ -90,7 +90,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Проверяет, что значение положительное
+        /// Проверка положительности значения
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
         /// <param name="parameterName">Имя параметра.</param>
@@ -103,7 +103,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Проверяет, что значение в допустимом диапазоне.
+        /// Проверка диапазона значения
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
         /// <param name="min">Минимальное допустимое значение.</param>
@@ -118,7 +118,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Создает упражнение "Бег".
+        /// Создание упражнения Бег
         /// </summary>
         /// <returns>Экземпляр класса <see cref="Running"/>.</returns>
         public static Running CreateRunningExercise()
@@ -139,7 +139,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Создает упражнение "Плавание".
+        /// Создание упражнения Плавание
         /// </summary>
         /// <returns>Экземпляр класса <see cref="Swimming"/>.</returns>
         public static Swimming CreateSwimmingExercise()
@@ -160,7 +160,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Создает упражнение "Жим штанги".
+        /// Создание упражнения Жим штанги
         /// </summary>
         /// <returns>Экземпляр класса <see cref="BenchPress"/>.</returns>
         public static BenchPress CreateBenchPressExercise()
@@ -181,7 +181,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Получает валидный строковый ввод от пользователя.
+        /// Валидный строковый ввод от пользователя
         /// </summary>
         /// <param name="prompt">Приглашение для ввода.</param>
         /// <param name="errorMessage">Сообщение об ошибке.</param>
@@ -216,7 +216,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Валидный числовой ввод с плавающей точкой от пользователя.
+        /// Валидный числовой ввод с плавающей точкой от пользователя
         /// </summary>
         /// <param name="prompt">Приглашение для ввода.</param>
         /// <param name="min">Минимальное допустимое значение.</param>
@@ -257,7 +257,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Получает валидный целочисленный ввод от пользователя.
+        /// Валидный целочисленный ввод от пользователя
         /// </summary>
         /// <param name="prompt">Приглашение для ввода.</param>
         /// <param name="min">Минимальное допустимое значение.</param>
@@ -341,10 +341,14 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Подсчет калорий
+        /// </summary>
+        /// <returns></returns>
         public abstract double CalculateCalories();
 
         /// <summary>
-        /// 
+        /// Информация о виде упражнений
         /// </summary>
         /// <returns></returns>
         public abstract string GetExerciseInfo();

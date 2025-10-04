@@ -43,6 +43,12 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Создание упражнения Жим штанги
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="weight"></param>
+        /// <param name="repetitions"></param>
         public BenchPress(string name, double weight, int repetitions):
                           base(name)
         {
@@ -50,12 +56,19 @@ namespace Model
             Repetitions = repetitions;
         }
 
+        /// <summary>
+        /// Расчет затраты калорий на Жим штанги
+        /// </summary>
+        /// <returns></returns>
         public override double CalculateCalories()
         {
-            // Формула: калории = вес * повторения * коэффициент 0.5
             return Weight * Repetitions * 0.5;
         }
 
+        /// <summary>
+        /// Вывод данных об упражнении
+        /// </summary>
+        /// <returns></returns>
         public override string GetExerciseInfo()
         {
             return $"Жим штанги: {Name}, Вес: {Weight} кг, Повторения:" +

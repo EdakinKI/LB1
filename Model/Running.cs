@@ -43,6 +43,12 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Создание упражнения Бег
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="intensity"></param>
+        /// <param name="distance"></param>
         public Running(string name, double intensity, double distance):
                        base(name)
         {
@@ -50,9 +56,12 @@ namespace Model
             Distance = distance;
         }
 
+        /// <summary>
+        /// Расчет затраты калорий на Бег
+        /// </summary>
+        /// <returns></returns>
         public override double CalculateCalories()
         {
-            // Формула: калории = расстояние * интенсивность * коэффициент 60
             return Distance * Intensity * 60;
         }
 

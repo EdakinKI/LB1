@@ -27,7 +27,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Пройденное расстояние (метры)
+        /// Пройденное расстояние
         /// </summary>
         public double Distance
         {
@@ -40,9 +40,11 @@ namespace Model
         }
 
         /// <summary>
-        /// Вычисление затраты калорий
+        /// Создание упражнения "Плавание"
         /// </summary>
-        /// <retutns>Площадь круга</retutns>
+        /// <param name="name"></param>
+        /// <param name="style"></param>
+        /// <param name="distance"></param>
         public Swimming(string name, SwimmingStyle style, double distance):
                         base(name)
         {
@@ -51,7 +53,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Коэффициенты калорий для разных стилей плавания
+        /// Расчет затраты калорий на Плавание
         /// </summary>
         /// <returns></returns>
         public override double CalculateCalories()
@@ -79,6 +81,10 @@ namespace Model
             return Distance * styleCoefficient;
         }
 
+        /// <summary>
+        /// Вывод данных об упражнении
+        /// </summary>
+        /// <returns></returns>
         public override string GetExerciseInfo()
         {
             return $"Плавание: {Name}, Стиль: {Style}, Дистанция: {Distance} м";
