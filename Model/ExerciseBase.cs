@@ -68,12 +68,14 @@ namespace Model
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Название упражнения не может быть пустым", nameof(Name));
+                    throw new ArgumentException("Название упражнения не может" +
+                                                " быть пустым", nameof(Name));
                 }
 
                 if (value.Length > 50)
                 {
-                    throw new ArgumentException("Название упражнения слишком длинное", nameof(Name));
+                    throw new ArgumentException("Название упражнения слишком " +
+                                                "длинное", nameof(Name));
                 }
 
                 _name = value;
@@ -98,7 +100,8 @@ namespace Model
         {
             if (value <= 0)
             {
-                throw new ArgumentOutOfRangeException(parameterName, "Значение должно быть положительным");
+                throw new ArgumentOutOfRangeException(parameterName, "Значение" +
+                                                    " должно быть положительным");
             }
         }
 
@@ -109,11 +112,13 @@ namespace Model
         /// <param name="min">Минимальное допустимое значение.</param>
         /// <param name="max">Максимальное допустимое значение.</param>
         /// <param name="parameterName">Имя параметра.</param>
-        protected void ValidateRange(double value, double min, double max, string parameterName)
+        protected void ValidateRange(double value, double min, double max,
+                                     string parameterName)
         {
             if (value < min || value > max)
             {
-                throw new ArgumentOutOfRangeException(parameterName, $"Значение должно быть в диапазоне от {min} до {max}");
+                throw new ArgumentOutOfRangeException(parameterName, $"Значение" +
+                                    $" должно быть в диапазоне от {min} до {max}");
             }
         }
 
@@ -125,9 +130,12 @@ namespace Model
         {
             Console.WriteLine("\n=== Создание упражнения 'Бег' ===");
 
-            string name = GetValidStringInput("Название: ", "Название не может быть пустым");
-            double intensity = GetValidDoubleInput("Интенсивность (км/ч): ", 1, 30);
-            double distance = GetValidDoubleInput("Дистанция (км): ", 0.1, 100);
+            string name = GetValidStringInput("Название: ", "Название не может" +
+                                              " быть пустым");
+            double intensity = GetValidDoubleInput("Интенсивность (км/ч): ",
+                                                   1, 30);
+            double distance = GetValidDoubleInput("Дистанция (км): ",
+                                                   0.1, 100);
 
             Running running = new Running(name, intensity, distance);
             double calories = running.CalculateCalories();
@@ -146,7 +154,8 @@ namespace Model
         {
             Console.WriteLine("\n=== Создание упражнения 'Плавание' ===");
 
-            string name = GetValidStringInput("Название: ", "Название не может быть пустым");
+            string name = GetValidStringInput("Название: ", "Название не может" +
+                                              " быть пустым");
             SwimmingStyle style = GetValidSwimmingStyleInput();
             double distance = GetValidDoubleInput("Дистанция (м): ", 1, 10000);
 
@@ -167,7 +176,8 @@ namespace Model
         {
             Console.WriteLine("\n=== Создание упражнения 'Жим штанги' ===");
 
-            string name = GetValidStringInput("Название: ", "Название не может быть пустым");
+            string name = GetValidStringInput("Название: ", "Название не может" +
+                                              " быть пустым");
             double weight = GetValidDoubleInput("Вес (кг): ", 1, 300);
             int repetitions = GetValidIntInput("Повторения: ", 1, 100);
 
@@ -186,7 +196,8 @@ namespace Model
         /// <param name="prompt">Приглашение для ввода.</param>
         /// <param name="errorMessage">Сообщение об ошибке.</param>
         /// <returns>Валидная строка.</returns>
-        private static string GetValidStringInput(string prompt, string errorMessage)
+        private static string GetValidStringInput(string prompt,
+                                                  string errorMessage)
         {
             while (true)
             {
@@ -202,7 +213,8 @@ namespace Model
 
                     if (input.Length > 50)
                     {
-                        throw new ArgumentException("Название слишком длинное (макс. 50 символов)");
+                        throw new ArgumentException("Название слишком длинное" +
+                                                    " (макс. 50 символов)");
                     }
 
                     return input;
@@ -222,7 +234,8 @@ namespace Model
         /// <param name="min">Минимальное допустимое значение.</param>
         /// <param name="max">Максимальное допустимое значение.</param>
         /// <returns>Валидное число с плавающей точкой.</returns>
-        private static double GetValidDoubleInput(string prompt, double min, double max)
+        private static double GetValidDoubleInput(string prompt, double min,
+                                                  double max)
         {
             while (true)
             {
@@ -238,7 +251,8 @@ namespace Model
 
                     if (value < min || value > max)
                     {
-                        throw new ArgumentOutOfRangeException($"Значение должно быть от {min} до {max}");
+                        throw new ArgumentOutOfRangeException($"Значение должно" +
+                                                       $" быть от {min} до {max}");
                     }
 
                     return value;
@@ -279,7 +293,8 @@ namespace Model
 
                     if (value < min || value > max)
                     {
-                        throw new ArgumentOutOfRangeException($"Значение должно быть от {min} до {max}");
+                        throw new ArgumentOutOfRangeException($"Значение должно" +
+                                                       $" быть от {min} до {max}");
                     }
 
                     return value;
@@ -323,7 +338,8 @@ namespace Model
 
                     if (!Enum.IsDefined(typeof(SwimmingStyle), styleValue))
                     {
-                        throw new ArgumentOutOfRangeException("Неверное значение стиля. Введите число от 0 до 3.");
+                        throw new ArgumentOutOfRangeException("Неверное " +
+                                "значение стиля. Введите число от 0 до 3.");
                     }
 
                     return (SwimmingStyle)styleValue;

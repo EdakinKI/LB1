@@ -50,7 +50,8 @@ namespace ConsoleLoader
 
                 if (continueAdding)
                 {
-                    Console.WriteLine($"\nУпражнений добавлено: {exercises.Count}");
+                    Console.WriteLine($"\nУпражнений добавлено:" +
+                                      $" {exercises.Count}");
                 }
             }
 
@@ -111,8 +112,8 @@ namespace ConsoleLoader
             Console.WriteLine("╚═════════════════════════════════════════╝");
 
             double maxCaloriesForVisualization = GetValidDoubleInput
-            ("Введите максимальное значение затраты калорий в день (от 1 до 10000)" +
-            ": ", 1, 10000);
+            ("Введите максимальное значение затраты калорий в день " +
+             "(от 1 до 10000): ", 1, 10000);
 
             int maxBarWidth = 50;
             int barLength = (int)(totalCalories / maxCaloriesForVisualization * 
