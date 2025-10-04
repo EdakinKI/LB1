@@ -98,12 +98,16 @@ namespace ConsoleLoader
             }
 
             Console.WriteLine("\n\n╔══════════════════════════════════════════╗");
-            Console.WriteLine("║          ВИЗУАЛИЗАЦИЯ КАЛОРИЙ          ║");
+            Console.WriteLine("║          ВИЗУАЛИЗАЦИЯ КАЛОРИЙ            ║");
             Console.WriteLine("╚══════════════════════════════════════════╝");
+
+            // Запрос максимального значения для шкалы у пользователя
+            double maxCaloriesForVisualization = GetValidDoubleInput
+            ("Введите максимальное значение калорий для шкалы (от 1 до 10000)" +
+            ": ", 1, 10000);
 
             // Прогресс-бар калорий
             int maxBarWidth = 50;
-            double maxCaloriesForVisualization = 1000; // Максимум для шкалы
             int barLength = (int)(totalCalories / maxCaloriesForVisualization * 
                                   maxBarWidth);
             barLength = Math.Min(barLength, maxBarWidth);
