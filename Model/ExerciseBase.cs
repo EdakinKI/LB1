@@ -3,63 +3,63 @@
 namespace Model
 {
     /// <summary>
-    /// Представляет тип плавательного стиля.
+    /// Тип плавательного стиля
     /// </summary>
     public enum SwimmingStyle
     {
         /// <summary>
-        /// Вольный стиль.
+        /// Вольный стиль
         /// </summary>
         Freestyle,
 
         /// <summary>
-        /// Брасс.
+        /// Брасс
         /// </summary>
         Breaststroke,
 
         /// <summary>
-        /// Плавание на спине.
+        /// Плавание на спине
         /// </summary>
         Backstroke,
 
         /// <summary>
-        /// Баттерфляй.
+        /// Баттерфляй
         /// </summary>
         Butterfly
     }
 
     /// <summary>
-    /// Интерфейс для расчета калорий при физических упражнениях.
+    /// Расчет калорий при физических упражнениях
     /// </summary>
     public interface IExercise
     {
         /// <summary>
-        /// Получает название упражнения.
+        /// Название упражнения
         /// </summary>
         string Name { get; }
 
         /// <summary>
-        /// Рассчитывает количество затраченных калорий.
+        /// Рассчет количество затраченных калорий
         /// </summary>
         /// <returns>Количество калорий.</returns>
         double CalculateCalories();
 
         /// <summary>
-        /// Возвращает детальную информацию об упражнении.
+        /// Информация об упражнении
         /// </summary>
         /// <returns>Строка с информацией.</returns>
         string GetExerciseInfo();
     }
 
     /// <summary>
-    /// Базовый класс для всех упражнений.
+    /// Базовый класс для всех упражнений
     /// </summary>
     public abstract class ExerciseBase : IExercise
     {
         private string _name;
 
         /// <summary>
-        /// Получает или задает название упражнения.
+        /// Название упражнения
         /// </summary>
         public string Name
         {
@@ -81,7 +81,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="ExerciseBase"/>.
+        /// Инициализирует новый экземпляр класса <see cref="ExerciseBase"/>
         /// </summary>
         /// <param name="name">Название упражнения.</param>
         protected ExerciseBase(string name)
@@ -90,7 +90,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Проверяет, что значение положительное.
+        /// Проверяет, что значение положительное
         /// </summary>
         /// <param name="value">Проверяемое значение.</param>
         /// <param name="parameterName">Имя параметра.</param>
@@ -216,7 +216,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Получает валидный числовой ввод с плавающей точкой от пользователя.
+        /// Валидный числовой ввод с плавающей точкой от пользователя.
         /// </summary>
         /// <param name="prompt">Приглашение для ввода.</param>
         /// <param name="min">Минимальное допустимое значение.</param>
@@ -298,7 +298,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Получает валидный ввод стиля плавания от пользователя.
+        /// Валидный ввод стиля плавания от пользователя
         /// </summary>
         /// <returns>Валидный стиль плавания.</returns>
         private static SwimmingStyle GetValidSwimmingStyleInput()
@@ -341,10 +341,12 @@ namespace Model
             }
         }
 
-        /// <inheritdoc/>
         public abstract double CalculateCalories();
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public abstract string GetExerciseInfo();
     }
 }
