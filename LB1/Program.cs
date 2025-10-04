@@ -97,9 +97,9 @@ namespace ConsoleLoader
                 totalCalories += exercise.CalculateCalories();
             }
 
-            Console.WriteLine("\n\n╔══════════════════════════════════════════╗");
-            Console.WriteLine("║          ВИЗУАЛИЗАЦИЯ КАЛОРИЙ            ║");
-            Console.WriteLine("╚══════════════════════════════════════════╝");
+            Console.WriteLine("\n\n╔═════════════════════════════════════════╗");
+            Console.WriteLine("║          ВИЗУАЛИЗАЦИЯ КАЛОРИЙ           ║");
+            Console.WriteLine("╚═════════════════════════════════════════╝");
 
             // Запрос максимального значения для шкалы у пользователя
             double maxCaloriesForVisualization = GetValidDoubleInput
