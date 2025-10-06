@@ -157,12 +157,14 @@ namespace ConsoleLoader
         /// <returns></returns>
         private static ConsoleColor GetCaloriesColor(double calories)
         {
+            //TODO: RSDN
             if (calories < 100) return ConsoleColor.Green;
             if (calories < 300) return ConsoleColor.Yellow;
             if (calories < 500) return ConsoleColor.DarkYellow;
             return ConsoleColor.Red;
         }
 
+        //TODO: duplication
         /// <summary>
         /// Проверка задания пользователем затраты калорий в день
         /// </summary>
@@ -204,6 +206,8 @@ namespace ConsoleLoader
                 Console.WriteLine("Пожалуйста, попробуйте снова...");
             }
         }
+
+        //TODO: duplication
 
         /// <summary>
         /// Проверка выбора упражнения

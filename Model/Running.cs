@@ -63,6 +63,7 @@
             return Distance * Intensity * 60;
         }
 
+        //TODO: XML
         public override string GetExerciseInfo()
         {
             return $"Бег: {Name}, Интенсивность: {Intensity} км/ч, Дистанция:" +

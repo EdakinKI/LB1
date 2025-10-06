@@ -2,6 +2,7 @@
 
 namespace Model
 {
+    //TODO: RSDN
     /// <summary>
     /// Тип плавательного стиля
     /// </summary>
@@ -28,6 +29,7 @@ namespace Model
         Butterfly
     }
 
+    //TODO: RSDN
     /// <summary>
     /// Интерфейс расчета калорий
     /// </summary>
@@ -128,6 +130,7 @@ namespace Model
         /// <returns>Экземпляр класса <see cref="Running"/>.</returns>
         public static Running CreateRunningExercise()
         {
+            //TODO: remove
             Console.WriteLine("\n=== Создание упражнения 'Бег' ===");
 
             string name = GetValidStringInput("Название: ", "Название не может" +
@@ -139,6 +142,8 @@ namespace Model
 
             Running running = new Running(name, intensity, distance);
             double calories = running.CalculateCalories();
+
+            //TODO: remove
 
             Console.WriteLine("Упражнение 'Бег' успешно создано!");
             Console.WriteLine($"Затрачено калорий: {calories:F2}");
@@ -152,6 +157,8 @@ namespace Model
         /// <returns>Экземпляр класса <see cref="Swimming"/>.</returns>
         public static Swimming CreateSwimmingExercise()
         {
+            //TODO: remove
+
             Console.WriteLine("\n=== Создание упражнения 'Плавание' ===");
 
             string name = GetValidStringInput("Название: ", "Название не может" +
@@ -161,6 +168,8 @@ namespace Model
 
             Swimming swimming = new Swimming(name, style, distance);
             double calories = swimming.CalculateCalories();
+
+            //TODO: remove
 
             Console.WriteLine("Упражнение 'Плавание' успешно создано!");
             Console.WriteLine($"Затрачено калорий: {calories:F2}");
@@ -174,6 +183,8 @@ namespace Model
         /// <returns>Экземпляр класса <see cref="BenchPress"/>.</returns>
         public static BenchPress CreateBenchPressExercise()
         {
+            //TODO: remove
+
             Console.WriteLine("\n=== Создание упражнения 'Жим штанги' ===");
 
             string name = GetValidStringInput("Название: ", "Название не может" +
@@ -183,6 +194,8 @@ namespace Model
 
             BenchPress benchPress = new BenchPress(name, weight, repetitions);
             double calories = benchPress.CalculateCalories();
+
+            //TODO: remove
 
             Console.WriteLine("Упражнение 'Жим штанги' успешно создано!");
             Console.WriteLine($"Затрачено калорий: {calories:F2}");
@@ -221,6 +234,8 @@ namespace Model
                 }
                 catch (ArgumentException ex)
                 {
+                    //TODO: remove
+
                     Console.WriteLine($"Ошибка: {ex.Message}");
                     Console.WriteLine("Пожалуйста, попробуйте снова...");
                 }
@@ -259,12 +274,18 @@ namespace Model
                 }
                 catch (FormatException)
                 {
+                    //TODO: remove
+
                     Console.WriteLine("Ошибка: Введите корректное число");
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
+                    //TODO: remove
+
                     Console.WriteLine($"Ошибка: {ex.Message}");
                 }
+
+                //TODO: remove
 
                 Console.WriteLine("Пожалуйста, попробуйте снова...");
             }
@@ -301,12 +322,18 @@ namespace Model
                 }
                 catch (FormatException)
                 {
+                    //TODO: remove
+
                     Console.WriteLine("Ошибка: Введите целое число");
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
+                    //TODO: remove
+
                     Console.WriteLine($"Ошибка: {ex.Message}");
                 }
+
+                //TODO: remove
 
                 Console.WriteLine("Пожалуйста, попробуйте снова...");
             }
@@ -322,6 +349,7 @@ namespace Model
             {
                 try
                 {
+                    //TODO: remove
                     Console.WriteLine("Доступные стили плавания:");
                     Console.WriteLine("0 - Freestyle (Вольный стиль)");
                     Console.WriteLine("1 - Breaststroke (Брасс)");
@@ -346,13 +374,14 @@ namespace Model
                 }
                 catch (FormatException)
                 {
+                    //TODO: remove
                     Console.WriteLine("Ошибка: Введите число от 0 до 3");
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
                     Console.WriteLine($"Ошибка: {ex.Message}");
                 }
-
+                //TODO: remove
                 Console.WriteLine("Пожалуйста, попробуйте снова...");
             }
         }
@@ -363,6 +392,7 @@ namespace Model
         /// <returns></returns>
         public abstract double CalculateCalories();
 
+        //TODO: property
         /// <summary>
         /// Информация о виде упражнений
         /// </summary>

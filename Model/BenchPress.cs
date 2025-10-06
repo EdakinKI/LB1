@@ -44,7 +44,7 @@ namespace Model
         /// <summary>
         /// Создание упражнения Жим штанги
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">//TODO: XML</param>
         /// <param name="weight"></param>
         /// <param name="repetitions"></param>
         public BenchPress(string name, double weight, int repetitions):
@@ -57,7 +57,7 @@ namespace Model
         /// <summary>
         /// Расчет затраты калорий на Жим штанги
         /// </summary>
-        /// <returns></returns>
+        /// <returns>//TODO: XML</returns>
         public override double CalculateCalories()
         {
             return Weight * Repetitions * 0.5;
@@ -66,7 +66,7 @@ namespace Model
         /// <summary>
         /// Вывод данных об упражнении
         /// </summary>
-        /// <returns></returns>
+        /// <returns>//TODO: XML</returns>
         public override string GetExerciseInfo()
         {
             return $"Жим штанги: {Name}, Вес: {Weight} кг, Повторения:" +
