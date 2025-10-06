@@ -1,3 +1,5 @@
+using System;
+
 namespace Model
 {
     /// <summary>
@@ -42,6 +44,11 @@ namespace Model
         }
 
         /// <summary>
+        /// Получает детальную информацию об упражнении.
+        /// </summary>
+        public override string ExerciseInfo => $"Жим штанги: {Name}, Вес: {Weight} кг, Повторения: {Repetitions}";
+
+        /// <summary>
         /// Создание упражнения Жим штанги
         /// </summary>
         /// <param name="name">//TODO: XML</param>
@@ -55,22 +62,38 @@ namespace Model
         }
 
         /// <summary>
+        /// Создание упражнения Жим штанги
+        /// </summary>
+        /// <returns>Экземпляр класса <see cref="BenchPress"/>.</returns>
+        public static BenchPress CreateBenchPressExercise()
+        {
+            //TODO: remove+
+
+            Console.WriteLine("\n=== Создание упражнения 'Жим штанги' ===");
+
+            string name = GetValidStringInput("Название: ", "Название не может" +
+                                              " быть пустым");
+            double weight = GetValidDoubleInput("Вес (кг): ", 1, 300);
+            int repetitions = GetValidIntInput("Повторения: ", 1, 100);
+
+            BenchPress benchPress = new BenchPress(name, weight, repetitions);
+            double calories = benchPress.CalculateCalories();
+
+            //TODO: remove+
+
+            Console.WriteLine("Упражнение 'Жим штанги' успешно создано!");
+            Console.WriteLine($"Затрачено калорий: {calories:F2}");
+
+            return benchPress;
+        }
+
+        /// <summary>
         /// Расчет затраты калорий на Жим штанги
         /// </summary>
         /// <returns>//TODO: XML</returns>
         public override double CalculateCalories()
         {
             return Weight * Repetitions * 0.5;
-        }
-
-        /// <summary>
-        /// Вывод данных об упражнении
-        /// </summary>
-        /// <returns>//TODO: XML</returns>
-        public override string GetExerciseInfo()
-        {
-            return $"Жим штанги: {Name}, Вес: {Weight} кг, Повторения:" +
-                   $" {Repetitions}";
         }
     }
 }

@@ -1,5 +1,7 @@
 
 
+using System;
+
 namespace Model
 {
     /// <summary>
@@ -40,6 +42,11 @@ namespace Model
         }
 
         /// <summary>
+        /// Получает детальную информацию об упражнении.
+        /// </summary>
+        public override string ExerciseInfo => $"Плавание: {Name}, Стиль: {Style}, Дистанция: {Distance} м";
+
+        /// <summary>
         /// Создание упражнения "Плавание"
         /// </summary>
         /// <param name="name"></param>
@@ -50,6 +57,32 @@ namespace Model
         {
             Style = style;
             Distance = distance;
+        }
+
+        /// <summary>
+        /// Создание упражнения Плавание
+        /// </summary>
+        /// <returns>Экземпляр класса <see cref="Swimming"/>.</returns>
+        public static Swimming CreateSwimmingExercise()
+        {
+            //TODO: remove+
+
+            Console.WriteLine("\n=== Создание упражнения 'Плавание' ===");
+
+            string name = GetValidStringInput("Название: ", "Название не может" +
+                                              " быть пустым");
+            SwimmingStyle style = GetValidSwimmingStyleInput();
+            double distance = GetValidDoubleInput("Дистанция (м): ", 1, 10000);
+
+            Swimming swimming = new Swimming(name, style, distance);
+            double calories = swimming.CalculateCalories();
+
+            //TODO: remove+
+
+            Console.WriteLine("Упражнение 'Плавание' успешно создано!");
+            Console.WriteLine($"Затрачено калорий: {calories:F2}");
+
+            return swimming;
         }
 
         /// <summary>
@@ -79,15 +112,6 @@ namespace Model
                     break;
             }
             return Distance * styleCoefficient;
-        }
-
-        /// <summary>
-        /// Вывод данных об упражнении
-        /// </summary>
-        /// <returns></returns>
-        public override string GetExerciseInfo()
-        {
-            return $"Плавание: {Name}, Стиль: {Style}, Дистанция: {Distance} м";
         }
     }
 }

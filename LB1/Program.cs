@@ -30,18 +30,18 @@ namespace ConsoleLoader
                 Console.WriteLine("4. Завершить ввод и показать результаты");
                 Console.WriteLine("==================================");
 
-                int choice = GetValidIntInput("Выберите действие (1-4): ", 1, 4);
+                int choice = ExerciseBase.GetValidIntInput("Выберите действие (1-4): ", 1, 4);
 
                 switch (choice)
                 {
                     case 1:
-                        exercises.Add(ExerciseBase.CreateRunningExercise());
+                        exercises.Add(Running.CreateRunningExercise());
                         break;
                     case 2:
-                        exercises.Add(ExerciseBase.CreateSwimmingExercise());
+                        exercises.Add(Swimming.CreateSwimmingExercise());
                         break;
                     case 3:
-                        exercises.Add(ExerciseBase.CreateBenchPressExercise());
+                        exercises.Add(BenchPress.CreateBenchPressExercise());
                         break;
                     case 4:
                         continueAdding = false;
@@ -86,7 +86,7 @@ namespace ConsoleLoader
                 totalCalories += calories;
 
                 Console.WriteLine($"\nУпражнение #{i + 1}:");
-                Console.WriteLine(exercises[i].GetExerciseInfo());
+                Console.WriteLine(exercises[i].ExerciseInfo);
                 Console.WriteLine($"Затрачено калорий: {calories:F2}");
             }
 
@@ -111,7 +111,7 @@ namespace ConsoleLoader
             Console.WriteLine("║          ВИЗУАЛИЗАЦИЯ КАЛОРИЙ           ║");
             Console.WriteLine("╚═════════════════════════════════════════╝");
 
-            double maxCaloriesForVisualization = GetValidDoubleInput
+            double maxCaloriesForVisualization = ExerciseBase.GetValidDoubleInput
             ("Введите максимальное значение затраты калорий в день " +
              "(от 1 до 10000): ", 1, 10000);
 
@@ -157,97 +157,18 @@ namespace ConsoleLoader
         /// <returns></returns>
         private static ConsoleColor GetCaloriesColor(double calories)
         {
-            //TODO: RSDN
-            if (calories < 100) return ConsoleColor.Green;
-            if (calories < 300) return ConsoleColor.Yellow;
-            if (calories < 500) return ConsoleColor.DarkYellow;
+            //TODO: RSDN+
+            if (calories < 100) 
+                return ConsoleColor.Green;
+            if (calories < 300) 
+                return ConsoleColor.Yellow;
+            if (calories < 500)
+                return ConsoleColor.DarkYellow;
             return ConsoleColor.Red;
-        }
 
-        //TODO: duplication
-        /// <summary>
-        /// Проверка задания пользователем затраты калорий в день
-        /// </summary>
-        /// <param name="prompt"></param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        /// <returns></returns>
-        private static double GetValidDoubleInput(string prompt, double min,
-                                                  double max)
-        {
-            while (true)
-            {
-                try
-                {
-                    Console.Write(prompt);
-                    string input = Console.ReadLine();
+        //TODO: duplications+
 
-                    if (!double.TryParse(input, out double value))
-                    {
-                        throw new FormatException("Неверный формат числа");
-                    }
-
-                    if (value < min || value > max)
-                    {
-                        throw new ArgumentOutOfRangeException($"Значение" +
-                                        $" должно быть от {min} до {max}");
-                    }
-
-                    return value;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Ошибка: Введите корректное число");
-                }
-                catch (ArgumentOutOfRangeException ex)
-                {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
-                }
-                Console.WriteLine("Пожалуйста, попробуйте снова...");
-            }
-        }
-
-        //TODO: duplication
-
-        /// <summary>
-        /// Проверка выбора упражнения
-        /// </summary>
-        /// <param name="prompt"></param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        /// <returns></returns>
-        private static int GetValidIntInput(string prompt, int min, int max)
-        {
-            while (true)
-            {
-                try
-                {
-                    Console.Write(prompt);
-                    string input = Console.ReadLine();
-
-                    if (!int.TryParse(input, out int value))
-                    {
-                        throw new FormatException("Неверный формат числа");
-                    }
-
-                    if (value < min || value > max)
-                    {
-                        throw new ArgumentOutOfRangeException($"Значение" +
-                                         $" должно быть от {min} до {max}");
-                    }
-
-                    return value;
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Ошибка: Введите целое число");
-                }
-                catch (ArgumentOutOfRangeException ex)
-                {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
-                }
-                Console.WriteLine("Пожалуйста, попробуйте снова...");
-            }
-        }
+        //TODO: duplications+
+        }      
     }
 }

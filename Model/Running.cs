@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System;
+
+namespace Model
 {
     /// <summary>
     /// Класс бег 
@@ -42,6 +44,11 @@
         }
 
         /// <summary>
+        /// Получает детальную информацию об упражнении.
+        /// </summary>
+        public override string ExerciseInfo => $"Бег: {Name}, Интенсивность: {Intensity} км/ч, Дистанция: {Distance} км";
+
+        /// <summary>
         /// Создание упражнения Бег
         /// </summary>
         /// <param name="name"></param>
@@ -55,19 +62,39 @@
         }
 
         /// <summary>
+        /// Создание упражнения Бег
+        /// </summary>
+        /// <returns>Экземпляр класса <see cref="Running"/>.</returns>
+        public static Running CreateRunningExercise()
+        {
+            //TODO: remove+
+            Console.WriteLine("\n=== Создание упражнения 'Бег' ===");
+
+            string name = GetValidStringInput("Название: ", "Название не может" +
+                                              " быть пустым");
+            double intensity = GetValidDoubleInput("Интенсивность (км/ч): ",
+                                                   1, 30);
+            double distance = GetValidDoubleInput("Дистанция (км): ",
+                                                   0.1, 100);
+
+            Running running = new Running(name, intensity, distance);
+            double calories = running.CalculateCalories();
+
+            //TODO: remove+
+
+            Console.WriteLine("Упражнение 'Бег' успешно создано!");
+            Console.WriteLine($"Затрачено калорий: {calories:F2}");
+
+            return running;
+        }
+
+        /// <summary>
         /// Расчет затраты калорий на Бег
         /// </summary>
         /// <returns></returns>
         public override double CalculateCalories()
         {
             return Distance * Intensity * 60;
-        }
-
-        //TODO: XML
-        public override string GetExerciseInfo()
-        {
-            return $"Бег: {Name}, Интенсивность: {Intensity} км/ч, Дистанция:" +
-                   $" {Distance} км";
         }
     }
 }

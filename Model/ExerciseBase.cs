@@ -50,7 +50,7 @@ namespace Model
         /// Информация об упражнении
         /// </summary>
         /// <returns>Строка с информацией.</returns>
-        string GetExerciseInfo();
+        string ExerciseInfo { get; }
     }
 
     /// <summary>
@@ -59,6 +59,11 @@ namespace Model
     public abstract class ExerciseBase : IExercise
     {
         private string _name;
+
+        /// <summary>
+        /// Получает детальную информацию об упражнении.
+        /// </summary>
+        public abstract string ExerciseInfo { get; }
 
         /// <summary>
         /// Название упражнения
@@ -122,86 +127,7 @@ namespace Model
                 throw new ArgumentOutOfRangeException(parameterName, $"Значение" +
                                     $" должно быть в диапазоне от {min} до {max}");
             }
-        }
-
-        /// <summary>
-        /// Создание упражнения Бег
-        /// </summary>
-        /// <returns>Экземпляр класса <see cref="Running"/>.</returns>
-        public static Running CreateRunningExercise()
-        {
-            //TODO: remove
-            Console.WriteLine("\n=== Создание упражнения 'Бег' ===");
-
-            string name = GetValidStringInput("Название: ", "Название не может" +
-                                              " быть пустым");
-            double intensity = GetValidDoubleInput("Интенсивность (км/ч): ",
-                                                   1, 30);
-            double distance = GetValidDoubleInput("Дистанция (км): ",
-                                                   0.1, 100);
-
-            Running running = new Running(name, intensity, distance);
-            double calories = running.CalculateCalories();
-
-            //TODO: remove
-
-            Console.WriteLine("Упражнение 'Бег' успешно создано!");
-            Console.WriteLine($"Затрачено калорий: {calories:F2}");
-
-            return running;
-        }
-
-        /// <summary>
-        /// Создание упражнения Плавание
-        /// </summary>
-        /// <returns>Экземпляр класса <see cref="Swimming"/>.</returns>
-        public static Swimming CreateSwimmingExercise()
-        {
-            //TODO: remove
-
-            Console.WriteLine("\n=== Создание упражнения 'Плавание' ===");
-
-            string name = GetValidStringInput("Название: ", "Название не может" +
-                                              " быть пустым");
-            SwimmingStyle style = GetValidSwimmingStyleInput();
-            double distance = GetValidDoubleInput("Дистанция (м): ", 1, 10000);
-
-            Swimming swimming = new Swimming(name, style, distance);
-            double calories = swimming.CalculateCalories();
-
-            //TODO: remove
-
-            Console.WriteLine("Упражнение 'Плавание' успешно создано!");
-            Console.WriteLine($"Затрачено калорий: {calories:F2}");
-
-            return swimming;
-        }
-
-        /// <summary>
-        /// Создание упражнения Жим штанги
-        /// </summary>
-        /// <returns>Экземпляр класса <see cref="BenchPress"/>.</returns>
-        public static BenchPress CreateBenchPressExercise()
-        {
-            //TODO: remove
-
-            Console.WriteLine("\n=== Создание упражнения 'Жим штанги' ===");
-
-            string name = GetValidStringInput("Название: ", "Название не может" +
-                                              " быть пустым");
-            double weight = GetValidDoubleInput("Вес (кг): ", 1, 300);
-            int repetitions = GetValidIntInput("Повторения: ", 1, 100);
-
-            BenchPress benchPress = new BenchPress(name, weight, repetitions);
-            double calories = benchPress.CalculateCalories();
-
-            //TODO: remove
-
-            Console.WriteLine("Упражнение 'Жим штанги' успешно создано!");
-            Console.WriteLine($"Затрачено калорий: {calories:F2}");
-
-            return benchPress;
-        }
+        }      
 
         /// <summary>
         /// Валидный строковый ввод от пользователя
@@ -209,7 +135,7 @@ namespace Model
         /// <param name="prompt">Приглашение для ввода.</param>
         /// <param name="errorMessage">Сообщение об ошибке.</param>
         /// <returns>Валидная строка.</returns>
-        private static string GetValidStringInput(string prompt,
+        public static string GetValidStringInput(string prompt,
                                                   string errorMessage)
         {
             while (true)
@@ -249,7 +175,7 @@ namespace Model
         /// <param name="min">Минимальное допустимое значение.</param>
         /// <param name="max">Максимальное допустимое значение.</param>
         /// <returns>Валидное число с плавающей точкой.</returns>
-        private static double GetValidDoubleInput(string prompt, double min,
+        public static double GetValidDoubleInput(string prompt, double min,
                                                   double max)
         {
             while (true)
@@ -298,7 +224,7 @@ namespace Model
         /// <param name="min">Минимальное допустимое значение.</param>
         /// <param name="max">Максимальное допустимое значение.</param>
         /// <returns>Валидное целое число.</returns>
-        private static int GetValidIntInput(string prompt, int min, int max)
+        public static int GetValidIntInput(string prompt, int min, int max)
         {
             while (true)
             {
@@ -340,10 +266,10 @@ namespace Model
         }
 
         /// <summary>
-        /// Валидный ввод стиля плавания от пользователя
+        /// Валидный ввод стиля Плавания от пользователя
         /// </summary>
         /// <returns>Валидный стиль плавания.</returns>
-        private static SwimmingStyle GetValidSwimmingStyleInput()
+        public static SwimmingStyle GetValidSwimmingStyleInput()
         {
             while (true)
             {
@@ -392,11 +318,6 @@ namespace Model
         /// <returns></returns>
         public abstract double CalculateCalories();
 
-        //TODO: property
-        /// <summary>
-        /// Информация о виде упражнений
-        /// </summary>
-        /// <returns></returns>
-        public abstract string GetExerciseInfo();
+        //TODO: property+
     }
 }
