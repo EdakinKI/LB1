@@ -62,32 +62,6 @@ namespace Model
         }
 
         /// <summary>
-        /// Создание упражнения Жим штанги
-        /// </summary>
-        /// <returns>Экземпляр класса <see cref="BenchPress"/>.</returns>
-        public static BenchPress CreateBenchPressExercise()
-        {
-            //TODO: remove+
-
-            Console.WriteLine("\n=== Создание упражнения 'Жим штанги' ===");
-
-            string name = GetValidStringInput("Название: ", "Название не может" +
-                                              " быть пустым");
-            double weight = GetValidDoubleInput("Вес (кг): ", 1, 300);
-            int repetitions = GetValidIntInput("Повторения: ", 1, 100);
-
-            BenchPress benchPress = new BenchPress(name, weight, repetitions);
-            double calories = benchPress.CalculateCalories();
-
-            //TODO: remove+
-
-            Console.WriteLine("Упражнение 'Жим штанги' успешно создано!");
-            Console.WriteLine($"Затрачено калорий: {calories:F2}");
-
-            return benchPress;
-        }
-
-        /// <summary>
         /// Расчет затраты калорий на Жим штанги
         /// </summary>
         /// <returns>//TODO: XML</returns>

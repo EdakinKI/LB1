@@ -30,28 +30,33 @@ namespace ConsoleLoader
                 Console.WriteLine("4. Завершить ввод и показать результаты");
                 Console.WriteLine("==================================");
 
-                int choice = ExerciseBase.GetValidIntInput("Выберите действие (1-4): ", 1, 4);
+                int choice = GetValidIntInputWithHandling("Выберите действие (1-4): ", 1, 4);
 
                 switch (choice)
                 {
                     case 1:
-                        exercises.Add(Running.CreateRunningExercise());
+                        var running = CreateRunningExerciseWithHandling();
+                        if (running != null)
+                            exercises.Add(running);
                         break;
                     case 2:
-                        exercises.Add(Swimming.CreateSwimmingExercise());
+                        var swimming = CreateSwimmingExerciseWithHandling();
+                        if (swimming != null)
+                            exercises.Add(swimming);
                         break;
                     case 3:
-                        exercises.Add(BenchPress.CreateBenchPressExercise());
+                        var benchPress = CreateBenchPressExerciseWithHandling();
+                        if (benchPress != null)
+                            exercises.Add(benchPress);
                         break;
                     case 4:
                         continueAdding = false;
                         break;
                 }
 
-                if (continueAdding)
+                if (continueAdding && exercises.Count > 0)
                 {
-                    Console.WriteLine($"\nУпражнений добавлено:" +
-                                      $" {exercises.Count}");
+                    Console.WriteLine($"\nУпражнений добавлено: {exercises.Count}");
                 }
             }
 
@@ -69,6 +74,213 @@ namespace ConsoleLoader
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Создание упражнения Бег с обработкой ошибок по полям
+        /// </summary>
+        private static Running CreateRunningExerciseWithHandling()
+        {
+            string name = "";
+            double intensity = 0;
+            double distance = 0;
+
+            try
+            {
+                Console.WriteLine("\n=== Создание упражнения 'Бег' ===");
+
+                // Ввод названия с повторением при ошибке
+                name = GetValidStringInputWithRetry("Название: ");
+
+                // Ввод интенсивности с повторением при ошибке
+                intensity = GetValidDoubleInputWithRetry("Интенсивность (км/ч): ", 1, 30);
+
+                // Ввод дистанции с повторением при ошибке
+                distance = GetValidDoubleInputWithRetry("Дистанция (км): ", 0.1, 100);
+
+                Running running = new Running(name, intensity, distance);
+                double calories = running.CalculateCalories();
+
+                Console.WriteLine("Упражнение 'Бег' успешно создано!");
+                Console.WriteLine($"Затрачено калорий: {calories:F2}");
+
+                return running;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nКритическая ошибка при создании упражнения: {ex.Message}");
+                Console.WriteLine("Создание упражнения отменено.");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Создание упражнения Плавание с обработкой ошибок по полям
+        /// </summary>
+        private static Swimming CreateSwimmingExerciseWithHandling()
+        {
+            string name = "";
+            SwimmingStyle style = SwimmingStyle.Freestyle;
+            double distance = 0;
+
+            try
+            {
+                Console.WriteLine("\n=== Создание упражнения 'Плавание' ===");
+
+                name = GetValidStringInputWithRetry("Название: ");
+
+                Console.WriteLine("Доступные стили плавания:");
+                Console.WriteLine("0 - Freestyle (Вольный стиль)");
+                Console.WriteLine("1 - Breaststroke (Брасс)");
+                Console.WriteLine("2 - Backstroke (На спине)");
+                Console.WriteLine("3 - Butterfly (Баттерфляй)");
+
+                style = GetValidSwimmingStyleInputWithRetry();
+                distance = GetValidDoubleInputWithRetry("Дистанция (м): ", 1, 10000);
+
+                Swimming swimming = new Swimming(name, style, distance);
+                double calories = swimming.CalculateCalories();
+
+                Console.WriteLine("Упражнение 'Плавание' успешно создано!");
+                Console.WriteLine($"Затрачено калорий: {calories:F2}");
+
+                return swimming;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nКритическая ошибка при создании упражнения: {ex.Message}");
+                Console.WriteLine("Создание упражнения отменено.");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Создание упражнения Жим штанги с обработкой ошибок по полям
+        /// </summary>
+        private static BenchPress CreateBenchPressExerciseWithHandling()
+        {
+            string name = "";
+            double weight = 0;
+            int repetitions = 0;
+
+            try
+            {
+                Console.WriteLine("\n=== Создание упражнения 'Жим штанги' ===");
+
+                name = GetValidStringInputWithRetry("Название: ");
+                weight = GetValidDoubleInputWithRetry("Вес (кг): ", 1, 300);
+                repetitions = GetValidIntInputWithRetry("Повторения: ", 1, 100);
+
+                BenchPress benchPress = new BenchPress(name, weight, repetitions);
+                double calories = benchPress.CalculateCalories();
+
+                Console.WriteLine("Упражнение 'Жим штанги' успешно создано!");
+                Console.WriteLine($"Затрачено калорий: {calories:F2}");
+
+                return benchPress;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nКритическая ошибка при создании упражнения: {ex.Message}");
+                Console.WriteLine("Создание упражнения отменено.");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Валидный строковый ввод с повторением при ошибке
+        /// </summary>
+        private static string GetValidStringInputWithRetry(string prompt)
+        {
+            while (true)
+            {
+                try
+                {
+                    return ExerciseBase.GetValidStringInput(prompt);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine("Пожалуйста, введите значение снова:");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Валидный числовой ввод с плавающей точкой с повторением при ошибке
+        /// </summary>
+        private static double GetValidDoubleInputWithRetry(string prompt, double min, double max)
+        {
+            while (true)
+            {
+                try
+                {
+                    return ExerciseBase.GetValidDoubleInput(prompt, min, max);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine("Пожалуйста, введите значение снова:");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Валидный целочисленный ввод с повторением при ошибке
+        /// </summary>
+        private static int GetValidIntInputWithRetry(string prompt, int min, int max)
+        {
+            while (true)
+            {
+                try
+                {
+                    return ExerciseBase.GetValidIntInput(prompt, min, max);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine("Пожалуйста, введите значение снова:");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Валидный ввод стиля плавания с повторением при ошибке
+        /// </summary>
+        private static SwimmingStyle GetValidSwimmingStyleInputWithRetry()
+        {
+            while (true)
+            {
+                try
+                {
+                    return ExerciseBase.GetValidSwimmingStyleInput();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine("Пожалуйста, введите значение снова:");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Валидный целочисленный ввод для меню
+        /// </summary>
+        private static int GetValidIntInputWithHandling(string prompt, int min, int max)
+        {
+            while (true)
+            {
+                try
+                {
+                    return ExerciseBase.GetValidIntInput(prompt, min, max);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine("Пожалуйста, попробуйте снова...");
+                }
+            }
+        }
+
+        // Остальные методы (ShowResults, ShowCaloriesVisualization, GetCaloriesColor) остаются без изменений
         /// <summary>
         /// Вывод данных каждого упражнения
         /// </summary>
@@ -90,8 +302,7 @@ namespace ConsoleLoader
                 Console.WriteLine($"Затрачено калорий: {calories:F2}");
             }
 
-            Console.WriteLine($"\nОбщее количество затраченных калорий: " +
-                              $"{totalCalories:F2}");
+            Console.WriteLine($"\nОбщее количество затраченных калорий: {totalCalories:F2}");
             Console.WriteLine($"Количество упражнений: {exercises.Count}");
         }
 
@@ -111,13 +322,11 @@ namespace ConsoleLoader
             Console.WriteLine("║          ВИЗУАЛИЗАЦИЯ КАЛОРИЙ           ║");
             Console.WriteLine("╚═════════════════════════════════════════╝");
 
-            double maxCaloriesForVisualization = ExerciseBase.GetValidDoubleInput
-            ("Введите максимальное значение затраты калорий в день " +
-             "(от 1 до 10000): ", 1, 10000);
+            double maxCaloriesForVisualization = GetValidDoubleInputWithRetry(
+                "Введите максимальное значение затраты калорий в день (от 1 до 10000): ", 1, 10000);
 
             int maxBarWidth = 50;
-            int barLength = (int)(totalCalories / maxCaloriesForVisualization * 
-                                  maxBarWidth);
+            int barLength = (int)(totalCalories / maxCaloriesForVisualization * maxBarWidth);
             barLength = Math.Min(barLength, maxBarWidth);
 
             Console.Write("\nПрогресс: [");
@@ -131,8 +340,7 @@ namespace ConsoleLoader
                 Console.Write(" ");
             }
             Console.ResetColor();
-            Console.WriteLine($"] {totalCalories:F0} / " +
-                              $"{maxCaloriesForVisualization} ккал");
+            Console.WriteLine($"] {totalCalories:F0} / {maxCaloriesForVisualization} ккал");
 
             Console.WriteLine("\nДетализация по упражнениям:");
             Console.WriteLine("───────────────────────────");
@@ -157,18 +365,13 @@ namespace ConsoleLoader
         /// <returns></returns>
         private static ConsoleColor GetCaloriesColor(double calories)
         {
-            //TODO: RSDN+
-            if (calories < 100) 
+            if (calories < 1000)
                 return ConsoleColor.Green;
-            if (calories < 300) 
+            if (calories < 2800)
                 return ConsoleColor.Yellow;
-            if (calories < 500)
+            if (calories < 3500)
                 return ConsoleColor.DarkYellow;
             return ConsoleColor.Red;
-
-        //TODO: duplications+
-
-        //TODO: duplications+
-        }      
+        }
     }
 }

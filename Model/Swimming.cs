@@ -60,32 +60,6 @@ namespace Model
         }
 
         /// <summary>
-        /// Создание упражнения Плавание
-        /// </summary>
-        /// <returns>Экземпляр класса <see cref="Swimming"/>.</returns>
-        public static Swimming CreateSwimmingExercise()
-        {
-            //TODO: remove+
-
-            Console.WriteLine("\n=== Создание упражнения 'Плавание' ===");
-
-            string name = GetValidStringInput("Название: ", "Название не может" +
-                                              " быть пустым");
-            SwimmingStyle style = GetValidSwimmingStyleInput();
-            double distance = GetValidDoubleInput("Дистанция (м): ", 1, 10000);
-
-            Swimming swimming = new Swimming(name, style, distance);
-            double calories = swimming.CalculateCalories();
-
-            //TODO: remove+
-
-            Console.WriteLine("Упражнение 'Плавание' успешно создано!");
-            Console.WriteLine($"Затрачено калорий: {calories:F2}");
-
-            return swimming;
-        }
-
-        /// <summary>
         /// Расчет затраты калорий на Плавание
         /// </summary>
         /// <returns></returns>
