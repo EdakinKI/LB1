@@ -47,6 +47,7 @@ namespace Model
         public override string ExerciseInfo => $"Жим штанги: {Name}," +
                         $" Вес: {Weight} кг, Повторения: {Repetitions}";
 
+        //TODO: XML
         /// <summary>
         /// Создание упражнения Жим штанги
         /// </summary>

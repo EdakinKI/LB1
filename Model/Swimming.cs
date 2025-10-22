@@ -66,6 +66,7 @@ namespace Model
 
             switch (Style)
             {
+                //TODO: RSDN
                 case SwimmingStyle.Freestyle:
                     styleCoefficient = 8.0;
                     break;

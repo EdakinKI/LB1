@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    //TODO: RSDN+
+    //TODO: RSDN
     /// <summary>
     /// Тип плавательного стиля
     /// </summary>
@@ -29,7 +29,7 @@ namespace Model
         Butterfly
     }
 
-    //TODO: RSDN+
+    //TODO: RSDN
     /// <summary>
     /// Интерфейс расчета калорий
     /// </summary>
@@ -59,9 +59,9 @@ namespace Model
     /// </summary>
     public abstract class ExerciseBase : IExercise
     {
+        //TODO: XML
         private string _name;
 
-        //TODO: property+
         /// <summary>
         /// Детальная информация об упражнении
         /// </summary>
@@ -99,14 +99,6 @@ namespace Model
         {
             Name = name;
         }
-
-        //TODO: remove+
-
-        //TODO: remove+
-
-        //TODO: remove+
-
-        //TODO: remove+
 
         /// <summary>
         /// Проверка положительности значения
@@ -156,6 +148,7 @@ namespace Model
                     if (string.IsNullOrWhiteSpace(input))
                     {
                         throw new ArgumentException("Название не может быть" +
+                            //BUG:
                             "                        пустым");
                     }
 

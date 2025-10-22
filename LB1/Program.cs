@@ -34,11 +34,17 @@ namespace ConsoleLoader
 
                 switch (choice)
                 {
+                    //TODO: RSDN
                     case 1:
+                    {
                         var running = CreateRunningExercise();
                         if (running != null)
-                            exercises.Add(running);
+                        { 
+                            exercises.Add(running); 
+                        }
+
                         break;
+                    }
                     case 2:
                         var swimming = CreateSwimmingExercise();
                         if (swimming != null)
@@ -81,6 +87,7 @@ namespace ConsoleLoader
         /// <returns></returns>
         private static Running CreateRunningExercise()
         {
+            //TODO: RSDN
             string name = "";
             double intensity = 0;
             double distance = 0;
@@ -118,6 +125,7 @@ namespace ConsoleLoader
         /// <returns></returns>
         private static Swimming CreateSwimmingExercise()
         {
+            //TODO: RSDN
             string name = "";
             SwimmingStyle style = SwimmingStyle.Freestyle;
             double distance = 0;
@@ -160,6 +168,7 @@ namespace ConsoleLoader
         /// <returns></returns>
         private static BenchPress CreateBenchPressExercise()
         {
+            //TODO: RSDN
             string name = "";
             double weight = 0;
             int repetitions = 0;
@@ -276,10 +285,6 @@ namespace ConsoleLoader
             }
         }
 
-        //TODO: duplication+
-
-        //TODO: duplications+
-
         /// <summary>
         /// Вывод данных каждого упражнения
         /// </summary>
@@ -361,7 +366,7 @@ namespace ConsoleLoader
             }
         }
 
-        //TODO: RSDN+
+        //TODO: XML
         /// <summary>
         /// Задание цветовой гаммы
         /// </summary>
@@ -369,6 +374,7 @@ namespace ConsoleLoader
         /// <returns></returns>
         private static ConsoleColor GetCaloriesColor(double calories)
         {
+            //TODO: RSDN
             if (calories < 1000)
                 return ConsoleColor.Green;
             if (calories < 2800)
