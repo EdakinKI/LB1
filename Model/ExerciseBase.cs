@@ -29,7 +29,6 @@ namespace Model
         Butterfly
     }
 
-
     //TODO: RSDN+
     /// <summary>
     /// Интерфейс расчета калорий
@@ -42,7 +41,7 @@ namespace Model
         string Name { get; }
 
         /// <summary>
-        /// Рассчет количество затраченных калорий
+        /// Рассчет количества затраченных калорий
         /// </summary>
         /// <returns>Количество калорий.</returns>
         double CalculateCalories();
