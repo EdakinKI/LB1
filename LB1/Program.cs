@@ -30,22 +30,22 @@ namespace ConsoleLoader
                 Console.WriteLine("4. Завершить ввод и показать результаты");
                 Console.WriteLine("==================================");
 
-                int choice = GetValidIntInputWithHandling("Выберите действие (1-4): ", 1, 4);
+                int choice = GetValidIntInput("Выберите действие (1-4): ", 1, 4);
 
                 switch (choice)
                 {
                     case 1:
-                        var running = CreateRunningExerciseWithHandling();
+                        var running = CreateRunningExercise();
                         if (running != null)
                             exercises.Add(running);
                         break;
                     case 2:
-                        var swimming = CreateSwimmingExerciseWithHandling();
+                        var swimming = CreateSwimmingExercise();
                         if (swimming != null)
                             exercises.Add(swimming);
                         break;
                     case 3:
-                        var benchPress = CreateBenchPressExerciseWithHandling();
+                        var benchPress = CreateBenchPressExercise();
                         if (benchPress != null)
                             exercises.Add(benchPress);
                         break;
@@ -56,7 +56,8 @@ namespace ConsoleLoader
 
                 if (continueAdding && exercises.Count > 0)
                 {
-                    Console.WriteLine($"\nУпражнений добавлено: {exercises.Count}");
+                    Console.WriteLine($"\nУпражнений добавлено: " +
+                                      $"{exercises.Count}");
                 }
             }
 
@@ -75,9 +76,10 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Создание упражнения Бег с обработкой ошибок по полям
+        /// Создание упражнения Бег
         /// </summary>
-        private static Running CreateRunningExerciseWithHandling()
+        /// <returns></returns>
+        private static Running CreateRunningExercise()
         {
             string name = "";
             double intensity = 0;
@@ -85,16 +87,13 @@ namespace ConsoleLoader
 
             try
             {
-                Console.WriteLine("\n=== Создание упражнения 'Бег' ===");
+                Console.WriteLine("\nСоздание упражнения 'Бег'");
 
-                // Ввод названия с повторением при ошибке
-                name = GetValidStringInputWithRetry("Название: ");
+                name = GetValidStringInput("Название: ");
 
-                // Ввод интенсивности с повторением при ошибке
-                intensity = GetValidDoubleInputWithRetry("Интенсивность (км/ч): ", 1, 30);
+                intensity = GetValidDoubleInput("Интенсивность (км/ч): ", 1, 30);
 
-                // Ввод дистанции с повторением при ошибке
-                distance = GetValidDoubleInputWithRetry("Дистанция (км): ", 0.1, 100);
+                distance = GetValidDoubleInput("Дистанция (км): ", 0.1, 100);
 
                 Running running = new Running(name, intensity, distance);
                 double calories = running.CalculateCalories();
@@ -106,16 +105,18 @@ namespace ConsoleLoader
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"\nКритическая ошибка при создании упражнения: {ex.Message}");
+                Console.WriteLine($"\nКритическая ошибка при создании упражнения:" +
+                                  $" {ex.Message}");
                 Console.WriteLine("Создание упражнения отменено.");
                 return null;
             }
         }
 
         /// <summary>
-        /// Создание упражнения Плавание с обработкой ошибок по полям
+        /// Создание упражнения Плавание
         /// </summary>
-        private static Swimming CreateSwimmingExerciseWithHandling()
+        /// <returns></returns>
+        private static Swimming CreateSwimmingExercise()
         {
             string name = "";
             SwimmingStyle style = SwimmingStyle.Freestyle;
@@ -123,9 +124,9 @@ namespace ConsoleLoader
 
             try
             {
-                Console.WriteLine("\n=== Создание упражнения 'Плавание' ===");
+                Console.WriteLine("\nСоздание упражнения 'Плавание'");
 
-                name = GetValidStringInputWithRetry("Название: ");
+                name = GetValidStringInput("Название: ");
 
                 Console.WriteLine("Доступные стили плавания:");
                 Console.WriteLine("0 - Freestyle (Вольный стиль)");
@@ -133,8 +134,8 @@ namespace ConsoleLoader
                 Console.WriteLine("2 - Backstroke (На спине)");
                 Console.WriteLine("3 - Butterfly (Баттерфляй)");
 
-                style = GetValidSwimmingStyleInputWithRetry();
-                distance = GetValidDoubleInputWithRetry("Дистанция (м): ", 1, 10000);
+                style = GetValidSwimmingStyleInput();
+                distance = GetValidDoubleInput("Дистанция (м): ", 1, 10000);
 
                 Swimming swimming = new Swimming(name, style, distance);
                 double calories = swimming.CalculateCalories();
@@ -146,16 +147,18 @@ namespace ConsoleLoader
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"\nКритическая ошибка при создании упражнения: {ex.Message}");
+                Console.WriteLine($"\nКритическая ошибка при создании упражнения:" +
+                                  $" {ex.Message}");
                 Console.WriteLine("Создание упражнения отменено.");
                 return null;
             }
         }
 
         /// <summary>
-        /// Создание упражнения Жим штанги с обработкой ошибок по полям
+        /// Создание упражнения Жим штанги
         /// </summary>
-        private static BenchPress CreateBenchPressExerciseWithHandling()
+        /// <returns></returns>
+        private static BenchPress CreateBenchPressExercise()
         {
             string name = "";
             double weight = 0;
@@ -163,11 +166,11 @@ namespace ConsoleLoader
 
             try
             {
-                Console.WriteLine("\n=== Создание упражнения 'Жим штанги' ===");
+                Console.WriteLine("\nСоздание упражнения 'Жим штанги'");
 
-                name = GetValidStringInputWithRetry("Название: ");
-                weight = GetValidDoubleInputWithRetry("Вес (кг): ", 1, 300);
-                repetitions = GetValidIntInputWithRetry("Повторения: ", 1, 100);
+                name = GetValidStringInput("Название: ");
+                weight = GetValidDoubleInput("Вес (кг): ", 1, 300);
+                repetitions = GetValidIntInput("Повторения: ", 1, 100);
 
                 BenchPress benchPress = new BenchPress(name, weight, repetitions);
                 double calories = benchPress.CalculateCalories();
@@ -186,9 +189,11 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Валидный строковый ввод с повторением при ошибке
+        /// Валидный строковый ввод
         /// </summary>
-        private static string GetValidStringInputWithRetry(string prompt)
+        /// <param name="prompt"></param>
+        /// <returns></returns>
+        private static string GetValidStringInput(string prompt)
         {
             while (true)
             {
@@ -205,9 +210,14 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Валидный числовой ввод с плавающей точкой с повторением при ошибке
+        /// Валидный числовой ввод с плавающей точкой
         /// </summary>
-        private static double GetValidDoubleInputWithRetry(string prompt, double min, double max)
+        /// <param name="prompt"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        private static double GetValidDoubleInput(string prompt, double min,
+                                                  double max)
         {
             while (true)
             {
@@ -224,9 +234,13 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Валидный целочисленный ввод с повторением при ошибке
+        /// Валидный целочисленный ввод
         /// </summary>
-        private static int GetValidIntInputWithRetry(string prompt, int min, int max)
+        /// <param name="prompt"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
+        private static int GetValidIntInput(string prompt, int min, int max)
         {
             while (true)
             {
@@ -243,9 +257,10 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Валидный ввод стиля плавания с повторением при ошибке
+        /// Валидный ввод стиля плавания
         /// </summary>
-        private static SwimmingStyle GetValidSwimmingStyleInputWithRetry()
+        /// <returns></returns>
+        private static SwimmingStyle GetValidSwimmingStyleInput()
         {
             while (true)
             {
@@ -261,26 +276,10 @@ namespace ConsoleLoader
             }
         }
 
-        /// <summary>
-        /// Валидный целочисленный ввод для меню
-        /// </summary>
-        private static int GetValidIntInputWithHandling(string prompt, int min, int max)
-        {
-            while (true)
-            {
-                try
-                {
-                    return ExerciseBase.GetValidIntInput(prompt, min, max);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Ошибка: {ex.Message}");
-                    Console.WriteLine("Пожалуйста, попробуйте снова...");
-                }
-            }
-        }
+        //TODO: duplication+
 
-        // Остальные методы (ShowResults, ShowCaloriesVisualization, GetCaloriesColor) остаются без изменений
+        //TODO: duplications+
+
         /// <summary>
         /// Вывод данных каждого упражнения
         /// </summary>
@@ -302,7 +301,8 @@ namespace ConsoleLoader
                 Console.WriteLine($"Затрачено калорий: {calories:F2}");
             }
 
-            Console.WriteLine($"\nОбщее количество затраченных калорий: {totalCalories:F2}");
+            Console.WriteLine($"\nОбщее количество затраченных калорий:" +
+                              $" {totalCalories:F2}");
             Console.WriteLine($"Количество упражнений: {exercises.Count}");
         }
 
@@ -322,11 +322,13 @@ namespace ConsoleLoader
             Console.WriteLine("║          ВИЗУАЛИЗАЦИЯ КАЛОРИЙ           ║");
             Console.WriteLine("╚═════════════════════════════════════════╝");
 
-            double maxCaloriesForVisualization = GetValidDoubleInputWithRetry(
-                "Введите максимальное значение затраты калорий в день (от 1 до 10000): ", 1, 10000);
+            double maxCaloriesForVisualization = GetValidDoubleInput(
+                "Введите максимальное значение затраты калорий в день (от 1" +
+                " до 10000): ", 1, 10000);
 
             int maxBarWidth = 50;
-            int barLength = (int)(totalCalories / maxCaloriesForVisualization * maxBarWidth);
+            int barLength = (int)(totalCalories / maxCaloriesForVisualization *
+                                  maxBarWidth);
             barLength = Math.Min(barLength, maxBarWidth);
 
             Console.Write("\nПрогресс: [");
@@ -340,7 +342,8 @@ namespace ConsoleLoader
                 Console.Write(" ");
             }
             Console.ResetColor();
-            Console.WriteLine($"] {totalCalories:F0} / {maxCaloriesForVisualization} ккал");
+            Console.WriteLine($"] {totalCalories:F0} /" +
+                 $" {maxCaloriesForVisualization} ккал");
 
             Console.WriteLine("\nДетализация по упражнениям:");
             Console.WriteLine("───────────────────────────");
@@ -358,6 +361,7 @@ namespace ConsoleLoader
             }
         }
 
+        //TODO: RSDN+
         /// <summary>
         /// Задание цветовой гаммы
         /// </summary>

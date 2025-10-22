@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Model
+﻿namespace Model
 {
     /// <summary>
     /// Класс бег 
@@ -44,9 +42,10 @@ namespace Model
         }
 
         /// <summary>
-        /// Получает детальную информацию об упражнении.
+        /// Детальная информация об упражнении
         /// </summary>
-        public override string ExerciseInfo => $"Бег: {Name}, Интенсивность: {Intensity} км/ч, Дистанция: {Distance} км";
+        public override string ExerciseInfo => $"Бег: {Name}, Интенсивность:" +
+                                $" {Intensity} км/ч, Дистанция: {Distance} км";
 
         /// <summary>
         /// Создание упражнения Бег

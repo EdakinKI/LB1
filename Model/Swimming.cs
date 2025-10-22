@@ -1,7 +1,3 @@
-
-
-using System;
-
 namespace Model
 {
     /// <summary>
@@ -42,18 +38,19 @@ namespace Model
         }
 
         /// <summary>
-        /// Получает детальную информацию об упражнении.
+        /// Детальная информация об упражнении
         /// </summary>
-        public override string ExerciseInfo => $"Плавание: {Name}, Стиль: {Style}, Дистанция: {Distance} м";
+        public override string ExerciseInfo => $"Плавание: {Name}," +
+                          $" Стиль: {Style}, Дистанция: {Distance} м";
 
         /// <summary>
-        /// Создание упражнения "Плавание"
+        /// Создание упражнения Плавание
         /// </summary>
         /// <param name="name"></param>
         /// <param name="style"></param>
         /// <param name="distance"></param>
-        public Swimming(string name, SwimmingStyle style, double distance):
-                        base(name)
+        public Swimming(string name, SwimmingStyle style,
+                        double distance):base(name)
         {
             Style = style;
             Distance = distance;

@@ -1,5 +1,3 @@
-using System;
-
 namespace Model
 {
     /// <summary>
@@ -44,14 +42,15 @@ namespace Model
         }
 
         /// <summary>
-        /// Получает детальную информацию об упражнении.
+        /// Детальная информация об упражнении
         /// </summary>
-        public override string ExerciseInfo => $"Жим штанги: {Name}, Вес: {Weight} кг, Повторения: {Repetitions}";
+        public override string ExerciseInfo => $"Жим штанги: {Name}," +
+                        $" Вес: {Weight} кг, Повторения: {Repetitions}";
 
         /// <summary>
         /// Создание упражнения Жим штанги
         /// </summary>
-        /// <param name="name">//TODO: XML</param>
+        /// <param name="name"></param>
         /// <param name="weight"></param>
         /// <param name="repetitions"></param>
         public BenchPress(string name, double weight, int repetitions):
@@ -64,7 +63,7 @@ namespace Model
         /// <summary>
         /// Расчет затраты калорий на Жим штанги
         /// </summary>
-        /// <returns>//TODO: XML</returns>
+        /// <returns></returns>
         public override double CalculateCalories()
         {
             return Weight * Repetitions * 0.5;
