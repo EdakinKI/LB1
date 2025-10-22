@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IExercise.cs" />
+    <Compile Include="SwimmingStyle.cs" />
     <Compile Include="Running.cs" />
     <Compile Include="ExerciseBase.cs" />
     <Compile Include="BenchPress.cs" />

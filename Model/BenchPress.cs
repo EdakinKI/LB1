@@ -47,13 +47,13 @@ namespace Model
         public override string ExerciseInfo => $"Жим штанги: {Name}," +
                         $" Вес: {Weight} кг, Повторения: {Repetitions}";
 
-        //TODO: XML
+        //TODO: XML+
         /// <summary>
         /// Создание упражнения Жим штанги
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="weight"></param>
-        /// <param name="repetitions"></param>
+        /// <param name="название упражнения"></param>
+        /// <param name="вес штанги"></param>
+        /// <param name="количество повторений"></param>
         public BenchPress(string name, double weight, int repetitions):
                           base(name)
         {
@@ -64,7 +64,7 @@ namespace Model
         /// <summary>
         /// Расчет затраты калорий на Жим штанги
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Рассчитанное значений калорий для Жима штанги</returns>
         public override double CalculateCalories()
         {
             return Weight * Repetitions * 0.5;

@@ -2,64 +2,15 @@
 
 namespace Model
 {
-    //TODO: RSDN
-    /// <summary>
-    /// Тип плавательного стиля
-    /// </summary>
-    public enum SwimmingStyle
-    {
-        /// <summary>
-        /// Вольный стиль
-        /// </summary>
-        Freestyle,
-
-        /// <summary>
-        /// Брасс
-        /// </summary>
-        Breaststroke,
-
-        /// <summary>
-        /// Плавание на спине
-        /// </summary>
-        Backstroke,
-
-        /// <summary>
-        /// Баттерфляй
-        /// </summary>
-        Butterfly
-    }
-
-    //TODO: RSDN
-    /// <summary>
-    /// Интерфейс расчета калорий
-    /// </summary>
-    public interface IExercise
-    {
-        /// <summary>
-        /// Название упражнения
-        /// </summary>
-        string Name { get; }
-
-        /// <summary>
-        /// Рассчет количества затраченных калорий
-        /// </summary>
-        /// <returns>Количество калорий.</returns>
-        double CalculateCalories();
-
-        /// <summary>
-        /// Информация об упражнении
-        /// </summary>
-        /// <returns>Строка с информацией.</returns>
-        string ExerciseInfo { get; }
-    }
-
-
     /// <summary>
     /// Базовый класс для всех упражнений
     /// </summary>
     public abstract class ExerciseBase : IExercise
     {
-        //TODO: XML
+        //TODO: XML+
+        /// <summary>
+        /// Название упражнения
+        /// </summary>
         private string _name;
 
         /// <summary>
@@ -94,7 +45,7 @@ namespace Model
         /// <summary>
         /// Инициализация нового экземпляра класса <see cref="ExerciseBase"/>
         /// </summary>
-        /// <param name="name">Название упражнения.</param>
+        /// <param name="название упражнения"></param>
         protected ExerciseBase(string name)
         {
             Name = name;
@@ -103,24 +54,24 @@ namespace Model
         /// <summary>
         /// Проверка положительности значения
         /// </summary>
-        /// <param name="value">Проверяемое значение.</param>
-        /// <param name="parameterName">Имя параметра.</param>
+        /// <param name="проверяемое значение"></param>
+        /// <param name="имя параметра"></param>
         protected void ValidatePositiveValue(double value, string parameterName)
         {
             if (value <= 0)
             {
                 throw new ArgumentOutOfRangeException(parameterName, "Значение" +
-                    "                                должно быть положительным");
+                                                    "должно быть положительным");
             }
         }
 
         /// <summary>
         /// Проверка диапазона значения
         /// </summary>
-        /// <param name="value">Проверяемое значение.</param>
-        /// <param name="min">Минимальное допустимое значение.</param>
-        /// <param name="max">Максимальное допустимое значение.</param>
-        /// <param name="parameterName">Имя параметра.</param>
+        /// <param name="проверяемое значение"></param>
+        /// <param name="минимальное допустимое значение"></param>
+        /// <param name="максимальное допустимое значение"></param>
+        /// <param name="имя параметра"></param>
         protected void ValidateRange(double value, double min, double max,
                                      string parameterName)
         {
@@ -134,8 +85,8 @@ namespace Model
         /// <summary>
         /// Валидный строковый ввод от пользователя
         /// </summary>
-        /// <param name="prompt">Приглашение для ввода.</param>
-        /// <returns>Валидная строка.</returns>
+        /// <param name="проверяемое значение"></param>
+        /// <returns>Валидная строка</returns>
         public static string GetValidStringInput(string prompt)
         {
             while (true)
@@ -148,8 +99,8 @@ namespace Model
                     if (string.IsNullOrWhiteSpace(input))
                     {
                         throw new ArgumentException("Название не может быть" +
-                            //BUG:
-                            "                        пустым");
+                            //BUG:+
+                                                    "пустым");
                     }
 
                     if (input.Length > 50)
@@ -170,10 +121,10 @@ namespace Model
         /// <summary>
         /// Валидный числовой ввод с плавающей точкой от пользователя
         /// </summary>
-        /// <param name="prompt">Приглашение для ввода.</param>
-        /// <param name="min">Минимальное допустимое значение.</param>
-        /// <param name="max">Максимальное допустимое значение.</param>
-        /// <returns>Валидное число с плавающей точкой.</returns>
+        /// <param name="проверяемое значение"></param>
+        /// <param name="минимальное допустимое значение"></param>
+        /// <param name="максимальное допустимое значение"></param>
+        /// <returns>Валидное число с плавающей точкой</returns>
         public static double GetValidDoubleInput(string prompt, double min,
                                                  double max)
         {
@@ -208,10 +159,10 @@ namespace Model
         /// <summary>
         /// Валидный целочисленный ввод от пользователя
         /// </summary>
-        /// <param name="prompt">Приглашение для ввода.</param>
-        /// <param name="min">Минимальное допустимое значение.</param>
-        /// <param name="max">Максимальное допустимое значение.</param>
-        /// <returns>Валидное целое число.</returns>
+        /// <param name="проверяемое значение"></param>
+        /// <param name="минимальное допустимое значение"></param>
+        /// <param name="максимальное допустимое значение"></param>
+        /// <returns>Валидное целое число</returns>
         public static int GetValidIntInput(string prompt, int min, int max)
         {
             while (true)
@@ -245,7 +196,7 @@ namespace Model
         /// <summary>
         /// Валидный ввод стиля Плавания от пользователя
         /// </summary>
-        /// <returns>Валидный стиль плавания.</returns>
+        /// <returns>Валидный стиль плавания</returns>
         public static SwimmingStyle GetValidSwimmingStyleInput()
         {
             while (true)
@@ -279,7 +230,7 @@ namespace Model
         /// <summary>
         /// Подсчет калорий
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Расчитанное количество калорий</returns>
         public abstract double CalculateCalories();
     }
 }

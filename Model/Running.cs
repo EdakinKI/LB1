@@ -50,9 +50,9 @@
         /// <summary>
         /// Создание упражнения Бег
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="intensity"></param>
-        /// <param name="distance"></param>
+        /// <param name="название упражнения"></param>
+        /// <param name="интенсивность бега"></param>
+        /// <param name="дистанция бега"></param>
         public Running(string name, double intensity, double distance):
                        base(name)
         {
@@ -63,7 +63,7 @@
         /// <summary>
         /// Расчет затраты калорий на Бег
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Рассчитанное значений калорий для Бега</returns>
         public override double CalculateCalories()
         {
             return Distance * Intensity * 60;

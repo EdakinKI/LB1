@@ -59,29 +59,43 @@ namespace Model
         /// <summary>
         /// Расчет затраты калорий на Плавание
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Рассчитанное значений калорий для Плавания</returns>
         public override double CalculateCalories()
         {
             double styleCoefficient;
 
             switch (Style)
             {
-                //TODO: RSDN
+                //TODO: RSDN+
                 case SwimmingStyle.Freestyle:
+                {
                     styleCoefficient = 8.0;
                     break;
+                }
+                    
                 case SwimmingStyle.Breaststroke:
+                { 
                     styleCoefficient = 10.0;
                     break;
+                }
                 case SwimmingStyle.Backstroke:
+                {
                     styleCoefficient = 7.0;
                     break;
+                }
+                    
                 case SwimmingStyle.Butterfly:
+                {
                     styleCoefficient = 12.0;
                     break;
+                }
+                    
                 default:
+                {
                     styleCoefficient = 8.0;
                     break;
+                }
+                    
             }
             return Distance * styleCoefficient;
         }

@@ -12,7 +12,7 @@ namespace ConsoleLoader
         /// <summary>
         /// Класс Main
         /// </summary>
-        /// <param name="args">Аргументы командной строки.</param>
+        /// <param name="Аргументы командной строки"></param>
         public static void Main(string[] args)
         {
             Console.WriteLine("Калькулятор затраченных калорий");
@@ -34,7 +34,7 @@ namespace ConsoleLoader
 
                 switch (choice)
                 {
-                    //TODO: RSDN
+                    //TODO: RSDN+
                     case 1:
                     {
                         var running = CreateRunningExercise();
@@ -42,22 +42,31 @@ namespace ConsoleLoader
                         { 
                             exercises.Add(running); 
                         }
-
                         break;
                     }
                     case 2:
+                    { 
                         var swimming = CreateSwimmingExercise();
                         if (swimming != null)
-                            exercises.Add(swimming);
+                        { 
+                            exercises.Add(swimming); 
+                        }    
                         break;
+                    }
                     case 3:
-                        var benchPress = CreateBenchPressExercise();
+                    {
+                    var benchPress = CreateBenchPressExercise();
                         if (benchPress != null)
+                        {
                             exercises.Add(benchPress);
+                        }
                         break;
+                    }
                     case 4:
+                    {
                         continueAdding = false;
                         break;
+                    }
                 }
 
                 if (continueAdding && exercises.Count > 0)
@@ -84,16 +93,16 @@ namespace ConsoleLoader
         /// <summary>
         /// Создание упражнения Бег
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Упражнение Бег</returns>
         private static Running CreateRunningExercise()
         {
-            //TODO: RSDN
-            string name = "";
-            double intensity = 0;
-            double distance = 0;
-
             try
             {
+                //TODO: RSDN+
+                string name = "";
+                double intensity = 0;
+                double distance = 0;
+
                 Console.WriteLine("\nСоздание упражнения 'Бег'");
 
                 name = GetValidStringInput("Название: ");
@@ -122,16 +131,16 @@ namespace ConsoleLoader
         /// <summary>
         /// Создание упражнения Плавание
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Упражнение Плавание</returns>
         private static Swimming CreateSwimmingExercise()
         {
-            //TODO: RSDN
-            string name = "";
-            SwimmingStyle style = SwimmingStyle.Freestyle;
-            double distance = 0;
-
             try
             {
+                //TODO: RSDN+
+                string name = "";
+                SwimmingStyle style = SwimmingStyle.Freestyle;
+                double distance = 0;
+
                 Console.WriteLine("\nСоздание упражнения 'Плавание'");
 
                 name = GetValidStringInput("Название: ");
@@ -165,16 +174,16 @@ namespace ConsoleLoader
         /// <summary>
         /// Создание упражнения Жим штанги
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Упражнение Жим штанги</returns>
         private static BenchPress CreateBenchPressExercise()
         {
-            //TODO: RSDN
-            string name = "";
-            double weight = 0;
-            int repetitions = 0;
-
             try
             {
+                //TODO: RSDN+
+                string name = "";
+                double weight = 0;
+                int repetitions = 0;
+
                 Console.WriteLine("\nСоздание упражнения 'Жим штанги'");
 
                 name = GetValidStringInput("Название: ");
@@ -200,8 +209,8 @@ namespace ConsoleLoader
         /// <summary>
         /// Валидный строковый ввод
         /// </summary>
-        /// <param name="prompt"></param>
-        /// <returns></returns>
+        /// <param name="проверяемое значение"></param>
+        /// <returns>Валидная строка</returns>
         private static string GetValidStringInput(string prompt)
         {
             while (true)
@@ -221,10 +230,10 @@ namespace ConsoleLoader
         /// <summary>
         /// Валидный числовой ввод с плавающей точкой
         /// </summary>
-        /// <param name="prompt"></param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        /// <returns></returns>
+        /// <param name="проверяемое значение"></param>
+        /// <param name="минимальное допустимое значение"></param>
+        /// <param name="максимальное допустимое значение"></param>
+        /// <returns>Валидное число с плавающей точкой</returns>
         private static double GetValidDoubleInput(string prompt, double min,
                                                   double max)
         {
@@ -245,10 +254,10 @@ namespace ConsoleLoader
         /// <summary>
         /// Валидный целочисленный ввод
         /// </summary>
-        /// <param name="prompt"></param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        /// <returns></returns>
+        /// <param name="проверяемое значение"></param>
+        /// <param name="минимальное допустимое значение"></param>
+        /// <param name="максимальное допустимое значение"></param>
+        /// <returns>Валидное целое число</returns>
         private static int GetValidIntInput(string prompt, int min, int max)
         {
             while (true)
@@ -268,7 +277,7 @@ namespace ConsoleLoader
         /// <summary>
         /// Валидный ввод стиля плавания
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Валидный стиль плавания</returns>
         private static SwimmingStyle GetValidSwimmingStyleInput()
         {
             while (true)
@@ -288,7 +297,7 @@ namespace ConsoleLoader
         /// <summary>
         /// Вывод данных каждого упражнения
         /// </summary>
-        /// <param name="exercises"></param>
+        /// <param name="названия упражнений"></param>
         private static void ShowResults(List<IExercise> exercises)
         {
             Console.WriteLine("\n\nРезультаты расчета калорий:");
@@ -314,7 +323,7 @@ namespace ConsoleLoader
         /// <summary>
         /// Визуализация затраты калорий всех упражнений
         /// </summary>
-        /// <param name="exercises"></param>
+        /// <param name="названия упражнений"></param>
         private static void ShowCaloriesVisualization(List<IExercise> exercises)
         {
             double totalCalories = 0;
@@ -366,21 +375,27 @@ namespace ConsoleLoader
             }
         }
 
-        //TODO: XML
+        //TODO: XML+
         /// <summary>
         /// Задание цветовой гаммы
         /// </summary>
-        /// <param name="calories"></param>
-        /// <returns></returns>
+        /// <param name="количество калорий"></param>
+        /// <returns>Цветовая гамма шкалы калорий</returns>
         private static ConsoleColor GetCaloriesColor(double calories)
         {
-            //TODO: RSDN
+            //TODO: RSDN+
             if (calories < 1000)
+            {
                 return ConsoleColor.Green;
+            }       
             if (calories < 2800)
+            { 
                 return ConsoleColor.Yellow;
+            }
             if (calories < 3500)
+            { 
                 return ConsoleColor.DarkYellow;
+            } 
             return ConsoleColor.Red;
         }
     }
