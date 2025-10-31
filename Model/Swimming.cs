@@ -66,13 +66,11 @@ namespace Model
 
             switch (Style)
             {
-                //TODO: RSDN+
                 case SwimmingStyle.Freestyle:
                 {
                     styleCoefficient = 8.0;
                     break;
-                }
-                    
+                }                    
                 case SwimmingStyle.Breaststroke:
                 { 
                     styleCoefficient = 10.0;
@@ -82,14 +80,12 @@ namespace Model
                 {
                     styleCoefficient = 7.0;
                     break;
-                }
-                    
+                }                    
                 case SwimmingStyle.Butterfly:
                 {
                     styleCoefficient = 12.0;
                     break;
-                }
-                    
+                }                    
                 default:
                 {
                     styleCoefficient = 8.0;

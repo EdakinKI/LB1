@@ -34,7 +34,6 @@ namespace ConsoleLoader
 
                 switch (choice)
                 {
-                    //TODO: RSDN+
                     case 1:
                     {
                         var running = CreateRunningExercise();
@@ -98,7 +97,6 @@ namespace ConsoleLoader
         {
             try
             {
-                //TODO: RSDN+
                 string name = "";
                 double intensity = 0;
                 double distance = 0;
@@ -136,7 +134,6 @@ namespace ConsoleLoader
         {
             try
             {
-                //TODO: RSDN+
                 string name = "";
                 SwimmingStyle style = SwimmingStyle.Freestyle;
                 double distance = 0;
@@ -179,7 +176,6 @@ namespace ConsoleLoader
         {
             try
             {
-                //TODO: RSDN+
                 string name = "";
                 double weight = 0;
                 int repetitions = 0;
@@ -375,7 +371,6 @@ namespace ConsoleLoader
             }
         }
 
-        //TODO: XML+
         /// <summary>
         /// Задание цветовой гаммы
         /// </summary>
@@ -383,7 +378,6 @@ namespace ConsoleLoader
         /// <returns>Цветовая гамма шкалы калорий</returns>
         private static ConsoleColor GetCaloriesColor(double calories)
         {
-            //TODO: RSDN+
             if (calories < 1000)
             {
                 return ConsoleColor.Green;

@@ -1,6 +1,5 @@
 ﻿namespace Model
 {
-    //TODO: RSDN+
     /// <summary>
     /// Тип плавательного стиля
     /// </summary>

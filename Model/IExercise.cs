@@ -1,6 +1,5 @@
 ﻿namespace Model
 {
-    //TODO: RSDN+
     /// <summary>
     /// Интерфейс расчета калорий
     /// </summary>

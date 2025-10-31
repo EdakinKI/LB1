@@ -7,7 +7,6 @@ namespace Model
     /// </summary>
     public abstract class ExerciseBase : IExercise
     {
-        //TODO: XML+
         /// <summary>
         /// Название упражнения
         /// </summary>
@@ -99,7 +98,6 @@ namespace Model
                     if (string.IsNullOrWhiteSpace(input))
                     {
                         throw new ArgumentException("Название не может быть" +
-                            //BUG:+
                                                     "пустым");
                     }
 
