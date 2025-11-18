@@ -85,13 +85,6 @@ namespace View
                     var exercise = CreateExercise();
                     _mainForm.AddExercise(exercise);
 
-                    MessageBox.Show(
-                        "Упражнение успешно создано!",
-                        "Успех",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-
-                    // Очистка полей для следующего ввода
                     TextBoxName.Clear();
                 }
             }
@@ -144,12 +137,6 @@ namespace View
                 {
                     var exercise = CreateExercise();
                     _mainForm.AddExercise(exercise);
-
-                    MessageBox.Show(
-                        "Случайное упражнение успешно создано!",
-                        "Успех",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
 
                     TextBoxName.Clear();
                 }
