@@ -11,6 +11,16 @@
         string Name { get; }
 
         /// <summary>
+        /// Тип упражнения
+        /// </summary>
+        string Type { get; }
+
+        /// <summary>
+        /// Рассчитанные калории
+        /// </summary>
+        double Calories { get; }
+
+        /// <summary>
         /// Рассчет количества затраченных калорий
         /// </summary>
         /// <returns>Количество калорий.</returns>

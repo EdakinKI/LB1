@@ -16,6 +16,11 @@ namespace Model
         private double _distance;
 
         /// <summary>
+        /// Тип упражнения
+        /// </summary>
+        public override string Type => "Плавание";
+
+        /// <summary>
         /// Стиль плавания
         /// </summary>
         public SwimmingStyle Style

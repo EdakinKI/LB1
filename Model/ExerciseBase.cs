@@ -13,6 +13,16 @@ namespace Model
         private string _name;
 
         /// <summary>
+        /// Тип упражнения
+        /// </summary>
+        public abstract string Type { get; }
+
+        /// <summary>
+        /// Рассчитанные калории
+        /// </summary>
+        public double Calories => CalculateCalories();
+
+        /// <summary>
         /// Детальная информация об упражнении
         /// </summary>
         public abstract string ExerciseInfo { get; }

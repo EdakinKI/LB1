@@ -16,6 +16,11 @@ namespace Model
         private int _repetitions;
 
         /// <summary>
+        /// Тип упражнения
+        /// </summary>
+        public override string Type => "Жим штанги";
+
+        /// <summary>
         /// Вес штанги
         /// </summary>
         public double Weight

@@ -16,6 +16,11 @@
         private double _intensity;
 
         /// <summary>
+        /// Тип упражнения
+        /// </summary>
+        public override string Type => "Бег";
+
+        /// <summary>
         /// Пройденное расстояние
         /// </summary>
         public double Distance
