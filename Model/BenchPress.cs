@@ -49,8 +49,7 @@ namespace Model
         /// <summary>
         /// Детальная информация об упражнении
         /// </summary>
-        public override string ExerciseInfo => $"Жим штанги: {Name}," +
-                        $" Вес: {Weight} кг, Повторения: {Repetitions}";
+        public override string ExerciseInfo => $" Вес: {Weight} кг, Повторения: {Repetitions}";
 
         /// <summary>
         /// Создание упражнения Жим штанги

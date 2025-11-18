@@ -14,11 +14,17 @@ namespace View
         /// <summary>
         /// Конструктор формы
         /// </summary>
+        // Добавь этот конструктор
         public AddExerciseForm(MainForm mainForm)
         {
             InitializeComponent();
             _mainForm = mainForm;
             InitializeForm();
+
+            // Условная компиляция для отладочной кнопки
+#if !DEBUG
+        ButtonCreateRandom.Visible = false;
+#endif
         }
 
         private void InitializeForm()
@@ -120,7 +126,7 @@ namespace View
                 {
                     case "Бег":
                         NumericIntensity.Value = random.Next(5, 15);
-                        NumericRunningDistance.Value = (decimal)(random.NextDouble() * 10 + 1);
+                        NumericRunningDistance.Value = (decimal)(Math.Round(random.NextDouble() * 10 + 1, 2));
                         break;
                     case "Плавание":
                         ComboBoxStyle.SelectedIndex = random.Next(ComboBoxStyle.Items.Count);

@@ -49,7 +49,7 @@
         /// <summary>
         /// Детальная информация об упражнении
         /// </summary>
-        public override string ExerciseInfo => $"Бег: {Name}, Интенсивность:" +
+        public override string ExerciseInfo => $"Интенсивность:" +
                                 $" {Intensity} км/ч, Дистанция: {Distance} км";
 
         /// <summary>
