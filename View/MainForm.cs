@@ -161,16 +161,17 @@ namespace View
         /// </summary>
         private void ButtonRemove_Click(object sender, EventArgs e)
         {
+            var selectedExercise = ExerciseDataGridView.SelectedRows[0].DataBoundItem as IExercise;
             if (ExerciseDataGridView.SelectedRows.Count > 0)
-            {
-                var selectedExercise = ExerciseDataGridView.SelectedRows[0].DataBoundItem as IExercise;
+            { 
                 if (selectedExercise != null)
                 {
                     var result = MessageBox.Show(
                         $"Вы уверены, что хотите удалить упражнение '{selectedExercise.Name}'?",
                         "Подтверждение удаления",
                         MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button2);
 
                     if (result == DialogResult.Yes)
                     {
@@ -193,7 +194,8 @@ namespace View
                     "Вы уверены, что хотите удалить все упражнения?",
                     "Подтверждение удаления",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
 
                 if (result == DialogResult.Yes)
                 {

@@ -60,10 +60,10 @@
             // 
             this.ExerciseGroupBox.Controls.Add(this.ComboBoxExercise);
             this.ExerciseGroupBox.Location = new System.Drawing.Point(16, 15);
-            this.ExerciseGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ExerciseGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.ExerciseGroupBox.Name = "ExerciseGroupBox";
-            this.ExerciseGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ExerciseGroupBox.Size = new System.Drawing.Size(413, 62);
+            this.ExerciseGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.ExerciseGroupBox.Size = new System.Drawing.Size(295, 62);
             this.ExerciseGroupBox.TabIndex = 0;
             this.ExerciseGroupBox.TabStop = false;
             this.ExerciseGroupBox.Text = "Выбор упражнения";
@@ -73,9 +73,9 @@
             this.ComboBoxExercise.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxExercise.FormattingEnabled = true;
             this.ComboBoxExercise.Location = new System.Drawing.Point(8, 23);
-            this.ComboBoxExercise.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxExercise.Margin = new System.Windows.Forms.Padding(4);
             this.ComboBoxExercise.Name = "ComboBoxExercise";
-            this.ComboBoxExercise.Size = new System.Drawing.Size(396, 24);
+            this.ComboBoxExercise.Size = new System.Drawing.Size(278, 24);
             this.ComboBoxExercise.TabIndex = 0;
             this.ComboBoxExercise.SelectedIndexChanged += new System.EventHandler(this.ComboBoxExercise_SelectedIndexChanged);
             // 
@@ -92,10 +92,10 @@
             // TextBoxName
             // 
             this.TextBoxName.Location = new System.Drawing.Point(104, 89);
-            this.TextBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TextBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.TextBoxName.MaxLength = 50;
             this.TextBoxName.Name = "TextBoxName";
-            this.TextBoxName.Size = new System.Drawing.Size(324, 22);
+            this.TextBoxName.Size = new System.Drawing.Size(198, 22);
             this.TextBoxName.TabIndex = 2;
             // 
             // LabelParameters
@@ -116,16 +116,16 @@
             this.PanelRunning.Controls.Add(this.LabelIntensityUnit);
             this.PanelRunning.Controls.Add(this.NumericIntensity);
             this.PanelRunning.Controls.Add(this.LabelIntensity);
-            this.PanelRunning.Location = new System.Drawing.Point(16, 154);
-            this.PanelRunning.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelRunning.Location = new System.Drawing.Point(16, 149);
+            this.PanelRunning.Margin = new System.Windows.Forms.Padding(4);
             this.PanelRunning.Name = "PanelRunning";
-            this.PanelRunning.Size = new System.Drawing.Size(413, 98);
+            this.PanelRunning.Size = new System.Drawing.Size(295, 98);
             this.PanelRunning.TabIndex = 4;
             // 
             // LabelRunningDistanceUnit
             // 
             this.LabelRunningDistanceUnit.AutoSize = true;
-            this.LabelRunningDistanceUnit.Location = new System.Drawing.Point(328, 58);
+            this.LabelRunningDistanceUnit.Location = new System.Drawing.Point(251, 58);
             this.LabelRunningDistanceUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelRunningDistanceUnit.Name = "LabelRunningDistanceUnit";
             this.LabelRunningDistanceUnit.Size = new System.Drawing.Size(23, 16);
@@ -140,15 +140,15 @@
             0,
             0,
             65536});
-            this.NumericRunningDistance.Location = new System.Drawing.Point(160, 55);
-            this.NumericRunningDistance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NumericRunningDistance.Location = new System.Drawing.Point(123, 56);
+            this.NumericRunningDistance.Margin = new System.Windows.Forms.Padding(4);
             this.NumericRunningDistance.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             65536});
             this.NumericRunningDistance.Name = "NumericRunningDistance";
-            this.NumericRunningDistance.Size = new System.Drawing.Size(160, 22);
+            this.NumericRunningDistance.Size = new System.Drawing.Size(120, 22);
             this.NumericRunningDistance.TabIndex = 3;
             this.NumericRunningDistance.Value = new decimal(new int[] {
             5,
@@ -169,7 +169,7 @@
             // LabelIntensityUnit
             // 
             this.LabelIntensityUnit.AutoSize = true;
-            this.LabelIntensityUnit.Location = new System.Drawing.Point(328, 21);
+            this.LabelIntensityUnit.Location = new System.Drawing.Point(251, 21);
             this.LabelIntensityUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelIntensityUnit.Name = "LabelIntensityUnit";
             this.LabelIntensityUnit.Size = new System.Drawing.Size(35, 16);
@@ -178,8 +178,8 @@
             // 
             // NumericIntensity
             // 
-            this.NumericIntensity.Location = new System.Drawing.Point(160, 18);
-            this.NumericIntensity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NumericIntensity.Location = new System.Drawing.Point(123, 19);
+            this.NumericIntensity.Margin = new System.Windows.Forms.Padding(4);
             this.NumericIntensity.Maximum = new decimal(new int[] {
             30,
             0,
@@ -191,7 +191,7 @@
             0,
             0});
             this.NumericIntensity.Name = "NumericIntensity";
-            this.NumericIntensity.Size = new System.Drawing.Size(160, 22);
+            this.NumericIntensity.Size = new System.Drawing.Size(120, 22);
             this.NumericIntensity.TabIndex = 1;
             this.NumericIntensity.Value = new decimal(new int[] {
             10,
@@ -216,16 +216,16 @@
             this.PanelSwimming.Controls.Add(this.LabelSwimmingDistance);
             this.PanelSwimming.Controls.Add(this.ComboBoxStyle);
             this.PanelSwimming.Controls.Add(this.LabelStyle);
-            this.PanelSwimming.Location = new System.Drawing.Point(16, 154);
-            this.PanelSwimming.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelSwimming.Location = new System.Drawing.Point(16, 149);
+            this.PanelSwimming.Margin = new System.Windows.Forms.Padding(4);
             this.PanelSwimming.Name = "PanelSwimming";
-            this.PanelSwimming.Size = new System.Drawing.Size(413, 98);
+            this.PanelSwimming.Size = new System.Drawing.Size(295, 98);
             this.PanelSwimming.TabIndex = 5;
             // 
             // LabelSwimmingDistanceUnit
             // 
             this.LabelSwimmingDistanceUnit.AutoSize = true;
-            this.LabelSwimmingDistanceUnit.Location = new System.Drawing.Point(328, 58);
+            this.LabelSwimmingDistanceUnit.Location = new System.Drawing.Point(251, 58);
             this.LabelSwimmingDistanceUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelSwimmingDistanceUnit.Name = "LabelSwimmingDistanceUnit";
             this.LabelSwimmingDistanceUnit.Size = new System.Drawing.Size(16, 16);
@@ -234,8 +234,8 @@
             // 
             // NumericSwimmingDistance
             // 
-            this.NumericSwimmingDistance.Location = new System.Drawing.Point(160, 55);
-            this.NumericSwimmingDistance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NumericSwimmingDistance.Location = new System.Drawing.Point(123, 56);
+            this.NumericSwimmingDistance.Margin = new System.Windows.Forms.Padding(4);
             this.NumericSwimmingDistance.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -247,7 +247,7 @@
             0,
             0});
             this.NumericSwimmingDistance.Name = "NumericSwimmingDistance";
-            this.NumericSwimmingDistance.Size = new System.Drawing.Size(160, 22);
+            this.NumericSwimmingDistance.Size = new System.Drawing.Size(120, 22);
             this.NumericSwimmingDistance.TabIndex = 3;
             this.NumericSwimmingDistance.Value = new decimal(new int[] {
             1000,
@@ -269,10 +269,10 @@
             // 
             this.ComboBoxStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxStyle.FormattingEnabled = true;
-            this.ComboBoxStyle.Location = new System.Drawing.Point(160, 18);
-            this.ComboBoxStyle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxStyle.Location = new System.Drawing.Point(123, 19);
+            this.ComboBoxStyle.Margin = new System.Windows.Forms.Padding(4);
             this.ComboBoxStyle.Name = "ComboBoxStyle";
-            this.ComboBoxStyle.Size = new System.Drawing.Size(159, 24);
+            this.ComboBoxStyle.Size = new System.Drawing.Size(120, 24);
             this.ComboBoxStyle.TabIndex = 1;
             // 
             // LabelStyle
@@ -293,16 +293,16 @@
             this.PanelBenchPress.Controls.Add(this.LabelWeightUnit);
             this.PanelBenchPress.Controls.Add(this.NumericWeight);
             this.PanelBenchPress.Controls.Add(this.LabelWeight);
-            this.PanelBenchPress.Location = new System.Drawing.Point(16, 154);
-            this.PanelBenchPress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PanelBenchPress.Location = new System.Drawing.Point(16, 149);
+            this.PanelBenchPress.Margin = new System.Windows.Forms.Padding(4);
             this.PanelBenchPress.Name = "PanelBenchPress";
-            this.PanelBenchPress.Size = new System.Drawing.Size(413, 98);
+            this.PanelBenchPress.Size = new System.Drawing.Size(295, 98);
             this.PanelBenchPress.TabIndex = 6;
             // 
             // LabelRepetitionsUnit
             // 
             this.LabelRepetitionsUnit.AutoSize = true;
-            this.LabelRepetitionsUnit.Location = new System.Drawing.Point(328, 58);
+            this.LabelRepetitionsUnit.Location = new System.Drawing.Point(251, 58);
             this.LabelRepetitionsUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelRepetitionsUnit.Name = "LabelRepetitionsUnit";
             this.LabelRepetitionsUnit.Size = new System.Drawing.Size(31, 16);
@@ -311,15 +311,15 @@
             // 
             // NumericRepetitions
             // 
-            this.NumericRepetitions.Location = new System.Drawing.Point(160, 55);
-            this.NumericRepetitions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NumericRepetitions.Location = new System.Drawing.Point(123, 56);
+            this.NumericRepetitions.Margin = new System.Windows.Forms.Padding(4);
             this.NumericRepetitions.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.NumericRepetitions.Name = "NumericRepetitions";
-            this.NumericRepetitions.Size = new System.Drawing.Size(160, 22);
+            this.NumericRepetitions.Size = new System.Drawing.Size(120, 22);
             this.NumericRepetitions.TabIndex = 3;
             this.NumericRepetitions.Value = new decimal(new int[] {
             10,
@@ -340,7 +340,7 @@
             // LabelWeightUnit
             // 
             this.LabelWeightUnit.AutoSize = true;
-            this.LabelWeightUnit.Location = new System.Drawing.Point(328, 21);
+            this.LabelWeightUnit.Location = new System.Drawing.Point(251, 21);
             this.LabelWeightUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelWeightUnit.Name = "LabelWeightUnit";
             this.LabelWeightUnit.Size = new System.Drawing.Size(20, 16);
@@ -349,8 +349,8 @@
             // 
             // NumericWeight
             // 
-            this.NumericWeight.Location = new System.Drawing.Point(160, 18);
-            this.NumericWeight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NumericWeight.Location = new System.Drawing.Point(123, 19);
+            this.NumericWeight.Margin = new System.Windows.Forms.Padding(4);
             this.NumericWeight.Maximum = new decimal(new int[] {
             300,
             0,
@@ -362,7 +362,7 @@
             0,
             0});
             this.NumericWeight.Name = "NumericWeight";
-            this.NumericWeight.Size = new System.Drawing.Size(160, 22);
+            this.NumericWeight.Size = new System.Drawing.Size(120, 22);
             this.NumericWeight.TabIndex = 1;
             this.NumericWeight.Value = new decimal(new int[] {
             50,
@@ -382,10 +382,10 @@
             // 
             // ButtonCreate
             // 
-            this.ButtonCreate.Location = new System.Drawing.Point(16, 271);
-            this.ButtonCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonCreate.Location = new System.Drawing.Point(16, 260);
+            this.ButtonCreate.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonCreate.Name = "ButtonCreate";
-            this.ButtonCreate.Size = new System.Drawing.Size(133, 37);
+            this.ButtonCreate.Size = new System.Drawing.Size(139, 37);
             this.ButtonCreate.TabIndex = 7;
             this.ButtonCreate.Text = "Создать";
             this.ButtonCreate.UseVisualStyleBackColor = true;
@@ -393,10 +393,10 @@
             // 
             // ButtonClose
             // 
-            this.ButtonClose.Location = new System.Drawing.Point(157, 271);
-            this.ButtonClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonClose.Location = new System.Drawing.Point(173, 260);
+            this.ButtonClose.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Size = new System.Drawing.Size(133, 37);
+            this.ButtonClose.Size = new System.Drawing.Size(138, 37);
             this.ButtonClose.TabIndex = 8;
             this.ButtonClose.Text = "Закрыть";
             this.ButtonClose.UseVisualStyleBackColor = true;
@@ -404,10 +404,10 @@
             // 
             // ButtonCreateRandom
             // 
-            this.ButtonCreateRandom.Location = new System.Drawing.Point(299, 271);
-            this.ButtonCreateRandom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonCreateRandom.Location = new System.Drawing.Point(16, 305);
+            this.ButtonCreateRandom.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonCreateRandom.Name = "ButtonCreateRandom";
-            this.ButtonCreateRandom.Size = new System.Drawing.Size(131, 37);
+            this.ButtonCreateRandom.Size = new System.Drawing.Size(295, 37);
             this.ButtonCreateRandom.TabIndex = 9;
             this.ButtonCreateRandom.Text = "Создать случайное";
             this.ButtonCreateRandom.UseVisualStyleBackColor = true;
@@ -417,19 +417,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 322);
+            this.ClientSize = new System.Drawing.Size(331, 354);
+            this.Controls.Add(this.PanelSwimming);
             this.Controls.Add(this.ButtonCreateRandom);
             this.Controls.Add(this.ButtonClose);
             this.Controls.Add(this.ButtonCreate);
-            this.Controls.Add(this.PanelBenchPress);
-            this.Controls.Add(this.PanelSwimming);
-            this.Controls.Add(this.PanelRunning);
             this.Controls.Add(this.LabelParameters);
             this.Controls.Add(this.TextBoxName);
             this.Controls.Add(this.LabelName);
+            this.Controls.Add(this.PanelBenchPress);
             this.Controls.Add(this.ExerciseGroupBox);
+            this.Controls.Add(this.PanelRunning);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddExerciseForm";

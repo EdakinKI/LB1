@@ -158,29 +158,10 @@ namespace View
             if (exercise.ExerciseInfo.ToLower().Contains(searchLower))
                 return true;
 
-            // 3. Поиск в КОНКРЕТНЫХ ПАРАМЕТРАХ каждого типа упражнений:
-
-            // Для БЕГА: интенсивность и дистанция
-            if (exercise is Running running)
-            {
-                if (running.Intensity.ToString().Contains(searchTerm) ||
-                    running.Distance.ToString().Contains(searchTerm))
-                    return true;
-            }
-            // Для ПЛАВАНИЯ: дистанция и стиль
-            else if (exercise is Swimming swimming)
-            {
-                if (swimming.Distance.ToString().Contains(searchTerm) ||
-                    swimming.Style.ToString().ToLower().Contains(searchLower))
-                    return true;
-            }
-            // Для ЖИМА ШТАНГИ: вес и повторения
-            else if (exercise is BenchPress benchPress)
-            {
-                if (benchPress.Weight.ToString().Contains(searchTerm) ||
-                    benchPress.Repetitions.ToString().Contains(searchTerm))
-                    return true;
-            }
+            // 3. Поиск по КАЛОРИЯМ (целые числа и с двумя знаками)
+            if (exercise.Calories.ToString("F2").Contains(searchTerm) ||
+                exercise.Calories.ToString("F0").Contains(searchTerm))
+                return true;
 
             return false;
         }
