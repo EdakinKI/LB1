@@ -417,7 +417,7 @@ namespace View
         public double Weight { get; set; }
 
         /// <summary>
-        /// Количестов повторения упражнения Жим штанги
+        /// Количество повторений упражнения Жим штанги
         /// </summary>
         public int Repetitions { get; set; }
 
