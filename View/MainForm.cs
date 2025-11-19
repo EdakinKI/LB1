@@ -40,42 +40,45 @@ namespace View
         }
 
         /// <summary>
-        /// Настройка DataGridView
+        /// Настройка таблицы упражнений
         /// </summary>
         private void ConfigureDataGridView()
         {
             ExerciseDataGridView.AutoGenerateColumns = false;
-            ExerciseDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            ExerciseDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ExerciseDataGridView.AutoSizeColumnsMode = 
+                        DataGridViewAutoSizeColumnsMode.Fill;
+            ExerciseDataGridView.SelectionMode = 
+                     DataGridViewSelectionMode.FullRowSelect;
             ExerciseDataGridView.ReadOnly = true;
             ExerciseDataGridView.RowHeadersVisible = false;
-
-            // Очищаем существующие колонки
             ExerciseDataGridView.Columns.Clear();
 
-            // Создаем и настраиваем колонки
-            DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
+            DataGridViewTextBoxColumn nameColumn = new 
+                                 DataGridViewTextBoxColumn();
             nameColumn.DataPropertyName = "Name";
             nameColumn.HeaderText = "Название";
             nameColumn.Name = "nameColumn";
             nameColumn.ReadOnly = true;
             nameColumn.Width = 150;
 
-            DataGridViewTextBoxColumn typeColumn = new DataGridViewTextBoxColumn();
+            DataGridViewTextBoxColumn typeColumn = new 
+                                 DataGridViewTextBoxColumn();
             typeColumn.DataPropertyName = "Type";
             typeColumn.HeaderText = "Тип";
             typeColumn.Name = "typeColumn";
             typeColumn.ReadOnly = true;
             typeColumn.Width = 120;
 
-            DataGridViewTextBoxColumn detailsColumn = new DataGridViewTextBoxColumn();
+            DataGridViewTextBoxColumn detailsColumn = new 
+                                 DataGridViewTextBoxColumn();
             detailsColumn.DataPropertyName = "ExerciseInfo";
             detailsColumn.HeaderText = "Детали";
             detailsColumn.Name = "detailsColumn";
             detailsColumn.ReadOnly = true;
             detailsColumn.Width = 200;
 
-            DataGridViewTextBoxColumn caloriesColumn = new DataGridViewTextBoxColumn();
+            DataGridViewTextBoxColumn caloriesColumn = new 
+                                 DataGridViewTextBoxColumn();
             caloriesColumn.DataPropertyName = "Calories";
             caloriesColumn.HeaderText = "Калории";
             caloriesColumn.Name = "caloriesColumn";
@@ -86,13 +89,12 @@ namespace View
             };
             caloriesColumn.Width = 80;
 
-            // Добавляем колонки в DataGridView
             ExerciseDataGridView.Columns.AddRange(new DataGridViewColumn[]
             {
-        nameColumn,
-        typeColumn,
-        detailsColumn,
-        caloriesColumn
+                nameColumn,
+                typeColumn,
+                detailsColumn,
+                caloriesColumn
             });
         }
 
@@ -133,6 +135,7 @@ namespace View
         /// <summary>
         /// Добавление упражнения в список
         /// </summary>
+        /// <param name="Упражнение для добавления"></param>
         public void AddExercise(IExercise exercise)
         {
             if (exercise != null)
@@ -146,6 +149,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Добавить
         /// </summary>
+        /// <param name="Добавить"></param>
+        /// <param name="Аргумент"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             LockButtons();
@@ -159,15 +164,19 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Удалить
         /// </summary>
+        /// <param name="Удалить"></param>
+        /// <param name="Аргумент"></param>
         private void ButtonRemove_Click(object sender, EventArgs e)
         {
-            var selectedExercise = ExerciseDataGridView.SelectedRows[0].DataBoundItem as IExercise;
+            var selectedExercise = ExerciseDataGridView.SelectedRows[0].
+                                   DataBoundItem as IExercise;
             if (ExerciseDataGridView.SelectedRows.Count > 0)
             { 
                 if (selectedExercise != null)
                 {
                     var result = MessageBox.Show(
-                        $"Вы уверены, что хотите удалить упражнение '{selectedExercise.Name}'?",
+                        $"Вы уверены, что хотите удалить упражнение '" +
+                        $"{selectedExercise.Name}'?",
                         "Подтверждение удаления",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question,
@@ -186,6 +195,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Удалить всё
         /// </summary>
+        /// <param name="Удалить всё"></param>
+        /// <param name="Аргумент"></param>
         private void ButtonClear_Click(object sender, EventArgs e)
         {
             if (_exercises.Count > 0)
@@ -207,8 +218,9 @@ namespace View
         }
 
         /// <summary>
-        /// Обновление отображаемых упражнений (для фильтрации)
+        /// Обновление отображаемых упражнений для фильтрации
         /// </summary>
+        /// <param name="Новый список упражнений для отображения"></param>
         public void UpdateExercises(List<IExercise> exercises)
         {
             _exercises.Clear();
@@ -222,6 +234,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Фильтр
         /// </summary>
+        /// <param name="Фильтр"></param>
+        /// <param name="Аргумент"></param>
         private void ButtonFilter_Click(object sender, EventArgs e)
         {
             LockButtons();
@@ -235,6 +249,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Сохранить
         /// </summary>
+        /// <param name="Сохранить"></param>
+        /// <param name="Аргумент"></param>
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_exercises.Count == 0)
@@ -281,6 +297,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Открыть
         /// </summary>
+        /// <param name="Открыть"></param>
+        /// <param name="Аргумент"></param>
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LockButtons();
@@ -317,10 +335,12 @@ namespace View
         /// <summary>
         /// Сохранение упражнений в файл
         /// </summary>
+        /// <param name="Имя файла для сохранения"></param>
         private void SaveExercises(string fileName)
         {
             var serializer = new XmlSerializer(typeof(List<ExerciseWrapper>));
-            var wrappedExercises = _originalExercises.Select(ex => new ExerciseWrapper(ex)).ToList();
+            var wrappedExercises = _originalExercises.Select(ex => new 
+                                   ExerciseWrapper(ex)).ToList();
 
             using (var stream = new FileStream(fileName, FileMode.Create))
             {
@@ -331,13 +351,15 @@ namespace View
         /// <summary>
         /// Загрузка упражнений из файла
         /// </summary>
+        /// <param name="Имя файла для загрузки"></param>
         private void LoadExercises(string fileName)
         {
             var serializer = new XmlSerializer(typeof(List<ExerciseWrapper>));
 
             using (var stream = new FileStream(fileName, FileMode.Open))
             {
-                var wrappedExercises = (List<ExerciseWrapper>)serializer.Deserialize(stream);
+                var wrappedExercises = (List<ExerciseWrapper>)serializer.
+                                        Deserialize(stream);
                 _exercises.Clear();
                 _originalExercises.Clear();
 
@@ -354,7 +376,10 @@ namespace View
         /// <summary>
         /// Обработчик изменения выбранной строки
         /// </summary>
-        private void ExerciseDataGridView_SelectionChanged(object sender, EventArgs e)
+        /// <param name="Выбранная строка"></param>
+        /// <param name="Аргумент"></param>
+        private void ExerciseDataGridView_SelectionChanged(object sender, 
+                                                           EventArgs e)
         {
             UpdateButtonsState();
         }
@@ -366,16 +391,45 @@ namespace View
     [Serializable]
     public class ExerciseWrapper
     {
+        /// <summary>
+        /// Тип упражнения
+        /// </summary>
         public string Type { get; set; }
+        
+        /// <summary>
+        /// Название упражнения
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Дистанция упражнения Бег и Плавание
+        /// </summary>
         public double Distance { get; set; }
+
+        /// <summary>
+        /// Интенсивность упражнения Бег
+        /// </summary>
         public double Intensity { get; set; }
+
+        /// <summary>
+        /// Вес упражнения Жим штанги
+        /// </summary>
         public double Weight { get; set; }
+
+        /// <summary>
+        /// Количестов повторения упражнения Жим штанги
+        /// </summary>
         public int Repetitions { get; set; }
+
+        /// <summary>
+        /// Стиль плавания упражнения Плавание
+        /// </summary>
         public SwimmingStyle Style { get; set; }
 
-        public ExerciseWrapper() { }
-
+        /// <summary>
+        /// Инициализация новго экземпляра класса
+        /// </summary>
+        /// <param name="Исходное упражнение для обертывания"></param>
         public ExerciseWrapper(IExercise exercise)
         {
             Name = exercise.Name;
@@ -400,18 +454,33 @@ namespace View
             }
         }
 
+        /// <summary>
+        /// Восстановление объекта упражнения из обертки
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Исключение при неизвестном типе упражнения">
+        /// </exception>
         public IExercise GetExercise()
         {
             switch (Type)
             {
                 case "Running":
+                {
                     return new Running(Name, Intensity, Distance);
+                }
                 case "Swimming":
+                {
                     return new Swimming(Name, Style, Distance);
+                }
                 case "BenchPress":
+                {
                     return new BenchPress(Name, Weight, Repetitions);
+                }
                 default:
-                    throw new InvalidOperationException("Неизвестный тип упражнения");
+                {
+                    throw new InvalidOperationException("Неизвестный тип " +
+                                                        "упражнения");
+                }
             }
         }
     }
