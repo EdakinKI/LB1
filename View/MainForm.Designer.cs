@@ -15,6 +15,9 @@
 
         #region Windows Form Designer generated code
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -100,8 +103,6 @@
             this.ExerciseDataGridView.Size = new System.Drawing.Size(872, 400);
             this.ExerciseDataGridView.TabIndex = 0;
             this.ExerciseDataGridView.SelectionChanged += new System.EventHandler(this.ExerciseDataGridView_SelectionChanged);
-
-            
             // 
             // ButtonAdd
             // 
@@ -223,7 +224,7 @@
         private System.Windows.Forms.Button ButtonRemove;
         private System.Windows.Forms.Button ButtonClear;
         private System.Windows.Forms.Button ButtonFilter;
-        private System.Windows.Forms.MenuStrip MainMenuStrip;
+        private new System.Windows.Forms.MenuStrip MainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;

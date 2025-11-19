@@ -12,20 +12,16 @@ namespace View
     public partial class FilterForm : Form
     {
         private List<IExercise> _allExercises;
-
-        /// <summary>
-        /// Отфильтрованные упражнения
-        /// </summary>
-        public List<IExercise> FilteredExercises { get; private set; }
+        private MainForm _mainForm;
 
         /// <summary>
         /// Конструктор формы
         /// </summary>
-        public FilterForm(List<IExercise> exercises)
+        public FilterForm(List<IExercise> exercises, MainForm mainForm)
         {
             InitializeComponent();
             _allExercises = exercises;
-            FilteredExercises = new List<IExercise>(exercises);
+            _mainForm = mainForm;
             InitializeForm();
         }
 
@@ -50,12 +46,26 @@ namespace View
         }
 
         /// <summary>
+        /// Обработчик нажатия кнопки Отменить
+        /// </summary>
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            // Возвращаем все упражнения в главную форму
+            _mainForm.UpdateExercises(_allExercises);
+
+            MessageBox.Show(
+                "Фильтр отменен. Показаны все упражнения.",
+                "Отмена фильтра",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        /// <summary>
         /// Обработчик нажатия кнопки Закрыть
         /// </summary>
         private void ButtonClose_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
-            Close();
+            this.Close();
         }
 
         /// <summary>
@@ -89,14 +99,21 @@ namespace View
                 selectedTypes.AddRange(new string[] { "Бег", "Плавание", "Жим штанги" });
             }
 
-            // Фильтрация
-            FilteredExercises = _allExercises
+            // Фильтрация ВСЕГДА из исходного списка
+            var filteredExercises = _allExercises
                 .Where(ex => IsExerciseTypeSelected(ex, selectedTypes) &&
                             ContainsSearchTerm(ex, searchTerm))
                 .ToList();
 
-            DialogResult = DialogResult.OK;
-            Close();
+            // Обновляем данные в главной форме
+            _mainForm.UpdateExercises(filteredExercises);
+
+            // Показываем количество найденных результатов
+            MessageBox.Show(
+                $"Найдено упражнений: {filteredExercises.Count}",
+                "Результаты фильтрации",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         /// <summary>
@@ -133,27 +150,31 @@ namespace View
         {
             var searchLower = searchTerm.ToLower();
 
-            // Поиск в названии
+            // 1. Поиск в НАЗВАНИИ упражнения
             if (exercise.Name.ToLower().Contains(searchLower))
                 return true;
 
-            // Поиск в детальной информации
+            // 2. Поиск в ДЕТАЛЬНОЙ ИНФОРМАЦИИ (параметрах)
             if (exercise.ExerciseInfo.ToLower().Contains(searchLower))
                 return true;
 
-            // Поиск в специфических параметрах
+            // 3. Поиск в КОНКРЕТНЫХ ПАРАМЕТРАХ каждого типа упражнений:
+
+            // Для БЕГА: интенсивность и дистанция
             if (exercise is Running running)
             {
                 if (running.Intensity.ToString().Contains(searchTerm) ||
                     running.Distance.ToString().Contains(searchTerm))
                     return true;
             }
+            // Для ПЛАВАНИЯ: дистанция и стиль
             else if (exercise is Swimming swimming)
             {
                 if (swimming.Distance.ToString().Contains(searchTerm) ||
                     swimming.Style.ToString().ToLower().Contains(searchLower))
                     return true;
             }
+            // Для ЖИМА ШТАНГИ: вес и повторения
             else if (exercise is BenchPress benchPress)
             {
                 if (benchPress.Weight.ToString().Contains(searchTerm) ||
@@ -165,11 +186,11 @@ namespace View
         }
 
         /// <summary>
-        /// Обработчик нажатия клавиш в поле фильтра
+        /// Обработчик нажатия клавиши Enter в поле фильтра
         /// </summary>
-        private void TextBoxFilter_KeyDown(object sender, KeyEventArgs e)
+        private void TextBoxFilter_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 PerformFilter();
                 e.Handled = true;

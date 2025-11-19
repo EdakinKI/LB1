@@ -205,22 +205,27 @@ namespace View
         }
 
         /// <summary>
+        /// Обновление отображаемых упражнений (для фильтрации)
+        /// </summary>
+        public void UpdateExercises(List<IExercise> exercises)
+        {
+            _exercises.Clear();
+            foreach (var exercise in exercises)
+            {
+                _exercises.Add(exercise);
+            }
+            UpdateButtonsState();
+        }
+
+        /// <summary>
         /// Обработчик нажатия кнопки Фильтр
         /// </summary>
         private void ButtonFilter_Click(object sender, EventArgs e)
         {
             LockButtons();
-            using (var filterForm = new FilterForm(_originalExercises))
+            using (var filterForm = new FilterForm(_originalExercises, this))
             {
-                if (filterForm.ShowDialog() == DialogResult.OK)
-                {
-                    var filteredExercises = filterForm.FilteredExercises;
-                    _exercises.Clear();
-                    foreach (var exercise in filteredExercises)
-                    {
-                        _exercises.Add(exercise);
-                    }
-                }
+                filterForm.ShowDialog();
             }
             UnlockButtons();
         }
