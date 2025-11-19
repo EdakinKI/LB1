@@ -11,12 +11,21 @@ namespace View
     /// </summary>
     public partial class FilterForm : Form
     {
+        /// <summary>
+        /// Исходный список всех упражнений для фильтрации
+        /// </summary>
         private List<IExercise> _allExercises;
+
+        /// <summary>
+        /// Ссылка на главную форму приложения
+        /// </summary>
         private MainForm _mainForm;
 
         /// <summary>
         /// Конструктор формы
         /// </summary>
+        /// <param name="Список всех упражнений для фильтрации"></param>
+        /// <param name=Главная форма приложения"></param>
         public FilterForm(List<IExercise> exercises, MainForm mainForm)
         {
             InitializeComponent();
@@ -25,12 +34,14 @@ namespace View
             InitializeForm();
         }
 
+        /// <summary>
+        /// Первоначальная настройка элементов управления формы фильтрации
+        /// </summary>
         private void InitializeForm()
         {
-            // Заполнение CheckedListBox типами упражнений
-            CheckedListBoxExercise.Items.AddRange(new string[] { "Бег", "Плавание", "Жим штанги" });
+            CheckedListBoxExercise.Items.AddRange(new string[] { "Бег",
+                                              "Плавание", "Жим штанги" });
 
-            // Выделить все элементы по умолчанию
             for (int i = 0; i < CheckedListBoxExercise.Items.Count; i++)
             {
                 CheckedListBoxExercise.SetItemChecked(i, true);
@@ -40,6 +51,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Фильтр
         /// </summary>
+        /// <param name="Фильтр"></param>
+        /// <param name="Аргумент></param>
         private void ButtonFilter_Click(object sender, EventArgs e)
         {
             PerformFilter();
@@ -48,9 +61,10 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Отменить
         /// </summary>
+        /// <param name="Отменить"></param>
+        /// <param name="Аргумент"></param>
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            // Возвращаем все упражнения в главную форму
             _mainForm.UpdateExercises(_allExercises);
 
             MessageBox.Show(
@@ -63,6 +77,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Закрыть
         /// </summary>
+        /// <param name="Закрыть"></param>
+        /// <param name="Аргумент"></param>
         private void ButtonClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -78,7 +94,8 @@ namespace View
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 MessageBox.Show(
-                    "Введите текст для фильтрации. Можно вводить цифры и буквы для поиска по названию и параметрам упражнения.",
+                    "Введите текст для фильтрации. Можно вводить цифры и" +
+                    " буквы для поиска по названию и параметрам упражнения.",
                     "Ошибка ввода",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -86,29 +103,24 @@ namespace View
                 return;
             }
 
-            // Получение выбранных типов упражнений
             var selectedTypes = new List<string>();
             foreach (var item in CheckedListBoxExercise.CheckedItems)
             {
                 selectedTypes.Add(item.ToString());
             }
 
-            // Если ничего не выбрано, использовать все типы
             if (selectedTypes.Count == 0)
             {
-                selectedTypes.AddRange(new string[] { "Бег", "Плавание", "Жим штанги" });
+                selectedTypes.AddRange(new string[] { "Бег", 
+                                   "Плавание", "Жим штанги" });
             }
 
-            // Фильтрация ВСЕГДА из исходного списка
             var filteredExercises = _allExercises
                 .Where(ex => IsExerciseTypeSelected(ex, selectedTypes) &&
-                            ContainsSearchTerm(ex, searchTerm))
-                .ToList();
+                            ContainsSearchTerm(ex, searchTerm)).ToList();
 
-            // Обновляем данные в главной форме
             _mainForm.UpdateExercises(filteredExercises);
 
-            // Показываем количество найденных результатов
             MessageBox.Show(
                 $"Найдено упражнений: {filteredExercises.Count}",
                 "Результаты фильтрации",
@@ -119,7 +131,13 @@ namespace View
         /// <summary>
         /// Проверка соответствия типа упражнения выбранным типам
         /// </summary>
-        private bool IsExerciseTypeSelected(IExercise exercise, List<string> selectedTypes)
+        /// <param name="Проверяемое упражнение"></param>
+        /// <param name="Список выбранных типов упражнений"></param>
+        /// <returns>Выбранный тип</returns>
+        /// <exception cref="Исключение если неизвестный тип упражнения"
+        /// ></exception>
+        private bool IsExerciseTypeSelected(IExercise exercise, List<string>
+                                                              selectedTypes)
         {
             string exerciseType;
 
@@ -137,7 +155,8 @@ namespace View
             }
             else
             {
-                throw new InvalidOperationException("Неизвестный тип упражнения");
+                throw new InvalidOperationException("Неизвестный тип" +
+                                                    " упражнения");
             }
 
             return selectedTypes.Contains(exerciseType);
@@ -146,36 +165,30 @@ namespace View
         /// <summary>
         /// Проверка содержания поискового запроса в данных упражнения
         /// </summary>
+        /// <param name="Проверяемое упражнение"></param>
+        /// <param name="Поисковый запрос"></param>
+        /// <returns></returns>
         private bool ContainsSearchTerm(IExercise exercise, string searchTerm)
         {
             var searchLower = searchTerm.ToLower();
 
-            // 1. Поиск в НАЗВАНИИ упражнения
             if (exercise.Name.ToLower().Contains(searchLower))
+            {
                 return true;
+            }
 
-            // 2. Поиск в ДЕТАЛЬНОЙ ИНФОРМАЦИИ (параметрах)
             if (exercise.ExerciseInfo.ToLower().Contains(searchLower))
+            {
                 return true;
+            }
 
-            // 3. Поиск по КАЛОРИЯМ (целые числа и с двумя знаками)
             if (exercise.Calories.ToString("F2").Contains(searchTerm) ||
                 exercise.Calories.ToString("F0").Contains(searchTerm))
+            {
                 return true;
+            }
 
             return false;
-        }
-
-        /// <summary>
-        /// Обработчик нажатия клавиши Enter в поле фильтра
-        /// </summary>
-        private void TextBoxFilter_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                PerformFilter();
-                e.Handled = true;
-            }
         }
     }
 }

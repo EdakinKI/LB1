@@ -69,7 +69,6 @@
             this.TextBoxFilter.Name = "TextBoxFilter";
             this.TextBoxFilter.Size = new System.Drawing.Size(255, 22);
             this.TextBoxFilter.TabIndex = 2;
-            this.TextBoxFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxFilter_KeyPress);
             // 
             // ButtonFilter
             // 
