@@ -14,30 +14,31 @@ namespace View
         /// <summary>
         /// Конструктор формы
         /// </summary>
-        // Добавь этот конструктор
+        /// <param name="Главная форма приложения"></param>
         public AddExerciseForm(MainForm mainForm)
         {
             InitializeComponent();
             _mainForm = mainForm;
             InitializeForm();
 
-            // Условная компиляция для отладочной кнопки
 #if !DEBUG
         ButtonCreateRandom.Visible = false;
 #endif
         }
 
+        /// <summary>
+        /// Первоначальная настройка элементов управления формы
+        /// </summary>
         private void InitializeForm()
         {
-            // Заполнение ComboBox типами упражнений
-            ComboBoxExercise.Items.AddRange(new string[] { "Бег", "Плавание", "Жим штанги" });
+            ComboBoxExercise.Items.AddRange(new string[] { "Бег", "Плавание",
+                                                           "Жим штанги" });
             ComboBoxExercise.SelectedIndex = 0;
 
-            // Заполнение ComboBox стилями плавания
-            ComboBoxStyle.Items.AddRange(new string[] { "Freestyle", "Breaststroke", "Backstroke", "Butterfly" });
+            ComboBoxStyle.Items.AddRange(new string[] { "Freestyle", 
+                        "Breaststroke", "Backstroke", "Butterfly" });
             ComboBoxStyle.SelectedIndex = 0;
 
-            // Установка единиц измерения
             LabelIntensityUnit.Text = "км/ч";
             LabelRunningDistanceUnit.Text = "км";
             LabelSwimmingDistanceUnit.Text = "м";
@@ -51,30 +52,37 @@ namespace View
         /// </summary>
         private void UpdateExerciseParameters()
         {
-            // Скрыть все панели параметров
             PanelRunning.Visible = false;
             PanelSwimming.Visible = false;
             PanelBenchPress.Visible = false;
 
-            // Показать нужную панель
             switch (ComboBoxExercise.SelectedItem.ToString())
             {
                 case "Бег":
+                {
                     PanelRunning.Visible = true;
                     break;
+                }
                 case "Плавание":
+                {
                     PanelSwimming.Visible = true;
                     break;
+                }
                 case "Жим штанги":
+                {
                     PanelBenchPress.Visible = true;
                     break;
+                }
             }
         }
 
         /// <summary>
         /// Обработчик изменения типа упражнения
         /// </summary>
-        private void ComboBoxExercise_SelectedIndexChanged(object sender, EventArgs e)
+        /// <param name="Список упражнений"></param>
+        /// <param name="Аргумент"></param>
+        private void ComboBoxExercise_SelectedIndexChanged(object sender,
+                                                           EventArgs e)
         {
             UpdateExerciseParameters();
         }
@@ -82,6 +90,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Создать
         /// </summary>
+        /// <param name="Создать"></param>
+        /// <param name="Аргумент"></param>
         private void ButtonCreate_Click(object sender, EventArgs e)
         {
             try
@@ -107,6 +117,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Закрыть
         /// </summary>
+        /// <param name="Закрыть"></param>
+        /// <param name="Аргумент"></param>
         private void ButtonClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -115,6 +127,8 @@ namespace View
         /// <summary>
         /// Обработчик нажатия кнопки Создать случайное упражнение
         /// </summary>
+        /// <param name="Создать случайное"></param>
+        /// <param name="Аргумент"></param>
         private void ButtonCreateRandom_Click(object sender, EventArgs e)
         {
             try
@@ -125,20 +139,27 @@ namespace View
                 switch (ComboBoxExercise.SelectedItem.ToString())
                 {
                     case "Бег":
+                    {
                         NumericIntensity.Value = random.Next(5, 15);
-                        NumericRunningDistance.Value = (decimal)(Math.Round(random.NextDouble() * 10 + 1, 2));
+                        NumericRunningDistance.Value = (decimal)(Math.Round
+                                         (random.NextDouble() * 10 + 1, 2));
                         break;
+                    }
                     case "Плавание":
-                        ComboBoxStyle.SelectedIndex = random.Next(ComboBoxStyle.Items.Count);
+                    {
+                        ComboBoxStyle.SelectedIndex = random.Next(ComboBoxStyle.
+                                                                    Items.Count);
                         NumericSwimmingDistance.Value = random.Next(100, 2000);
                         break;
+                    }
                     case "Жим штанги":
+                    {
                         NumericWeight.Value = random.Next(20, 100);
                         NumericRepetitions.Value = random.Next(5, 20);
                         break;
+                    }
                 }
 
-                // Автоматически создаем упражнение после заполнения случайными данными
                 if (ValidateInput())
                 {
                     var exercise = CreateExercise();
@@ -158,11 +179,11 @@ namespace View
         }
 
         /// <summary>
-        /// Валидация введенных данных
+        /// Валидация введенных данных имени и параметров
         /// </summary>
+        /// <returns>Сообщение о неверных данных</returns>
         private bool ValidateInput()
         {
-            // Валидация названия
             if (string.IsNullOrWhiteSpace(TextBoxName.Text))
             {
                 MessageBox.Show(
@@ -185,23 +206,31 @@ namespace View
                 return false;
             }
 
-            // Валидация для конкретных типов упражнений
             switch (ComboBoxExercise.SelectedItem.ToString())
             {
                 case "Бег":
+                {
                     return ValidateRunningInput();
+                }
                 case "Плавание":
+                {
                     return ValidateSwimmingInput();
+                }
                 case "Жим штанги":
+                {
                     return ValidateBenchPressInput();
+                }
                 default:
+                {
                     return false;
+                }
             }
         }
 
         /// <summary>
         /// Валидация данных для бега
         /// </summary>
+        /// <returns>Сообщение о неверных данных</returns>
         private bool ValidateRunningInput()
         {
             if (NumericIntensity.Value < 1 || NumericIntensity.Value > 30)
@@ -215,7 +244,8 @@ namespace View
                 return false;
             }
 
-            if (NumericRunningDistance.Value < 0.1m || NumericRunningDistance.Value > 100)
+            if (NumericRunningDistance.Value < 0.1m || 
+                NumericRunningDistance.Value > 100)
             {
                 MessageBox.Show(
                     "Дистанция должна быть от 0.1 до 100 км",
@@ -232,9 +262,11 @@ namespace View
         /// <summary>
         /// Валидация данных для плавания
         /// </summary>
+        /// <returns>Сообщение о неверных данных</returns>
         private bool ValidateSwimmingInput()
         {
-            if (NumericSwimmingDistance.Value < 1 || NumericSwimmingDistance.Value > 10000)
+            if (NumericSwimmingDistance.Value < 1 ||
+                NumericSwimmingDistance.Value > 10000)
             {
                 MessageBox.Show(
                     "Дистанция должна быть от 1 до 10000 метров",
@@ -251,6 +283,7 @@ namespace View
         /// <summary>
         /// Валидация данных для жима штанги
         /// </summary>
+        /// <returns>Сообщение о неверных данных</returns>
         private bool ValidateBenchPressInput()
         {
             if (NumericWeight.Value < 1 || NumericWeight.Value > 300)
@@ -264,7 +297,8 @@ namespace View
                 return false;
             }
 
-            if (NumericRepetitions.Value < 1 || NumericRepetitions.Value > 100)
+            if (NumericRepetitions.Value < 1 ||
+                NumericRepetitions.Value > 100)
             {
                 MessageBox.Show(
                     "Количество повторений должно быть от 1 до 100",
@@ -278,10 +312,11 @@ namespace View
             return true;
         }
 
-        //TODO у case нет {} и return првоерить
         /// <summary>
         /// Создание упражнения
         /// </summary>
+        /// <returns>Упражнение</returns>
+        /// <exception cref="Исключение при неизвестном упражнении"></exception>
         private IExercise CreateExercise()
         {
             string name = TextBoxName.Text.Trim();
@@ -290,44 +325,66 @@ namespace View
             switch (exerciseType)
             {
                 case "Бег":
+                {
                     return new Running(
-                        name,
-                        (double)NumericIntensity.Value,
-                        (double)NumericRunningDistance.Value);
+                    name,
+                    (double)NumericIntensity.Value,
+                    (double)NumericRunningDistance.Value);
+                }
 
                 case "Плавание":
+                {
                     SwimmingStyle style;
                     string styleString = ComboBoxStyle.SelectedItem.ToString();
 
                     switch (styleString)
                     {
                         case "Freestyle":
+                        {
                             style = SwimmingStyle.Freestyle;
                             break;
+                        }
                         case "Breaststroke":
+                        {
                             style = SwimmingStyle.Breaststroke;
                             break;
+                        }
                         case "Backstroke":
+                        {
                             style = SwimmingStyle.Backstroke;
                             break;
+                        }
                         case "Butterfly":
+                        {
                             style = SwimmingStyle.Butterfly;
                             break;
+                        }
                         default:
+                        {
                             style = SwimmingStyle.Freestyle;
                             break;
+                        }
                     }
 
-                    return new Swimming(name, style, (double)NumericSwimmingDistance.Value);
+                    return new Swimming(
+                    name, 
+                    style,
+                    (double)NumericSwimmingDistance.Value);
+                }
 
                 case "Жим штанги":
+                {
                     return new BenchPress(
-                        name,
-                        (double)NumericWeight.Value,
-                        (int)NumericRepetitions.Value);
+                    name,
+                    (double)NumericWeight.Value,
+                    (int)NumericRepetitions.Value);
+                }
 
                 default:
-                    throw new InvalidOperationException("Неизвестный тип упражнения");
+                {
+                    throw new InvalidOperationException
+                            ("Неизвестный тип упражнения");
+                }
             }
         }
     }
