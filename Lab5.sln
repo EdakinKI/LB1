@@ -5,9 +5,14 @@ VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{2FA96CD2-99D0-428B-B125-F5F0B1D80616}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB4", "LB1\LB4.csproj", "{48F92CAF-8E65-48D3-B3E4-F86250571F02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB5", "LB1\LB5.csproj", "{48F92CAF-8E65-48D3-B3E4-F86250571F02}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{5BDE177F-DFBE-4E18-8F38-283AE532E475}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{754FC069-D67B-A9D7-50A1-8D1CA196D8F1}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\Едакин Отчет ЛБ5.docx = ..\..\..\Downloads\Едакин Отчет ЛБ5.docx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
