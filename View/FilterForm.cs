@@ -39,6 +39,7 @@ namespace View
         /// </summary>
         private void InitializeForm()
         {
+            //TODO: duplication
             CheckedListBoxExercise.Items.AddRange(new string[] { "Бег",
                                               "Плавание", "Жим штанги" });
 
@@ -111,6 +112,7 @@ namespace View
 
             if (selectedTypes.Count == 0)
             {
+                //TODO: duplication
                 selectedTypes.AddRange(new string[] { "Бег", 
                                    "Плавание", "Жим штанги" });
             }
@@ -141,6 +143,7 @@ namespace View
         {
             string exerciseType;
 
+            //TODO: duplication
             if (exercise is Running)
             {
                 exerciseType = "Бег";

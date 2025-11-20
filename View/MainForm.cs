@@ -14,7 +14,10 @@ namespace View
     /// </summary>
     public partial class MainForm : Form
     {
+        //TODO: XML
         private BindingList<IExercise> _exercises;
+
+        //TODO: XML
         private List<IExercise> _originalExercises;
 
         /// <summary>
@@ -132,6 +135,7 @@ namespace View
             UpdateButtonsState();
         }
 
+        //TODO: incapsulation
         /// <summary>
         /// Добавление упражнения в список
         /// </summary>
@@ -217,6 +221,7 @@ namespace View
             }
         }
 
+        //TODO: incapsulation
         /// <summary>
         /// Обновление отображаемых упражнений для фильтрации
         /// </summary>
@@ -385,6 +390,7 @@ namespace View
         }
     }
 
+    //TODO: remove
     /// <summary>
     /// Класс-обертка для сериализации упражнений
     /// </summary>
@@ -441,7 +447,8 @@ namespace View
 
             if (exercise is Running running)
             {
-                Type = "Running";
+                //TOOD: refactor
+                Type = nameof(Running);
                 Distance = running.Distance;
                 Intensity = running.Intensity;
             }
@@ -469,6 +476,7 @@ namespace View
         {
             switch (Type)
             {
+                //TODO: duplication
                 case "Running":
                 {
                     return new Running(Name, Intensity, Distance);

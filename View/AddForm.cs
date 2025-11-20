@@ -9,6 +9,8 @@ namespace View
     /// </summary>
     public partial class AddExerciseForm : Form
     {
+        //TODO: XML
+        //TODO: incapsulation
         private MainForm _mainForm;
 
         /// <summary>
@@ -26,15 +28,19 @@ namespace View
 #endif
         }
 
+        const string RussianExcersiseRunning = "Бег";
+
         /// <summary>
         /// Первоначальная настройка элементов управления формы
         /// </summary>
         private void InitializeForm()
         {
+            //TODO: duplication
             ComboBoxExercise.Items.AddRange(new string[] { "Бег", "Плавание",
                                                            "Жим штанги" });
             ComboBoxExercise.SelectedIndex = 0;
 
+            //TODO: duplication
             ComboBoxStyle.Items.AddRange(new string[] { "Freestyle", 
                         "Breaststroke", "Backstroke", "Butterfly" });
             ComboBoxStyle.SelectedIndex = 0;
@@ -58,6 +64,7 @@ namespace View
 
             switch (ComboBoxExercise.SelectedItem.ToString())
             {
+                //TODO: duplication
                 case "Бег":
                 {
                     PanelRunning.Visible = true;
@@ -138,6 +145,7 @@ namespace View
 
                 switch (ComboBoxExercise.SelectedItem.ToString())
                 {
+                    //TODO: duplication
                     case "Бег":
                     {
                         NumericIntensity.Value = random.Next(5, 15);
@@ -208,6 +216,7 @@ namespace View
 
             switch (ComboBoxExercise.SelectedItem.ToString())
             {
+                //TODO: duplication
                 case "Бег":
                 {
                     return ValidateRunningInput();
@@ -324,6 +333,7 @@ namespace View
 
             switch (exerciseType)
             {
+                //TODO: duplication
                 case "Бег":
                 {
                     return new Running(
@@ -339,6 +349,7 @@ namespace View
 
                     switch (styleString)
                     {
+                            //TODO: duplication
                         case "Freestyle":
                         {
                             style = SwimmingStyle.Freestyle;
