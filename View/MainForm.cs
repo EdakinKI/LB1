@@ -427,6 +427,11 @@ namespace View
         public SwimmingStyle Style { get; set; }
 
         /// <summary>
+        /// Пустой конструктор для XML сериализации
+        /// </summary>
+        private ExerciseWrapper() { }
+
+        /// <summary>
         /// Инициализация новго экземпляра класса
         /// </summary>
         /// <param name="Исходное упражнение для обертывания"></param>
