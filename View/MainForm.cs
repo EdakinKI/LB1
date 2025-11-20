@@ -14,15 +14,15 @@ namespace View
     /// </summary>
     public partial class MainForm : Form
     {
-        //TODO: XML
+        //TODO: XML+
         /// <summary>
-        /// 
+        /// Коллекция упражнений для отображения в DataGridView
         /// </summary>
         private BindingList<IExercise> _exercises;
 
-        //TODO: XML
+        //TODO: XML+
         /// <summary>
-        /// 
+        /// Исходная коллекция упражнений для восстановления после фильтрации
         /// </summary>
         private List<IExercise> _originalExercises;
 

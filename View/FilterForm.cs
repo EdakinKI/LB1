@@ -42,9 +42,9 @@ namespace View
         /// </summary>
         private void InitializeForm()
         {
-            //TODO: duplication
-            CheckedListBoxExercise.Items.AddRange(new string[] { "Бег",
-                                              "Плавание", "Жим штанги" });
+            //TODO: duplication+
+            CheckedListBoxExercise.Items.AddRange(new string[]
+            { Constants.Running, Constants.Swimming, Constants.BenchPress });
 
             for (int i = 0; i < CheckedListBoxExercise.Items.Count; i++)
             {
@@ -115,9 +115,9 @@ namespace View
 
             if (selectedTypes.Count == 0)
             {
-                //TODO: duplication
-                selectedTypes.AddRange(new string[] { "Бег", 
-                                   "Плавание", "Жим штанги" });
+                //TODO: duplication+
+                selectedTypes.AddRange(new string[]
+                { Constants.Running, Constants.Swimming, Constants.BenchPress });
             }
 
             var filteredExercises = _allExercises
@@ -146,18 +146,18 @@ namespace View
         {
             string exerciseType;
 
-            //TODO: duplication
+            //TODO: duplication+
             if (exercise is Running)
             {
-                exerciseType = "Бег";
+                exerciseType = Constants.Running;
             }
             else if (exercise is Swimming)
             {
-                exerciseType = "Плавание";
+                exerciseType = Constants.Swimming;
             }
             else if (exercise is BenchPress)
             {
-                exerciseType = "Жим штанги";
+                exerciseType = Constants.BenchPress;
             }
             else
             {

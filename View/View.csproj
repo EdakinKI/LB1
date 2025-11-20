@@ -52,6 +52,7 @@
     <Compile Include="AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Constants.cs" />
     <Compile Include="ExerciseWrapper.cs" />
     <Compile Include="FilterForm.cs">
       <SubType>Form</SubType>

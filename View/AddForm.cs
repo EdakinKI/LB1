@@ -36,14 +36,14 @@ namespace View
         /// </summary>
         private void InitializeForm()
         {
-            //TODO: duplication
-            ComboBoxExercise.Items.AddRange(new string[] { "Бег", "Плавание",
-                                                           "Жим штанги" });
+            //TODO: duplication+
+            ComboBoxExercise.Items.AddRange(new string[] { Constants.Running,
+                Constants.Swimming, Constants.BenchPress });
             ComboBoxExercise.SelectedIndex = 0;
 
-            //TODO: duplication
-            ComboBoxStyle.Items.AddRange(new string[] { "Freestyle", 
-                        "Breaststroke", "Backstroke", "Butterfly" });
+            //TODO: duplication+
+            ComboBoxStyle.Items.AddRange(new string[] { Constants.Freestyle,
+            Constants.Breaststroke, Constants.Backstroke, Constants.Butterfly });
             ComboBoxStyle.SelectedIndex = 0;
 
             LabelIntensityUnit.Text = "км/ч";
@@ -65,18 +65,18 @@ namespace View
 
             switch (ComboBoxExercise.SelectedItem.ToString())
             {
-                //TODO: duplication
-                case "Бег":
+                //TODO: duplication+
+                case Constants.Running:
                 {
                     PanelRunning.Visible = true;
                     break;
                 }
-                case "Плавание":
+                case Constants.Swimming:
                 {
                     PanelSwimming.Visible = true;
                     break;
                 }
-                case "Жим штанги":
+                case Constants.BenchPress:
                 {
                     PanelBenchPress.Visible = true;
                     break;
@@ -146,22 +146,22 @@ namespace View
 
                 switch (ComboBoxExercise.SelectedItem.ToString())
                 {
-                    //TODO: duplication
-                    case "Бег":
+                    //TODO: duplication+
+                    case Constants.Running:
                     {
                         NumericIntensity.Value = random.Next(5, 15);
                         NumericRunningDistance.Value = (decimal)(Math.Round
                                          (random.NextDouble() * 10 + 1, 2));
                         break;
                     }
-                    case "Плавание":
+                    case Constants.Swimming:
                     {
                         ComboBoxStyle.SelectedIndex = random.Next(ComboBoxStyle.
                                                                     Items.Count);
                         NumericSwimmingDistance.Value = random.Next(100, 2000);
                         break;
                     }
-                    case "Жим штанги":
+                    case Constants.BenchPress:
                     {
                         NumericWeight.Value = random.Next(20, 100);
                         NumericRepetitions.Value = random.Next(5, 20);
@@ -217,16 +217,16 @@ namespace View
 
             switch (ComboBoxExercise.SelectedItem.ToString())
             {
-                //TODO: duplication
-                case "Бег":
+                //TODO: duplication+
+                case Constants.Running:
                 {
                     return ValidateRunningInput();
                 }
-                case "Плавание":
+                case Constants.Swimming:
                 {
                     return ValidateSwimmingInput();
                 }
-                case "Жим штанги":
+                case Constants.BenchPress:
                 {
                     return ValidateBenchPressInput();
                 }
@@ -334,8 +334,8 @@ namespace View
 
             switch (exerciseType)
             {
-                //TODO: duplication
-                case "Бег":
+                //TODO: duplication+
+                case Constants.Running:
                 {
                     return new Running(
                     name,
@@ -343,30 +343,30 @@ namespace View
                     (double)NumericRunningDistance.Value);
                 }
 
-                case "Плавание":
+                case Constants.Swimming:
                 {
                     SwimmingStyle style;
                     string styleString = ComboBoxStyle.SelectedItem.ToString();
 
                     switch (styleString)
                     {
-                            //TODO: duplication
-                        case "Freestyle":
+                            //TODO: duplication+
+                        case Constants.Freestyle:
                         {
                             style = SwimmingStyle.Freestyle;
                             break;
                         }
-                        case "Breaststroke":
+                        case Constants.Breaststroke:
                         {
                             style = SwimmingStyle.Breaststroke;
                             break;
                         }
-                        case "Backstroke":
+                        case Constants.Backstroke:
                         {
                             style = SwimmingStyle.Backstroke;
                             break;
                         }
-                        case "Butterfly":
+                        case Constants.Butterfly:
                         {
                             style = SwimmingStyle.Butterfly;
                             break;
@@ -384,7 +384,7 @@ namespace View
                     (double)NumericSwimmingDistance.Value);
                 }
 
-                case "Жим штанги":
+                case Constants.BenchPress:
                 {
                     return new BenchPress(
                     name,
