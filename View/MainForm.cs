@@ -15,9 +15,15 @@ namespace View
     public partial class MainForm : Form
     {
         //TODO: XML
+        /// <summary>
+        /// 
+        /// </summary>
         private BindingList<IExercise> _exercises;
 
         //TODO: XML
+        /// <summary>
+        /// 
+        /// </summary>
         private List<IExercise> _originalExercises;
 
         /// <summary>
@@ -135,12 +141,12 @@ namespace View
             UpdateButtonsState();
         }
 
-        //TODO: incapsulation
+        //TODO: incapsulation+
         /// <summary>
-        /// Добавление упражнения в список
+        /// Внутренний метод для добавления упражнения
         /// </summary>
-        /// <param name="Упражнение для добавления"></param>
-        public void AddExercise(IExercise exercise)
+        /// <param name="exercise">Упражнение для добавления</param>
+        private void AddExerciseInternal(IExercise exercise)
         {
             if (exercise != null)
             {
@@ -158,8 +164,13 @@ namespace View
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             LockButtons();
-            using (var addForm = new AddExerciseForm(this))
+            using (var addForm = new AddExerciseForm())
             {
+                addForm.ExerciseCreated += (exercise) =>
+                {
+                    AddExerciseInternal(exercise);
+                };
+
                 addForm.ShowDialog();
             }
             UnlockButtons();
@@ -221,12 +232,16 @@ namespace View
             }
         }
 
-        //TODO: incapsulation
+        //TODO: incapsulation+
         /// <summary>
         /// Обновление отображаемых упражнений для фильтрации
         /// </summary>
         /// <param name="Новый список упражнений для отображения"></param>
-        public void UpdateExercises(List<IExercise> exercises)
+        /// <summary>
+        /// Внутренний метод для обновления отображаемых упражнений
+        /// </summary>
+        /// <param name="exercises">Новый список упражнений для отображения</param>
+        private void UpdateExercisesInternal(List<IExercise> exercises)
         {
             _exercises.Clear();
             foreach (var exercise in exercises)
@@ -244,8 +259,18 @@ namespace View
         private void ButtonFilter_Click(object sender, EventArgs e)
         {
             LockButtons();
-            using (var filterForm = new FilterForm(_originalExercises, this))
+            using (var filterForm = new FilterForm(_originalExercises))
             {
+                filterForm.FilterApplied += (filteredExercises) =>
+                {
+                    UpdateExercisesInternal(filteredExercises);
+                };
+
+                filterForm.FilterCanceled += () =>
+                {
+                    UpdateExercisesInternal(_originalExercises);
+                };
+
                 filterForm.ShowDialog();
             }
             UnlockButtons();

@@ -9,24 +9,25 @@ namespace View
     /// </summary>
     public partial class AddExerciseForm : Form
     {
-        //TODO: XML
-        //TODO: incapsulation
-        private MainForm _mainForm;
+        //TODO: XML+
+        //TODO: incapsulation+
+        /// <summary>
+        /// Событие, возникающее при создании нового упражнения
+        /// </summary>
+        public event Action<IExercise> ExerciseCreated;
 
         /// <summary>
         /// Конструктор формы
         /// </summary>
-        /// <param name="Главная форма приложения"></param>
-        public AddExerciseForm(MainForm mainForm)
+        public AddExerciseForm()
         {
             InitializeComponent();
-            _mainForm = mainForm;
             InitializeForm();
+        }
 
 #if !DEBUG
         ButtonCreateRandom.Visible = false;
 #endif
-        }
 
         const string RussianExcersiseRunning = "Бег";
 
@@ -106,7 +107,7 @@ namespace View
                 if (ValidateInput())
                 {
                     var exercise = CreateExercise();
-                    _mainForm.AddExercise(exercise);
+                    ExerciseCreated?.Invoke(exercise);
 
                     TextBoxName.Clear();
                 }
@@ -171,7 +172,7 @@ namespace View
                 if (ValidateInput())
                 {
                     var exercise = CreateExercise();
-                    _mainForm.AddExercise(exercise);
+                    ExerciseCreated?.Invoke(exercise);
 
                     TextBoxName.Clear();
                 }

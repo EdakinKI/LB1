@@ -17,20 +17,23 @@ namespace View
         private List<IExercise> _allExercises;
 
         /// <summary>
-        /// Ссылка на главную форму приложения
+        /// Событие, возникающее при применении фильтра
         /// </summary>
-        private MainForm _mainForm;
+        public event Action<List<IExercise>> FilterApplied;
+
+        /// <summary>
+        /// Событие, возникающее при отмене фильтра
+        /// </summary>
+        public event Action FilterCanceled;
 
         /// <summary>
         /// Конструктор формы
         /// </summary>
         /// <param name="Список всех упражнений для фильтрации"></param>
-        /// <param name=Главная форма приложения"></param>
-        public FilterForm(List<IExercise> exercises, MainForm mainForm)
+        public FilterForm(List<IExercise> exercises)
         {
             InitializeComponent();
             _allExercises = exercises;
-            _mainForm = mainForm;
             InitializeForm();
         }
 
@@ -66,7 +69,7 @@ namespace View
         /// <param name="Аргумент"></param>
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            _mainForm.UpdateExercises(_allExercises);
+            FilterCanceled?.Invoke();
 
             MessageBox.Show(
                 "Фильтр отменен. Показаны все упражнения.",
@@ -121,7 +124,7 @@ namespace View
                 .Where(ex => IsExerciseTypeSelected(ex, selectedTypes) &&
                             ContainsSearchTerm(ex, searchTerm)).ToList();
 
-            _mainForm.UpdateExercises(filteredExercises);
+            FilterApplied?.Invoke(filteredExercises);
 
             MessageBox.Show(
                 $"Найдено упражнений: {filteredExercises.Count}",
