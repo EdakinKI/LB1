@@ -35,6 +35,27 @@ namespace View
             InitializeComponent();
             _allExercises = exercises;
             InitializeForm();
+
+            // Подписываемся на событие закрытия формы
+            this.FormClosing += FilterForm_FormClosing;
+        }
+
+        /// <summary>
+        /// Обрабатывает событие закрытия формы
+        /// </summary>
+        private void FilterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Если форма закрывается через крестик (Х) - отменяем фильтрацию
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                FilterCanceled?.Invoke();
+
+                MessageBox.Show(
+                "Фильтр отменен. Показаны все упражнения.",
+                "Отмена фильтра",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
