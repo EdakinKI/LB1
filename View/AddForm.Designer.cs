@@ -254,7 +254,7 @@
             0,
             65536});
             this.NumericSwimmingDistance.Maximum = new decimal(new int[] {
-            100,
+            10000,
             0,
             0,
             0});
@@ -267,7 +267,7 @@
             this.NumericSwimmingDistance.Size = new System.Drawing.Size(120, 22);
             this.NumericSwimmingDistance.TabIndex = 3;
             this.NumericSwimmingDistance.Value = new decimal(new int[] {
-            1000,
+            100,
             0,
             0,
             0});

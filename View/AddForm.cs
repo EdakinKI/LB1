@@ -149,22 +149,20 @@ namespace View
                     //TODO: duplication+
                     case Constants.Running:
                     {
-                        NumericIntensity.Value = random.Next(5, 15);
-                        NumericRunningDistance.Value = (decimal)(Math.Round
-                                         (random.NextDouble() * 10 + 1, 2));
+                        NumericIntensity.Value = (decimal)(Math.Round(random.NextDouble() * 38 + 1, 2));
+                        NumericRunningDistance.Value = (decimal)(Math.Round(random.NextDouble() * 248 + 1, 2));
                         break;
                     }
                     case Constants.Swimming:
                     {
-                        ComboBoxStyle.SelectedIndex = random.Next(ComboBoxStyle.
-                                                                    Items.Count);
-                        NumericSwimmingDistance.Value = random.Next(100, 2000);
+                        ComboBoxStyle.SelectedIndex = random.Next(ComboBoxStyle.Items.Count);
+                        NumericSwimmingDistance.Value = (decimal)(Math.Round(random.NextDouble() * 9998 + 1, 2));
                         break;
                     }
                     case Constants.BenchPress:
                     {
-                        NumericWeight.Value = random.Next(20, 100);
-                        NumericRepetitions.Value = random.Next(5, 20);
+                        NumericWeight.Value = (decimal)(Math.Round(random.NextDouble() * 298 + 1, 2));
+                        NumericRepetitions.Value = random.Next(1, 101);
                         break;
                     }
                 }

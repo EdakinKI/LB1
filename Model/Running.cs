@@ -41,7 +41,7 @@
             get => _intensity;
             set
             {
-                ValidateRange(value, 1, 30, nameof(Intensity));
+                ValidateRange(value, 1, 40, nameof(Intensity));
                 _intensity = value;
             }
         }
