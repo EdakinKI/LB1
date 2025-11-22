@@ -116,31 +116,6 @@ namespace View
             ButtonClear.Enabled = _exercises.Count > 0;
         }
 
-        /// <summary>
-        /// Блокировка кнопок
-        /// </summary>
-        private void LockButtons()
-        {
-            ButtonAdd.Enabled = false;
-            ButtonRemove.Enabled = false;
-            ButtonClear.Enabled = false;
-            ButtonFilter.Enabled = false;
-            saveToolStripMenuItem.Enabled = false;
-            openToolStripMenuItem.Enabled = false;
-        }
-
-        /// <summary>
-        /// Разблокировка кнопок
-        /// </summary>
-        private void UnlockButtons()
-        {
-            ButtonAdd.Enabled = true;
-            ButtonFilter.Enabled = true;
-            saveToolStripMenuItem.Enabled = true;
-            openToolStripMenuItem.Enabled = true;
-            UpdateButtonsState();
-        }
-
         //TODO: incapsulation+
         /// <summary>
         /// Внутренний метод для добавления упражнения
@@ -163,7 +138,6 @@ namespace View
         /// <param name="Аргумент"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            LockButtons();
             using (var addForm = new AddExerciseForm())
             {
                 addForm.ExerciseCreated += (exercise) =>
@@ -173,7 +147,6 @@ namespace View
 
                 addForm.ShowDialog();
             }
-            UnlockButtons();
         }
 
         /// <summary>
@@ -183,15 +156,13 @@ namespace View
         /// <param name="Аргумент"></param>
         private void ButtonRemove_Click(object sender, EventArgs e)
         {
-            var selectedExercise = ExerciseDataGridView.SelectedRows[0].
-                                   DataBoundItem as IExercise;
             if (ExerciseDataGridView.SelectedRows.Count > 0)
-            { 
+            {
+                var selectedExercise = ExerciseDataGridView.SelectedRows[0].DataBoundItem as IExercise;
                 if (selectedExercise != null)
                 {
                     var result = MessageBox.Show(
-                        $"Вы уверены, что хотите удалить упражнение '" +
-                        $"{selectedExercise.Name}'?",
+                        $"Вы уверены, что хотите удалить упражнение '{selectedExercise.Name}'?",
                         "Подтверждение удаления",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question,
@@ -199,7 +170,9 @@ namespace View
 
                     if (result == DialogResult.Yes)
                     {
+                        // Удаляем из ОТФИЛЬТРОВАННОГО списка
                         _exercises.Remove(selectedExercise);
+                        // И из ИСХОДНОГО списка
                         _originalExercises.Remove(selectedExercise);
                         UpdateButtonsState();
                     }
@@ -225,8 +198,17 @@ namespace View
 
                 if (result == DialogResult.Yes)
                 {
-                    _exercises.Clear();
-                    _originalExercises.Clear();
+                    // Удаляем все упражнения из ОТФИЛЬТРОВАННОГО списка
+                    var exercisesToRemove = _exercises.ToList();
+
+                    foreach (var exercise in exercisesToRemove)
+                    {
+                        // Удаляем из ОТФИЛЬТРОВАННОГО списка
+                        _exercises.Remove(exercise);
+                        // И из ИСХОДНОГО списка
+                        _originalExercises.Remove(exercise);
+                    }
+
                     UpdateButtonsState();
                 }
             }
@@ -258,7 +240,6 @@ namespace View
         /// <param name="Аргумент"></param>
         private void ButtonFilter_Click(object sender, EventArgs e)
         {
-            LockButtons();
             using (var filterForm = new FilterForm(_originalExercises))
             {
                 filterForm.FilterApplied += (filteredExercises) =>
@@ -273,7 +254,6 @@ namespace View
 
                 filterForm.ShowDialog();
             }
-            UnlockButtons();
         }
 
         /// <summary>
@@ -293,7 +273,6 @@ namespace View
                 return;
             }
 
-            LockButtons();
             using (var saveDialog = new SaveFileDialog())
             {
                 saveDialog.Filter = "Файлы упражнений (*.exs)|*.exs";
@@ -321,7 +300,6 @@ namespace View
                     }
                 }
             }
-            UnlockButtons();
         }
 
         /// <summary>
@@ -331,7 +309,6 @@ namespace View
         /// <param name="Аргумент"></param>
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LockButtons();
             using (var openDialog = new OpenFileDialog())
             {
                 openDialog.Filter = "Файлы упражнений (*.exs)|*.exs";
@@ -359,7 +336,6 @@ namespace View
                     }
                 }
             }
-            UnlockButtons();
         }
 
         /// <summary>
