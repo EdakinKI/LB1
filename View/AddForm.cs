@@ -243,10 +243,10 @@ namespace View
         /// <returns>Сообщение о неверных данных</returns>
         private bool ValidateRunningInput()
         {
-            if (NumericIntensity.Value < 1 || NumericIntensity.Value > 30)
+            if (NumericIntensity.Value < 1 || NumericIntensity.Value > 40)
             {
                 MessageBox.Show(
-                    "Интенсивность должна быть от 1 до 30 км/ч",
+                    "Интенсивность должна быть от 1 до 40 км/ч",
                     "Ошибка ввода",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -255,10 +255,10 @@ namespace View
             }
 
             if (NumericRunningDistance.Value < 0.1m || 
-                NumericRunningDistance.Value > 100)
+                NumericRunningDistance.Value > 250)
             {
                 MessageBox.Show(
-                    "Дистанция должна быть от 0.1 до 100 км",
+                    "Дистанция должна быть от 0.1 до 250 км",
                     "Ошибка ввода",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);

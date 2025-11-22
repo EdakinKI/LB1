@@ -134,7 +134,7 @@
             // 
             // NumericRunningDistance
             // 
-            this.NumericRunningDistance.DecimalPlaces = 1;
+            this.NumericRunningDistance.DecimalPlaces = 2;
             this.NumericRunningDistance.Increment = new decimal(new int[] {
             1,
             0,
@@ -142,6 +142,11 @@
             65536});
             this.NumericRunningDistance.Location = new System.Drawing.Point(123, 56);
             this.NumericRunningDistance.Margin = new System.Windows.Forms.Padding(4);
+            this.NumericRunningDistance.Maximum = new decimal(new int[] {
+            2500,
+            0,
+            0,
+            65536});
             this.NumericRunningDistance.Minimum = new decimal(new int[] {
             1,
             0,
@@ -178,10 +183,16 @@
             // 
             // NumericIntensity
             // 
+            this.NumericIntensity.DecimalPlaces = 2;
             this.NumericIntensity.Location = new System.Drawing.Point(123, 19);
             this.NumericIntensity.Margin = new System.Windows.Forms.Padding(4);
+            this.NumericIntensity.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.NumericIntensity.Maximum = new decimal(new int[] {
-            30,
+            40,
             0,
             0,
             0});
@@ -234,10 +245,16 @@
             // 
             // NumericSwimmingDistance
             // 
+            this.NumericSwimmingDistance.DecimalPlaces = 2;
             this.NumericSwimmingDistance.Location = new System.Drawing.Point(123, 56);
             this.NumericSwimmingDistance.Margin = new System.Windows.Forms.Padding(4);
+            this.NumericSwimmingDistance.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.NumericSwimmingDistance.Maximum = new decimal(new int[] {
-            10000,
+            100,
             0,
             0,
             0});
@@ -349,8 +366,14 @@
             // 
             // NumericWeight
             // 
+            this.NumericWeight.DecimalPlaces = 2;
             this.NumericWeight.Location = new System.Drawing.Point(123, 19);
             this.NumericWeight.Margin = new System.Windows.Forms.Padding(4);
+            this.NumericWeight.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.NumericWeight.Maximum = new decimal(new int[] {
             300,
             0,
