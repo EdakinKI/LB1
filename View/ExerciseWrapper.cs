@@ -3,7 +3,7 @@ using System;
 
 namespace View
 {
-    //TODO: remove+
+    //TODO:remove+
     /// <summary>
     /// Класс-обертка для сериализации упражнений
     /// </summary>
@@ -51,62 +51,58 @@ namespace View
         private ExerciseWrapper() { }
 
         /// <summary>
-        /// Инициализация новго экземпляра класса
+        /// Инициализация нового экземпляра класса
         /// </summary>
-        /// <param name="Исходное упражнение для обертывания"></param>
+        /// <param name="exercise">Исходное упражнение для обертывания</param>
         public ExerciseWrapper(IExercise exercise)
         {
             Name = exercise.Name;
 
             if (exercise is Running running)
             {
-                //TOOD: refactor+
-                Type = nameof(Running);
+                Type = Constants.Running;
                 Distance = running.Distance;
                 Intensity = running.Intensity;
             }
             else if (exercise is Swimming swimming)
             {
-                Type = nameof(Swimming);
+                Type = Constants.Swimming;
                 Distance = swimming.Distance;
                 Style = swimming.Style;
             }
             else if (exercise is BenchPress benchPress)
             {
-                Type = nameof(BenchPress);
+                Type = Constants.BenchPress;
                 Weight = benchPress.Weight;
                 Repetitions = benchPress.Repetitions;
             }
         }
 
+        // Методы ShouldSerialize для управления сериализацией
+        public bool ShouldSerializeDistance() => Type == Constants.Running || Type == Constants.Swimming;
+        public bool ShouldSerializeIntensity() => Type == Constants.Running;
+        public bool ShouldSerializeWeight() => Type == Constants.BenchPress;
+        public bool ShouldSerializeRepetitions() => Type == Constants.BenchPress;
+        public bool ShouldSerializeStyle() => Type == Constants.Swimming;
+
         /// <summary>
         /// Восстановление объекта упражнения из обертки
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="Исключение при неизвестном типе упражнения">
-        /// </exception>
+        /// <returns>Восстановленный объект упражнения</returns>
+        /// <exception cref="InvalidOperationException">Исключение при неизвестном типе упражнения</exception>
         public IExercise GetExercise()
         {
             switch (Type)
             {
-                //TODO: duplication+
-                case nameof(Running):
-                {
+                //TODO:duplication+
+                case Constants.Running:
                     return new Running(Name, Intensity, Distance);
-                }
-                case nameof(Swimming):
-                {
+                case Constants.Swimming:
                     return new Swimming(Name, Style, Distance);
-                }
-                case nameof(BenchPress):
-                {
+                case Constants.BenchPress:
                     return new BenchPress(Name, Weight, Repetitions);
-                }
                 default:
-                {
-                    throw new InvalidOperationException("Неизвестный тип " +
-                                                        "упражнения");
-                }
+                    throw new InvalidOperationException("Неизвестный тип упражнения");
             }
         }
     }

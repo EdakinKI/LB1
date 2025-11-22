@@ -363,14 +363,38 @@ namespace View
         }
 
         /// <summary>
-        /// Сохранение упражнений в файл
+        /// Создает обертку для упражнения
         /// </summary>
-        /// <param name="Имя файла для сохранения"></param>
+        /// <param name="exercise">Упражнение для обертывания</param>
+        /// <returns>Обертка упражнения</returns>
+        private ExerciseWrapper CreateWrapper(IExercise exercise)
+        {
+            if (exercise is Running running)
+            {
+                return new ExerciseWrapper(running);
+            }
+            else if (exercise is Swimming swimming)
+            {
+                return new ExerciseWrapper(swimming);
+            }
+            else if (exercise is BenchPress benchPress)
+            {
+                return new ExerciseWrapper(benchPress);
+            }
+            else
+            {
+                throw new InvalidOperationException("Неизвестный тип упражнения");
+            }
+        }
+
+        /// <summary>
+        /// Сохраняет список упражнений в файл в формате XML
+        /// </summary>
+        /// <param name="fileName">Имя файла для сохранения</param>
         private void SaveExercises(string fileName)
         {
             var serializer = new XmlSerializer(typeof(List<ExerciseWrapper>));
-            var wrappedExercises = _originalExercises.Select(ex => new 
-                                   ExerciseWrapper(ex)).ToList();
+            var wrappedExercises = _originalExercises.Select(ex => CreateWrapper(ex)).ToList();
 
             using (var stream = new FileStream(fileName, FileMode.Create))
             {
@@ -379,17 +403,16 @@ namespace View
         }
 
         /// <summary>
-        /// Загрузка упражнений из файла
+        /// Загружает список упражнений из файла в формате XML
         /// </summary>
-        /// <param name="Имя файла для загрузки"></param>
+        /// <param name="fileName">Имя файла для загрузки</param>
         private void LoadExercises(string fileName)
         {
             var serializer = new XmlSerializer(typeof(List<ExerciseWrapper>));
 
             using (var stream = new FileStream(fileName, FileMode.Open))
             {
-                var wrappedExercises = (List<ExerciseWrapper>)serializer.
-                                        Deserialize(stream);
+                var wrappedExercises = (List<ExerciseWrapper>)serializer.Deserialize(stream);
                 _exercises.Clear();
                 _originalExercises.Clear();
 
