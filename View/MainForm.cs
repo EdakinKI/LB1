@@ -138,15 +138,23 @@ namespace View
         /// <param name="Аргумент"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            using (var addForm = new AddExerciseForm())
-            {
-                addForm.ExerciseCreated += (exercise) =>
-                {
-                    AddExerciseInternal(exercise);
-                };
+            var addForm = new AddExerciseForm();
 
-                addForm.ShowDialog();
-            }
+            // Подписываемся на событие создания упражнения
+            addForm.ExerciseCreated += (exercise) =>
+            {
+                // Внутренний метод для добавления упражнения
+                AddExerciseInternal(exercise);
+            };
+
+            // Подписываемся на событие закрытия формы
+            addForm.FormClosed += (s, args) =>
+            {
+                addForm.Dispose();
+            };
+
+            // Используем Show() вместо ShowDialog() - форма не блокирует MainForm
+            addForm.Show();
         }
 
         /// <summary>
@@ -240,20 +248,27 @@ namespace View
         /// <param name="Аргумент"></param>
         private void ButtonFilter_Click(object sender, EventArgs e)
         {
-            using (var filterForm = new FilterForm(_originalExercises))
+            var filterForm = new FilterForm(_originalExercises);
+
+            // Подписываемся на события фильтрации
+            filterForm.FilterApplied += (filteredExercises) =>
             {
-                filterForm.FilterApplied += (filteredExercises) =>
-                {
-                    UpdateExercisesInternal(filteredExercises);
-                };
+                UpdateExercisesInternal(filteredExercises);
+            };
 
-                filterForm.FilterCanceled += () =>
-                {
-                    UpdateExercisesInternal(_originalExercises);
-                };
+            filterForm.FilterCanceled += () =>
+            {
+                UpdateExercisesInternal(_originalExercises);
+            };
 
-                filterForm.ShowDialog();
-            }
+            // Подписываемся на событие закрытия формы
+            filterForm.FormClosed += (s, args) =>
+            {
+                filterForm.Dispose();
+            };
+
+            // Используем Show() вместо ShowDialog() - форма не блокирует MainForm
+            filterForm.Show();
         }
 
         /// <summary>
