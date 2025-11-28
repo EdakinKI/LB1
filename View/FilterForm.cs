@@ -44,7 +44,6 @@ namespace View
         /// </summary>
         private void FilterForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Если форма закрывается через крестик (Х) - отменяем фильтрацию
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 FilterCanceled?.Invoke();
