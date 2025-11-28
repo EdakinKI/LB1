@@ -120,7 +120,7 @@ namespace View
         /// <summary>
         /// Внутренний метод для добавления упражнения
         /// </summary>
-        /// <param name="exercise">Упражнение для добавления</param>
+        /// <param name="Упражнение для добавления"></param>
         private void AddExerciseInternal(IExercise exercise)
         {
             if (exercise != null)
@@ -140,20 +140,16 @@ namespace View
         {
             var addForm = new AddExerciseForm();
 
-            // Подписываемся на событие создания упражнения
             addForm.ExerciseCreated += (exercise) =>
             {
-                // Внутренний метод для добавления упражнения
                 AddExerciseInternal(exercise);
             };
 
-            // Подписываемся на событие закрытия формы
             addForm.FormClosed += (s, args) =>
             {
                 addForm.Dispose();
             };
 
-            // Используем Show() вместо ShowDialog() - форма не блокирует MainForm
             addForm.Show();
         }
 
@@ -178,9 +174,7 @@ namespace View
 
                     if (result == DialogResult.Yes)
                     {
-                        // Удаляем из ОТФИЛЬТРОВАННОГО списка
                         _exercises.Remove(selectedExercise);
-                        // И из ИСХОДНОГО списка
                         _originalExercises.Remove(selectedExercise);
                         UpdateButtonsState();
                     }
@@ -206,14 +200,11 @@ namespace View
 
                 if (result == DialogResult.Yes)
                 {
-                    // Удаляем все упражнения из ОТФИЛЬТРОВАННОГО списка
                     var exercisesToRemove = _exercises.ToList();
 
                     foreach (var exercise in exercisesToRemove)
                     {
-                        // Удаляем из ОТФИЛЬТРОВАННОГО списка
                         _exercises.Remove(exercise);
-                        // И из ИСХОДНОГО списка
                         _originalExercises.Remove(exercise);
                     }
 
@@ -230,7 +221,7 @@ namespace View
         /// <summary>
         /// Внутренний метод для обновления отображаемых упражнений
         /// </summary>
-        /// <param name="exercises">Новый список упражнений для отображения</param>
+        /// <param name="Новый список упражнений для отображения"></param>
         private void UpdateExercisesInternal(List<IExercise> exercises)
         {
             _exercises.Clear();
@@ -250,7 +241,6 @@ namespace View
         {
             var filterForm = new FilterForm(_originalExercises);
 
-            // Подписываемся на события фильтрации
             filterForm.FilterApplied += (filteredExercises) =>
             {
                 UpdateExercisesInternal(filteredExercises);
@@ -261,13 +251,11 @@ namespace View
                 UpdateExercisesInternal(_originalExercises);
             };
 
-            // Подписываемся на событие закрытия формы
             filterForm.FormClosed += (s, args) =>
             {
                 filterForm.Dispose();
             };
 
-            // Используем Show() вместо ShowDialog() - форма не блокирует MainForm
             filterForm.Show();
         }
 
@@ -356,7 +344,7 @@ namespace View
         /// <summary>
         /// Создает обертку для упражнения
         /// </summary>
-        /// <param name="exercise">Упражнение для обертывания</param>
+        /// <param name="Упражнение для обертывания"></param>
         /// <returns>Обертка упражнения</returns>
         private ExerciseWrapper CreateWrapper(IExercise exercise)
         {

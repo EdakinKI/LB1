@@ -29,8 +29,6 @@ namespace View
         ButtonCreateRandom.Visible = false;
 #endif
 
-        const string RussianExcersiseRunning = "Бег";
-
         /// <summary>
         /// Первоначальная настройка элементов управления формы
         /// </summary>
@@ -149,19 +147,24 @@ namespace View
                     //TODO: duplication+
                     case Constants.Running:
                     {
-                        NumericIntensity.Value = (decimal)(Math.Round(random.NextDouble() * 38 + 1, 2));
-                        NumericRunningDistance.Value = (decimal)(Math.Round(random.NextDouble() * 248 + 1, 2));
+                        NumericIntensity.Value = (decimal)(Math.Round(random.
+                                                  NextDouble() * 38 + 1, 2));
+                        NumericRunningDistance.Value = (decimal)(Math.Round
+                                        (random.NextDouble() * 248 + 1, 2));
                         break;
                     }
                     case Constants.Swimming:
                     {
-                        ComboBoxStyle.SelectedIndex = random.Next(ComboBoxStyle.Items.Count);
-                        NumericSwimmingDistance.Value = (decimal)(Math.Round(random.NextDouble() * 9998 + 1, 2));
+                        ComboBoxStyle.SelectedIndex = random.Next(ComboBoxStyle
+                                                                  .Items.Count);
+                        NumericSwimmingDistance.Value = (decimal)(Math.Round
+                                        (random.NextDouble() * 9998 + 1, 2));
                         break;
                     }
                     case Constants.BenchPress:
                     {
-                        NumericWeight.Value = (decimal)(Math.Round(random.NextDouble() * 298 + 1, 2));
+                        NumericWeight.Value = (decimal)(Math.Round(random.
+                                                NextDouble() * 298 + 1, 2));
                         NumericRepetitions.Value = random.Next(1, 101);
                         break;
                     }
@@ -324,7 +327,8 @@ namespace View
         /// Создание упражнения
         /// </summary>
         /// <returns>Упражнение</returns>
-        /// <exception cref="Исключение при неизвестном упражнении"></exception>
+        /// <exception cref="Исключение при неизвестном упражнении">
+        /// </exception>
         private IExercise CreateExercise()
         {
             string name = TextBoxName.Text.Trim();

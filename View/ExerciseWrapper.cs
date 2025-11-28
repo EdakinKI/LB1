@@ -53,7 +53,7 @@ namespace View
         /// <summary>
         /// Инициализация нового экземпляра класса
         /// </summary>
-        /// <param name="exercise">Исходное упражнение для обертывания</param>
+        /// <param name="Исходное упражнение для обертывания"></param>
         public ExerciseWrapper(IExercise exercise)
         {
             Name = exercise.Name;
@@ -78,31 +78,61 @@ namespace View
             }
         }
 
-        // Методы ShouldSerialize для управления сериализацией
-        public bool ShouldSerializeDistance() => Type == Constants.Running || Type == Constants.Swimming;
+        /// <summary>
+        /// Отображение Дистанции при сериализации
+        /// </summary>
+        /// <returns></returns>
+        public bool ShouldSerializeDistance() => Type == Constants.Running ||
+                                                 Type == Constants.Swimming;
+        /// <summary>
+        /// Отображение Интенсивность при сериализации
+        /// </summary>
+        /// <returns></returns>
         public bool ShouldSerializeIntensity() => Type == Constants.Running;
+        /// <summary>
+        /// Отображение Веса штанги при сериализации
+        /// </summary>
+        /// <returns></returns>
         public bool ShouldSerializeWeight() => Type == Constants.BenchPress;
+        /// <summary>
+        /// Отображение Количества повторений при сериализации
+        /// </summary>
+        /// <returns></returns>
         public bool ShouldSerializeRepetitions() => Type == Constants.BenchPress;
+        /// <summary>
+        /// Отображение Стиля плавания при сериализации
+        /// </summary>
+        /// <returns></returns>
         public bool ShouldSerializeStyle() => Type == Constants.Swimming;
 
         /// <summary>
         /// Восстановление объекта упражнения из обертки
         /// </summary>
         /// <returns>Восстановленный объект упражнения</returns>
-        /// <exception cref="InvalidOperationException">Исключение при неизвестном типе упражнения</exception>
+        /// <exception cref="Исключение при неизвестном типе упражнения"
+        /// ></exception>
         public IExercise GetExercise()
         {
             switch (Type)
             {
                 //TODO:duplication+
+                
                 case Constants.Running:
+                { 
                     return new Running(Name, Intensity, Distance);
+                }
                 case Constants.Swimming:
+                {
                     return new Swimming(Name, Style, Distance);
+                }
                 case Constants.BenchPress:
+                {
                     return new BenchPress(Name, Weight, Repetitions);
+                }
                 default:
+                {
                     throw new InvalidOperationException("Неизвестный тип упражнения");
+                }
             }
         }
     }

@@ -36,7 +36,6 @@ namespace View
             _allExercises = exercises;
             InitializeForm();
 
-            // Подписываемся на событие закрытия формы
             this.FormClosing += FilterForm_FormClosing;
         }
 

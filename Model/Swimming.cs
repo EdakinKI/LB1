@@ -45,7 +45,8 @@ namespace Model
         /// <summary>
         /// Детальная информация об упражнении
         /// </summary>
-        public override string ExerciseInfo => $" Стиль: {Style}, Дистанция: {Distance} м";
+        public override string ExerciseInfo => $" Стиль: {Style}, Дистанция:" +
+                                               $" {Distance} м";
 
         /// <summary>
         /// Создание упражнения Плавание
