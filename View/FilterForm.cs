@@ -114,18 +114,6 @@ namespace View
         {
             var searchTerm = TextBoxFilter.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(searchTerm))
-            {
-                MessageBox.Show(
-                    "Введите текст для фильтрации. Можно вводить цифры и" +
-                    " буквы для поиска по названию и параметрам упражнения.",
-                    "Ошибка ввода",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                TextBoxFilter.Focus();
-                return;
-            }
-
             var selectedTypes = new List<string>();
             foreach (var item in CheckedListBoxExercise.CheckedItems)
             {
