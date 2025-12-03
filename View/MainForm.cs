@@ -180,7 +180,7 @@ namespace View
                         "Подтверждение удаления",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question,
-                        MessageBoxDefaultButton.Button2);
+                        MessageBoxDefaultButton.Button2);                   
 
                     if (result == DialogResult.Yes)
                     {
