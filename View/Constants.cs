@@ -23,21 +23,21 @@
         /// <summary>
         /// Стиль плавания - Вольный стиль
         /// </summary>
-        public const string Freestyle = "Freestyle";
+        public const string Freestyle = "Вольный стиль";
 
         /// <summary>
         /// Стиль плавания - Брасс
         /// </summary>
-        public const string Breaststroke = "Breaststroke";
+        public const string Breaststroke = "Брасс";
 
         /// <summary>
         /// Стиль плавания - На спине
         /// </summary>
-        public const string Backstroke = "Backstroke";
+        public const string Backstroke = "На спине";
 
         /// <summary>
         /// Стиль плавания - Баттерфляй
         /// </summary>
-        public const string Butterfly = "Butterfly";
+        public const string Butterfly = "Баттерфляй";
     }
 }

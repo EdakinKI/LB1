@@ -45,7 +45,7 @@ namespace Model
         /// <summary>
         /// Детальная информация об упражнении
         /// </summary>
-        public override string ExerciseInfo => $" Стиль: {Style}, Дистанция:" +
+        public override string ExerciseInfo => $" Стиль: {GetRussianStyleName()}, Дистанция:" +
                                                $" {Distance} м";
 
         /// <summary>
@@ -99,6 +99,36 @@ namespace Model
                     
             }
             return Distance * styleCoefficient;
+        }
+
+        /// <summary>
+        /// Русские названия стилей плавания
+        /// </summary>
+        private string GetRussianStyleName()
+        {
+            switch (_style)
+            {
+                case SwimmingStyle.Freestyle:
+                {
+                    return "Вольный стиль";
+                }
+                case SwimmingStyle.Breaststroke:
+                {
+                    return "Брасс";
+                }
+                case SwimmingStyle.Backstroke:
+                {
+                    return "Плавание на спине";
+                }
+                case SwimmingStyle.Butterfly:
+                {
+                    return "Баттерфляй";
+                }
+                default:
+                {
+                    return _style.ToString();
+                }
+            }
         }
     }
 }
