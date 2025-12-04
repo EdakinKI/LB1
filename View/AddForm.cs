@@ -32,14 +32,12 @@ namespace View
         /// </summary>
         private void InitializeForm()
         {
-            //TODO: to const
-            ComboBoxExercise.Items.AddRange(new string[] { Constants.Running,
-                Constants.Swimming, Constants.BenchPress });
+            //TODO: to const+
+            ComboBoxExercise.Items.AddRange(Constants.AllExerciseTypes);
             ComboBoxExercise.SelectedIndex = 0;
 
-            //TODO: to const
-            ComboBoxStyle.Items.AddRange(new string[] { Constants.Freestyle,
-            Constants.Breaststroke, Constants.Backstroke, Constants.Butterfly });
+            //TODO: to const+
+            ComboBoxStyle.Items.AddRange(Constants.AllSwimmingStyles);
             ComboBoxStyle.SelectedIndex = 0;
 
             LabelIntensityUnit.Text = "км/ч";

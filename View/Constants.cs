@@ -39,5 +39,26 @@
         /// Стиль плавания - Баттерфляй
         /// </summary>
         public const string Butterfly = "Баттерфляй";
+
+        /// <summary>
+        /// Массив всех типов упражнений
+        /// </summary>
+        public static readonly string[] AllExerciseTypes = new string[]
+        {
+            Running,
+            Swimming,
+            BenchPress
+        };
+
+        /// <summary>
+        /// Массив всех стилей плавания
+        /// </summary>
+        public static readonly string[] AllSwimmingStyles = new string[]
+        {
+            Freestyle,
+            Breaststroke,
+            Backstroke,
+            Butterfly
+        };
     }
 }

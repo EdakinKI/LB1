@@ -61,14 +61,8 @@ namespace View
         /// </summary>
         private void InitializeForm()
         {
-            CheckedListBoxExercise.Items.AddRange(
-                //TODO: to const
-                new string[]
-                { 
-                    Constants.Running, 
-                    Constants.Swimming, 
-                    Constants.BenchPress 
-                });
+            //TODO:to const+
+            CheckedListBoxExercise.Items.AddRange(Constants.AllExerciseTypes);
 
             for (int i = 0; i < CheckedListBoxExercise.Items.Count; i++)
             {
@@ -127,14 +121,8 @@ namespace View
 
             if (selectedTypes.Count == 0)
             {
-                selectedTypes.AddRange(
-                    //TODO: to const
-                    new string[]
-                    { 
-                        Constants.Running, 
-                        Constants.Swimming, 
-                        Constants.BenchPress 
-                    });
+                //TODO: to const+
+                selectedTypes.AddRange(Constants.AllExerciseTypes);
             }
 
             var filteredExercises = _allExercises
