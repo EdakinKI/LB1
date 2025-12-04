@@ -61,9 +61,14 @@ namespace View
         /// </summary>
         private void InitializeForm()
         {
-            //TODO: duplication+
-            CheckedListBoxExercise.Items.AddRange(new string[]
-            { Constants.Running, Constants.Swimming, Constants.BenchPress });
+            CheckedListBoxExercise.Items.AddRange(
+                //TODO: to const
+                new string[]
+                { 
+                    Constants.Running, 
+                    Constants.Swimming, 
+                    Constants.BenchPress 
+                });
 
             for (int i = 0; i < CheckedListBoxExercise.Items.Count; i++)
             {
@@ -122,9 +127,14 @@ namespace View
 
             if (selectedTypes.Count == 0)
             {
-                //TODO: duplication+
-                selectedTypes.AddRange(new string[]
-                { Constants.Running, Constants.Swimming, Constants.BenchPress });
+                selectedTypes.AddRange(
+                    //TODO: to const
+                    new string[]
+                    { 
+                        Constants.Running, 
+                        Constants.Swimming, 
+                        Constants.BenchPress 
+                    });
             }
 
             var filteredExercises = _allExercises
@@ -152,8 +162,7 @@ namespace View
                                                               selectedTypes)
         {
             string exerciseType;
-
-            //TODO: duplication+
+            //TODO: switch-case
             if (exercise is Running)
             {
                 exerciseType = Constants.Running;

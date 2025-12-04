@@ -3,7 +3,6 @@ using System;
 
 namespace View
 {
-    //TODO:remove+
     /// <summary>
     /// Класс-обертка для сериализации упражнений
     /// </summary>
@@ -115,8 +114,6 @@ namespace View
         {
             switch (Type)
             {
-                //TODO:duplication+
-                
                 case Constants.Running:
                 { 
                     return new Running(Name, Intensity, Distance);

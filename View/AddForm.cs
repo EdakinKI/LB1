@@ -9,8 +9,6 @@ namespace View
     /// </summary>
     public partial class AddExerciseForm : Form
     {
-        //TODO: XML+
-        //TODO: incapsulation+
         /// <summary>
         /// Событие, возникающее при создании нового упражнения
         /// </summary>
@@ -34,12 +32,12 @@ namespace View
         /// </summary>
         private void InitializeForm()
         {
-            //TODO: duplication+
+            //TODO: to const
             ComboBoxExercise.Items.AddRange(new string[] { Constants.Running,
                 Constants.Swimming, Constants.BenchPress });
             ComboBoxExercise.SelectedIndex = 0;
 
-            //TODO: duplication+
+            //TODO: to const
             ComboBoxStyle.Items.AddRange(new string[] { Constants.Freestyle,
             Constants.Breaststroke, Constants.Backstroke, Constants.Butterfly });
             ComboBoxStyle.SelectedIndex = 0;
@@ -63,7 +61,6 @@ namespace View
 
             switch (ComboBoxExercise.SelectedItem.ToString())
             {
-                //TODO: duplication+
                 case Constants.Running:
                 {
                     PanelRunning.Visible = true;
@@ -144,7 +141,6 @@ namespace View
 
                 switch (ComboBoxExercise.SelectedItem.ToString())
                 {
-                    //TODO: duplication+
                     case Constants.Running:
                     {
                         NumericIntensity.Value = (decimal)(Math.Round(random.
@@ -218,7 +214,6 @@ namespace View
 
             switch (ComboBoxExercise.SelectedItem.ToString())
             {
-                //TODO: duplication+
                 case Constants.Running:
                 {
                     return ValidateRunningInput();
@@ -336,13 +331,12 @@ namespace View
 
             switch (exerciseType)
             {
-                //TODO: duplication+
                 case Constants.Running:
                 {
                     return new Running(
-                    name,
-                    (double)NumericIntensity.Value,
-                    (double)NumericRunningDistance.Value);
+                        name,
+                        (double)NumericIntensity.Value,
+                        (double)NumericRunningDistance.Value);
                 }
 
                 case Constants.Swimming:
@@ -352,7 +346,6 @@ namespace View
 
                     switch (styleString)
                     {
-                            //TODO: duplication+
                         case Constants.Freestyle:
                         {
                             style = SwimmingStyle.Freestyle;
@@ -381,17 +374,17 @@ namespace View
                     }
 
                     return new Swimming(
-                    name, 
-                    style,
-                    (double)NumericSwimmingDistance.Value);
+                        name, 
+                        style,
+                        (double)NumericSwimmingDistance.Value);
                 }
 
                 case Constants.BenchPress:
                 {
                     return new BenchPress(
-                    name,
-                    (double)NumericWeight.Value,
-                    (int)NumericRepetitions.Value);
+                        name,
+                        (double)NumericWeight.Value,
+                        (int)NumericRepetitions.Value);
                 }
 
                 default:

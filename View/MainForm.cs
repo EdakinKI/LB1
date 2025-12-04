@@ -14,13 +14,11 @@ namespace View
     /// </summary>
     public partial class MainForm : Form
     {
-        //TODO: XML+
         /// <summary>
         /// Коллекция упражнений для отображения в DataGridView
         /// </summary>
         private BindingList<IExercise> _exercises;
 
-        //TODO: XML+
         /// <summary>
         /// Исходная коллекция упражнений для восстановления после фильтрации
         /// </summary>
@@ -116,7 +114,6 @@ namespace View
             ButtonClear.Enabled = _exercises.Count > 0;
         }
 
-        //TODO: incapsulation+
         /// <summary>
         /// Внутренний метод для добавления упражнения
         /// </summary>
@@ -162,7 +159,8 @@ namespace View
         {
             if (ExerciseDataGridView.SelectedRows.Count > 0)
             {
-                var selectedExercise = ExerciseDataGridView.SelectedRows[0].DataBoundItem as IExercise;
+                var selectedExercise = 
+                    ExerciseDataGridView.SelectedRows[0].DataBoundItem as IExercise;
                 if (selectedExercise != null)
                 {
                     var result = MessageBox.Show(
@@ -213,7 +211,6 @@ namespace View
             }
         }
 
-        //TODO: incapsulation+
         /// <summary>
         /// Обновление отображаемых упражнений для фильтрации
         /// </summary>
