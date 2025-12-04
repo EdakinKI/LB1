@@ -104,6 +104,7 @@ namespace Model
         /// <summary>
         /// Русские названия стилей плавания
         /// </summary>
+        /// <returns>Название стиля</returns>
         private string GetRussianStyleName()
         {
             switch (_style)

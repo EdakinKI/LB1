@@ -150,6 +150,7 @@ namespace View
                 MessageBoxIcon.Information);
         }
 
+        //TODO:switch-case+
         /// <summary>
         /// Проверка соответствия типа упражнения выбранным типам
         /// </summary>
@@ -162,23 +163,28 @@ namespace View
                                                               selectedTypes)
         {
             string exerciseType;
-            //TODO: switch-case
-            if (exercise is Running)
+            switch (exercise)
             {
-                exerciseType = Constants.Running;
-            }
-            else if (exercise is Swimming)
-            {
-                exerciseType = Constants.Swimming;
-            }
-            else if (exercise is BenchPress)
-            {
-                exerciseType = Constants.BenchPress;
-            }
-            else
-            {
-                throw new InvalidOperationException("Неизвестный тип" +
-                                                    " упражнения");
+                case Running running:
+                {
+                    exerciseType = Constants.Running;
+                    break;
+                }
+                case Swimming swimming:
+                {
+                    exerciseType = Constants.Swimming;
+                    break;
+                }
+                case BenchPress benchPress:
+                {
+                    exerciseType = Constants.BenchPress;
+                    break;
+                }
+                default:
+                {
+                    throw new InvalidOperationException("Неизвестный тип" +
+                                                        " упражнения");
+                }
             }
 
             return selectedTypes.Contains(exerciseType);
