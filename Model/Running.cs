@@ -28,7 +28,7 @@
             get => _distance;
             set
             {
-                ValidatePositiveValue(value, nameof(Distance));
+                ValidateRange(value, 1, 250, nameof(Distance));
                 _distance = value;
             }
         }

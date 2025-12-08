@@ -37,7 +37,7 @@ namespace Model
             get => _distance;
             set
             {
-                ValidatePositiveValue(value, nameof(Distance));
+                ValidateRange(value, 1, 10000, nameof(Distance));
                 _distance = value;
             }
         }
