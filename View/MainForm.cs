@@ -25,6 +25,16 @@ namespace View
         private List<IExercise> _originalExercises;
 
         /// <summary>
+        /// Ссылка на открытую форму добавления упражнения
+        /// </summary>
+        private AddExerciseForm _addExerciseForm;
+
+        /// <summary>
+        /// Ссылка на открытую форму фильтрации
+        /// </summary>
+        private FilterForm _filterForm;
+
+        /// <summary>
         /// Конструктор главной формы
         /// </summary>
         public MainForm()
@@ -135,19 +145,26 @@ namespace View
         /// <param name="Аргумент"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var addForm = new AddExerciseForm();
+            if (_addExerciseForm != null && !_addExerciseForm.IsDisposed)
+            {
+                _addExerciseForm.Activate();
+                _addExerciseForm.Focus();
+                return;
+            }
 
-            addForm.ExerciseCreated += (exercise) =>
+            _addExerciseForm = new AddExerciseForm();
+
+            _addExerciseForm.ExerciseCreated += (exercise) =>
             {
                 AddExerciseInternal(exercise);
             };
 
-            addForm.FormClosed += (s, args) =>
+            _addExerciseForm.FormClosed += (s, args) =>
             {
-                addForm.Dispose();
+                _addExerciseForm = null;
             };
 
-            addForm.Show();
+            _addExerciseForm.Show();
         }
 
         /// <summary>
@@ -236,24 +253,31 @@ namespace View
         /// <param name="Аргумент"></param>
         private void ButtonFilter_Click(object sender, EventArgs e)
         {
-            var filterForm = new FilterForm(_originalExercises);
+            if (_filterForm != null && !_filterForm.IsDisposed)
+            {
+                _filterForm.Activate();
+                _filterForm.Focus();
+                return;
+            }
 
-            filterForm.FilterApplied += (filteredExercises) =>
+            _filterForm = new FilterForm(_originalExercises);
+
+            _filterForm.FilterApplied += (filteredExercises) =>
             {
                 UpdateExercisesInternal(filteredExercises);
             };
 
-            filterForm.FilterCanceled += () =>
+            _filterForm.FilterCanceled += () =>
             {
                 UpdateExercisesInternal(_originalExercises);
             };
 
-            filterForm.FormClosed += (s, args) =>
+            _filterForm.FormClosed += (s, args) =>
             {
-                filterForm.Dispose();
+                _filterForm = null;
             };
 
-            filterForm.Show();
+            _filterForm.Show();
         }
 
         /// <summary>
