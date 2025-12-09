@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class AddExerciseForm
+    partial class AddForm
     {
         private System.ComponentModel.IContainer components = null;
 

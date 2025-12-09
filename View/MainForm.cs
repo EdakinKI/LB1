@@ -27,7 +27,7 @@ namespace View
         /// <summary>
         /// Ссылка на открытую форму добавления упражнения
         /// </summary>
-        private AddExerciseForm _addExerciseForm;
+        private AddForm _addForm;
 
         /// <summary>
         /// Ссылка на открытую форму фильтрации
@@ -145,26 +145,26 @@ namespace View
         /// <param name="Аргумент"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            if (_addExerciseForm != null && !_addExerciseForm.IsDisposed)
+            if (_addForm != null && !_addForm.IsDisposed)
             {
-                _addExerciseForm.Activate();
-                _addExerciseForm.Focus();
+                _addForm.Activate();
+                _addForm.Focus();
                 return;
             }
 
-            _addExerciseForm = new AddExerciseForm();
+            _addForm = new AddForm();
 
-            _addExerciseForm.ExerciseCreated += (exercise) =>
+            _addForm.ExerciseCreated += (exercise) =>
             {
                 AddExerciseInternal(exercise);
             };
 
-            _addExerciseForm.FormClosed += (s, args) =>
+            _addForm.FormClosed += (s, args) =>
             {
-                _addExerciseForm = null;
+                _addForm = null;
             };
 
-            _addExerciseForm.Show();
+            _addForm.Show();
         }
 
         /// <summary>

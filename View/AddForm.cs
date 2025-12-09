@@ -7,7 +7,7 @@ namespace View
     /// <summary>
     /// Форма добавления упражнения
     /// </summary>
-    public partial class AddExerciseForm : Form
+    public partial class AddForm : Form
     {
         /// <summary>
         /// Событие, возникающее при создании нового упражнения
@@ -17,15 +17,15 @@ namespace View
         /// <summary>
         /// Конструктор формы
         /// </summary>
-        public AddExerciseForm()
+        public AddForm()
         {
             InitializeComponent();
             InitializeForm();
-        }
 
 #if !DEBUG
-        ButtonCreateRandom.Visible = false;
+            ButtonCreateRandom.Visible = false;
 #endif
+        }
 
         /// <summary>
         /// Первоначальная настройка элементов управления формы
