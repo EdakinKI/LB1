@@ -28,7 +28,7 @@
             get => _distance;
             set
             {
-                ValidateRange(value, 1, 250, nameof(Distance));
+                ValidateRange(value, 0.01, 250, nameof(Distance));
                 _distance = value;
             }
         }
@@ -41,7 +41,7 @@
             get => _intensity;
             set
             {
-                ValidateRange(value, 1, 40, nameof(Intensity));
+                ValidateRange(value, 0.01, 40, nameof(Intensity));
                 _intensity = value;
             }
         }

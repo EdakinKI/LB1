@@ -139,27 +139,27 @@
             1,
             0,
             0,
-            65536});
+            131072});
             this.NumericRunningDistance.Location = new System.Drawing.Point(123, 56);
             this.NumericRunningDistance.Margin = new System.Windows.Forms.Padding(4);
             this.NumericRunningDistance.Maximum = new decimal(new int[] {
-            2500,
+            250,
             0,
             0,
-            65536});
+            0});
             this.NumericRunningDistance.Minimum = new decimal(new int[] {
             1,
             0,
             0,
-            65536});
+            131072});
             this.NumericRunningDistance.Name = "NumericRunningDistance";
             this.NumericRunningDistance.Size = new System.Drawing.Size(120, 22);
             this.NumericRunningDistance.TabIndex = 3;
             this.NumericRunningDistance.Value = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
-            0});
+            131072});
             // 
             // LabelRunningDistance
             // 
@@ -184,13 +184,13 @@
             // NumericIntensity
             // 
             this.NumericIntensity.DecimalPlaces = 2;
-            this.NumericIntensity.Location = new System.Drawing.Point(123, 19);
-            this.NumericIntensity.Margin = new System.Windows.Forms.Padding(4);
             this.NumericIntensity.Increment = new decimal(new int[] {
             1,
             0,
             0,
-            65536});
+            131072});
+            this.NumericIntensity.Location = new System.Drawing.Point(123, 19);
+            this.NumericIntensity.Margin = new System.Windows.Forms.Padding(4);
             this.NumericIntensity.Maximum = new decimal(new int[] {
             40,
             0,
@@ -200,15 +200,15 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.NumericIntensity.Name = "NumericIntensity";
             this.NumericIntensity.Size = new System.Drawing.Size(120, 22);
             this.NumericIntensity.TabIndex = 1;
             this.NumericIntensity.Value = new decimal(new int[] {
-            10,
+            1,
             0,
             0,
-            0});
+            131072});
             // 
             // LabelIntensity
             // 
@@ -246,13 +246,13 @@
             // NumericSwimmingDistance
             // 
             this.NumericSwimmingDistance.DecimalPlaces = 2;
-            this.NumericSwimmingDistance.Location = new System.Drawing.Point(123, 56);
-            this.NumericSwimmingDistance.Margin = new System.Windows.Forms.Padding(4);
             this.NumericSwimmingDistance.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            this.NumericSwimmingDistance.Location = new System.Drawing.Point(123, 56);
+            this.NumericSwimmingDistance.Margin = new System.Windows.Forms.Padding(4);
             this.NumericSwimmingDistance.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -267,7 +267,7 @@
             this.NumericSwimmingDistance.Size = new System.Drawing.Size(120, 22);
             this.NumericSwimmingDistance.TabIndex = 3;
             this.NumericSwimmingDistance.Value = new decimal(new int[] {
-            100,
+            1,
             0,
             0,
             0});
@@ -339,7 +339,7 @@
             this.NumericRepetitions.Size = new System.Drawing.Size(120, 22);
             this.NumericRepetitions.TabIndex = 3;
             this.NumericRepetitions.Value = new decimal(new int[] {
-            10,
+            1,
             0,
             0,
             0});
@@ -367,13 +367,13 @@
             // NumericWeight
             // 
             this.NumericWeight.DecimalPlaces = 2;
-            this.NumericWeight.Location = new System.Drawing.Point(123, 19);
-            this.NumericWeight.Margin = new System.Windows.Forms.Padding(4);
             this.NumericWeight.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            this.NumericWeight.Location = new System.Drawing.Point(123, 19);
+            this.NumericWeight.Margin = new System.Windows.Forms.Padding(4);
             this.NumericWeight.Maximum = new decimal(new int[] {
             300,
             0,
@@ -388,7 +388,7 @@
             this.NumericWeight.Size = new System.Drawing.Size(120, 22);
             this.NumericWeight.TabIndex = 1;
             this.NumericWeight.Value = new decimal(new int[] {
-            50,
+            1,
             0,
             0,
             0});
