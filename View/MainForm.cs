@@ -408,6 +408,14 @@ namespace View
         /// <param name="fileName">Имя файла для загрузки</param>
         private void LoadExercises(string fileName)
         {
+            string xmlContent = File.ReadAllText(fileName);
+
+            if (xmlContent.Contains(">NaN<") || xmlContent.Contains(">nan<"))
+            {
+                throw new InvalidDataException(
+                    "Файл поврежден: содержит некорректные числовые значения (NaN).");
+            }
+
             var serializer = new XmlSerializer(typeof(List<ExerciseWrapper>));
 
             using (var stream = new FileStream(fileName, FileMode.Open))
