@@ -32,11 +32,9 @@ namespace View
         /// </summary>
         private void InitializeForm()
         {
-            //TODO: to const+
             ComboBoxExercise.Items.AddRange(Constants.AllExerciseTypes);
             ComboBoxExercise.SelectedIndex = 0;
 
-            //TODO: to const+
             ComboBoxStyle.Items.AddRange(Constants.AllSwimmingStyles);
             ComboBoxStyle.SelectedIndex = 0;
 

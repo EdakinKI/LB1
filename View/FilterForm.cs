@@ -61,7 +61,6 @@ namespace View
         /// </summary>
         private void InitializeForm()
         {
-            //TODO:to const+
             CheckedListBoxExercise.Items.AddRange(Constants.AllExerciseTypes);
 
             for (int i = 0; i < CheckedListBoxExercise.Items.Count; i++)
@@ -121,7 +120,6 @@ namespace View
 
             if (selectedTypes.Count == 0)
             {
-                //TODO: to const+
                 selectedTypes.AddRange(Constants.AllExerciseTypes);
             }
 
@@ -138,7 +136,6 @@ namespace View
                 MessageBoxIcon.Information);
         }
 
-        //TODO:switch-case+
         /// <summary>
         /// Проверка соответствия типа упражнения выбранным типам
         /// </summary>
@@ -147,8 +144,8 @@ namespace View
         /// <returns>Выбранный тип</returns>
         /// <exception cref="Исключение если неизвестный тип упражнения"
         /// ></exception>
-        private bool IsExerciseTypeSelected(IExercise exercise, List<string>
-                                                              selectedTypes)
+        private bool IsExerciseTypeSelected(IExercise exercise, 
+            List<string> selectedTypes)
         {
             string exerciseType;
             switch (exercise)
