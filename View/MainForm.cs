@@ -181,7 +181,8 @@ namespace View
                 if (selectedExercise != null)
                 {
                     var result = MessageBox.Show(
-                        $"Вы уверены, что хотите удалить упражнение '{selectedExercise.Name}'?",
+                        $"Вы уверены, что хотите удалить упражнение " +
+                        $"'{selectedExercise.Name}'?",
                         "Подтверждение удаления",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question,
@@ -394,7 +395,8 @@ namespace View
         private void SaveExercises(string fileName)
         {
             var serializer = new XmlSerializer(typeof(List<ExerciseWrapper>));
-            var wrappedExercises = _originalExercises.Select(ex => CreateWrapper(ex)).ToList();
+            var wrappedExercises = _originalExercises.Select(ex => 
+                                   CreateWrapper(ex)).ToList();
 
             using (var stream = new FileStream(fileName, FileMode.Create))
             {
@@ -413,14 +415,16 @@ namespace View
             if (xmlContent.Contains(">NaN<") || xmlContent.Contains(">nan<"))
             {
                 throw new InvalidDataException(
-                    "Файл поврежден: содержит некорректные числовые значения (NaN).");
+                    "Файл поврежден: содержит некорректные числовые значения" +
+                    " (NaN).");
             }
 
             var serializer = new XmlSerializer(typeof(List<ExerciseWrapper>));
 
             using (var stream = new FileStream(fileName, FileMode.Open))
             {
-                var wrappedExercises = (List<ExerciseWrapper>)serializer.Deserialize(stream);
+                var wrappedExercises = (List<ExerciseWrapper>)serializer.
+                    Deserialize(stream);
                 _exercises.Clear();
                 _originalExercises.Clear();
 
